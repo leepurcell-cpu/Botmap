@@ -123,7 +123,7 @@ aside ul{margin:4px 0 0;padding-left:18px}aside li{margin:3px 0}
 @media (max-width:820px){
  body{display:block;height:auto;overflow:auto}
  .hero{display:block;padding:22px 18px 16px}h1{font-size:28px}.summary{font-size:14.5px}
- .right{align-items:stretch;margin-top:14px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.stat{min-width:0;padding:7px 9px}.stat b{font-size:19px}.stat span{font-size:11px;line-height:1.25;display:block}
+ .right{align-items:stretch;margin-top:14px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.stat{min-width:0;padding:7px 9px}.stat b{font-size:19px}.stat span{font-size:11px;line-height:1.25;display:block}
  .controls{justify-content:flex-start;gap:8px}.btn{min-height:44px;padding:0 14px;font-size:13.5px}
  #stage{display:none}
  #list{display:block;padding:8px 16px 120px}
@@ -177,10 +177,10 @@ aside .htw.dk .flow{padding:4px 12px 12px}aside .htw.dk .flow .fl,aside .htw.dk 
 @media (max-width:1100px){.htw ol{columns:1}}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style></head><body>
-<nav class="topnav"><a class="brand" href="index.html?v=20261010232335"><span class="mk"></span>Bot Dashboard</a><div class="links"><a href="index.html?v=20261010232335" data-p="map" class="act" style="--t:#4f46e5">Map</a><a href="connections.html?v=20261010232335" data-p="conn" style="--t:#0f766e">Connections</a><a href="mindmap.html?v=20261010232335" data-p="mind" style="--t:#047857">Mind map</a><a href="marketing.html?v=20261010232335" data-p="mkt" style="--t:#b45309">Marketing team</a><a href="bots.html?v=20261010232335" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
+<nav class="topnav"><a class="brand" href="index.html?v=20261010232922"><span class="mk"></span>Bot Dashboard</a><div class="links"><a href="index.html?v=20261010232922" data-p="map" class="act" style="--t:#4f46e5">Map</a><a href="connections.html?v=20261010232922" data-p="conn" style="--t:#0f766e">Connections</a><a href="mindmap.html?v=20261010232922" data-p="mind" style="--t:#047857">Mind map</a><a href="marketing.html?v=20261010232922" data-p="mkt" style="--t:#b45309">Marketing team</a><a href="bots.html?v=20261010232922" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
 <header class="hero" id="hdr"><button class="htog" id="htog" type="button" aria-controls="hdr" aria-expanded="true">Hide header ✕</button>
  <div><div class="eyebrow">Grok Bot organisation · v4</div><h1>Bot Dashboard</h1>
- <p class="intro">Lee's Bot Dashboard for his bot team: see who does what, how work flows, and where to build next.</p><p class="summary">22 bots work for Lee through one front door, Rhiannon. Meetings, memory and CRM sit behind her; research, tech, business-advisory and specialist bots run on demand.</p><div class="meta">Drawn Sat 10 Oct 2026, 21:43 Dubai · built from each bot's saved instructions and room memberships</div>
+ <p class="intro">Lee's Bot Dashboard for his bot team: see who does what, how work flows, and where to build next.</p><p class="summary">22 bots work for Lee through one front door, Rhiannon. Meetings, memory and CRM sit behind her; research, tech, business-advisory and specialist bots run on demand. Lee can also set up group chats that pull the right bots together when a job needs several angles and feedback at once, or keeps coming back.</p><div class="meta">Drawn Sat 10 Oct 2026, 21:43 Dubai · built from each bot's saved instructions and room memberships</div>
  <div class="runs"><div class="rh">Who runs this dashboard</div><ul><li><b>Dr Eggbot</b>: builds and changes bots, with Lee's go-ahead.</li><li><b>Bot Dashboard</b>: keeps this dashboard drawn and up to date.</li><li><b>Bot Auditor</b>: runs the real checks and reports to Dr Eggbot.</li></ul></div>
  <details class="htw" open><summary>How the team works</summary><div class="hb">
 <p class="lead">A real team structure underneath, with work that flows freely across it.</p>
@@ -271,8 +271,8 @@ function drawFeed(){gF.innerHTML="";document.querySelectorAll(".flbl").forEach(x
  const yb=Math.max(...ys);const t=seg(orth([[TX0,yb],[TX0,ty],[RH.x+RH.w+4,ty]],10));t.setAttribute("marker-end","url(#m-feed)");
  const l=document.createElement("div");l.className="flbl";l.textContent="Research feeds Rhiannon";l.style.left=(TX0+86)+"px";l.style.top=(LT-24)+"px";document.getElementById("world").appendChild(l);}
 // stats
-const nBots=D.nodes.filter(n=>n.kind==="bot").length,nRooms=D.nodes.filter(n=>n.kind==="room").length,nHand=D.edges.filter(isMain).length;
-stats.innerHTML=[[nBots,"bots"],[nRooms,"group rooms"],[nHand,"hand-offs"],[D.nodes.filter(sched).length,"on a schedule"]].map(([v,l])=>`<div class="stat"><b>${v}</b><span>${l}</span></div>`).join("");
+const nBots=D.nodes.filter(n=>n.kind==="bot").length,nRooms=D.nodes.filter(n=>n.kind==="room").length,nHand=new Set(D.edges.filter(e=>e.type==="handoff"&&byId[e.from]&&byId[e.to]&&byId[e.from].kind==="bot"&&byId[e.to].kind==="bot").map(e=>e.from+">"+e.to)).size;
+stats.innerHTML=[[nBots,"bots"],[nHand,"hand-offs"],[D.nodes.filter(sched).length,"on a schedule"]].map(([v,l])=>`<div class="stat"><b>${v}</b><span>${l}</span></div>`).join("");
 // layers
 const ROOMS=D.nodes.filter(n=>n.kind==="room").map(n=>n.id),STORES=D.nodes.filter(n=>n.kind==="store").map(n=>n.id);
 function layerVisible(id){const k=byId[id].kind;return k==="room"?true:k==="store"?cStores.checked:true;}
