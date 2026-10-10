@@ -119,13 +119,13 @@ aside ul{margin:4px 0 0;padding-left:18px}aside li{margin:3px 0}
  .legend,.zoom{display:none}
 }
 </style></head><body>
-<nav class="topnav"><a class="brand" href="index.html?v=20261010105023"><span class="mk"></span>Lee Purcell's Bots</a><div class="links"><a href="index.html?v=20261010105023" data-p="map" class="act" style="--t:#4f46e5">Map</a><a href="mindmap.html?v=20261010105023" data-p="mind" style="--t:#047857">Mind map</a><a href="bots.html?v=20261010105023" data-p="bots" style="--t:#b45309">How it's built</a></div></nav>
+<nav class="topnav"><a class="brand" href="index.html?v=20261010105817"><span class="mk"></span>Lee Purcell's Bots</a><div class="links"><a href="index.html?v=20261010105817" data-p="map" class="act" style="--t:#4f46e5">Map</a><a href="mindmap.html?v=20261010105817" data-p="mind" style="--t:#047857">Mind map</a><a href="bots.html?v=20261010105817" data-p="bots" style="--t:#b45309">How it's built</a></div></nav>
 
 <header class="hero">
  <div><div class="eyebrow">Grok Bot organisation · v4</div><h1>Lee Purcell's Bot Map</h1>
  <p class="summary">22 bots work for Lee through one front door, Rhiannon. Meetings, memory and CRM sit behind her; research, tech, business-advisory and specialist bots run on demand.</p><div class="meta">Drawn Sat 10 Oct 2026, 10:49 Dubai · built from each bot's saved instructions and room memberships</div></div>
  <div class="right"><div class="stats" id="stats"></div>
- <div class="controls"><label class="tg"><input type="checkbox" id="cStores"><i></i>Data stores</label><label class="tg"><input type="checkbox" id="cRooms"><i></i>Group rooms</label><label class="tg"><input type="checkbox" id="cEgg"><i></i>Dr Eggbot coverage</label><button class="btn" id="bStory">▶ Story</button></div></div>
+ <div class="controls"><label class="tg"><input type="checkbox" id="cStores"><i></i>Data stores</label><label class="tg" style="display:none"><input type="checkbox" id="cRooms"><i></i>Group rooms</label><label class="tg"><input type="checkbox" id="cEgg"><i></i>Dr Eggbot coverage</label><button class="btn" id="bStory">▶ Story</button></div></div>
 </header>
 <div id="stage"><div id="world"><svg id="svg"><defs></defs><g id="gE"></g><g id="gT"></g></svg><div id="bands"></div><div id="cards"></div><div id="lbls"></div></div>
  <div class="legend"><span><s></s>Hand-off</span><span><s class="f"></s>Focused flow</span><span>Hover a bot to trace it · click for details · scroll to move · Ctrl/⌘ + scroll or pinch to zoom</span></div>
@@ -139,7 +139,7 @@ const D={"drawn": "Sat 10 Oct 2026, 10:49 Dubai", "version": "v4", "nodes": [{"i
 const byId={};D.nodes.forEach(n=>byId[n.id]=n);
 const GC={lee:"#0f172a",hub:"#5b5bd6",meetings:"#0e9f77",crm:"#d97706",research:"#0284c7",ops:"#0f766e",tech:"#db2777",builders:"#7c3aed",biz:"#4d7c0f",other:"#64748b",room:"#94a3b8",store:"#94a3b8"};
 const colOf=id=>{const n=byId[id];return GC[n.kind==="room"?"room":n.kind==="store"?"store":n.group]||"#64748b"};
-const LANES=[{g:"research",name:"Research",ids:["scout","mno","micro","vetter","night"],col:0,r0:0},{g:"meetings",name:"Meetings",ids:["brief","spp"],col:1,r0:0,stack:1},{g:"crm",name:"Memory & CRM",ids:["rolodex","workbrain"],col:1,r0:3,stack:1},{g:"tech",name:"Tech: Build & Design",ids:["cto","dev","figma"],col:2,r0:0},{g:"builders",name:"Bot Builders & Audit",ids:["eggbot","alfred","botmap"],col:3,r0:0},{g:"biz",name:"Business Advisory",ids:["cfo","analyst","risk"],col:4,r0:0},{g:"ops",name:"Advice",ids:["bounce"],col:5,r0:0,stack:1},{g:"other",name:"Other specialists",ids:["recruit"],col:5,r0:2,stack:1}];
+const LANES=[{g:"biz",name:"Business Advisory",ids:["cfo","analyst","risk"],col:0,r0:0},{g:"tech",name:"Tech: Build & Design",ids:["cto","dev","figma"],col:1,r0:0},{g:"builders",name:"Bot Builders & Audit",ids:["eggbot","alfred","botmap"],col:2,r0:0},{g:"ops",name:"Advice",ids:["bounce"],col:3,r0:0,stack:1},{g:"meetings",name:"Meetings",ids:["brief","spp"],col:3,r0:2,stack:1},{g:"crm",name:"Memory & CRM",ids:["workbrain","rolodex","room_nd","room_rwb"],col:4,r0:0},{g:"research",name:"Research",ids:["mno","night","vetter","micro","scout"],col:5,r0:0,stack:1},{g:"other",name:"Other specialists",ids:["recruit"],col:5,r0:6,stack:1}];
 const MAXR=Math.max(...LANES.map(l=>l.r0+l.ids.length));
 const NC=6,PADX=12,COL=155,GAP=16,CW=COL-GAP-12,CH=66,W=PADX*2+COL*NC,LT=278,R0=336,RP=78;
 const cx=i=>PADX+COL/2+COL*i, rowY=r=>R0+r*RP, LC=PADX+COL*NC/2;
@@ -147,17 +147,16 @@ const G={}; // rects
 G.lee={x:LC-90,y:20,w:180,h:60};G.rhiannon={x:LC-95,y:138,w:190,h:80};G.pm={x:cx(1)-CW/2-10,y:144,w:CW+20,h:70};
 LANES.forEach(l=>l.ids.forEach((id,r)=>G[id]={x:cx(l.col)-CW/2,y:rowY(l.r0+r),w:CW,h:CH}));
 const BAND_B=rowY(MAXR-1)+CH+18, ROOM_T=BAND_B+24, STORE_T=ROOM_T+118;
-const RW=(COL*NC-30)/2;["room_nd","room_rwb"].forEach((id,i)=>G[id]={x:PADX+10+i*(RW+10),y:ROOM_T+40,w:RW,h:58});
+const RW=(COL*NC-30)/2;
 const SW=(COL*NC)/7;["s_scout","s_projects","s_notes","s_boardy","s_primary","s_pct","s_claude"].forEach((id,i)=>G[id]={x:PADX+i*SW+6,y:STORE_T+40,w:SW-12,h:62});
 // always-drawn main hand-offs, derived from the grid (others draw on hover)
 const Rr=G.rhiannon.x+G.rhiannon.w,Rl=G.rhiannon.x,Rb=G.rhiannon.y+G.rhiannon.h,LB=PADX+COL*2,XS=Rl+14,XR=Rl+62;
 const ROUTES={
  "lee>rhiannon":{p:[[LC,80],[LC,138]],l:[LC+70,109]},
  "rhiannon>pm":{p:[[Rl,178],[G.pm.x+G.pm.w,178]],l:[(Rl+G.pm.x+G.pm.w)/2,160]},
- "rhiannon>eggbot":{p:[[Rr-14,Rb],[Rr-14,rowY(0)]],l:[Rr+40,250]},
- "rhiannon>cto":{p:[[Rl+40,Rb],[Rl+40,rowY(0)]],l:[Rl+40,250]},
- "rhiannon>brief":{p:[[XS,Rb],[XS,258],[cx(1)+20,258],[cx(1)+20,rowY(0)]],l:[cx(1)-10,240],both:true}};
-ROUTES["brief>rhiannon"]=ROUTES["rhiannon>brief"];
+ "rhiannon>eggbot":{p:[[cx(2)+10,Rb],[cx(2)+10,rowY(0)]],l:[cx(2)+60,250]},
+ "rhiannon>cto":{p:[[Rl+8,Rb],[Rl+8,258],[cx(1)+20,258],[cx(1)+20,rowY(0)]],l:[cx(1)-10,240]}};
+
 function orth(p,r=12){let s=`M${p[0][0]},${p[0][1]}`;for(let i=1;i<p.length-1;i++){const [x0,y0]=p[i-1],[x1,y1]=p[i],[x2,y2]=p[i+1];
  const d1=Math.hypot(x1-x0,y1-y0),d2=Math.hypot(x2-x1,y2-y1),rr=Math.min(r,d1/2,d2/2);
  const ax=x1-(x1-x0)/d1*rr,ay=y1-(y1-y0)/d1*rr,bx=x1+(x2-x1)/d2*rr,by=y1+(y2-y1)/d2*rr;s+=` L${ax},${ay} Q${x1},${y1} ${bx},${by}`;}
@@ -170,11 +169,11 @@ const isMain=e=>e.type==="lee"||e.type==="handoff";
 const pathEls={};
 Object.entries(ROUTES).forEach(([k,r])=>{if(pathEls[k]||(k==="brief>rhiannon"))return;const el=document.createElementNS(NS,"path");el.setAttribute("d",r.d||orth(r.p));el.setAttribute("class","e");
  el.setAttribute("marker-end","url(#m-def)");if(r.both)el.setAttribute("marker-start","url(#m-def)");gE.appendChild(el);pathEls[k]=el;});
-pathEls["brief>rhiannon"]=pathEls["rhiannon>brief"];
+
 // bands, cards
 const bandsEl=document.getElementById("bands"),cardsEl=document.getElementById("cards"),lblEl=document.getElementById("lbls"),world=document.getElementById("world");
 function band(x,y,w,h,c,lb,ct){const b=document.createElement("div");b.className="band";Object.assign(b.style,{left:x+"px",top:y+"px",width:w+"px",height:h+"px"});b.style.setProperty("--c",c);b.innerHTML=`<span class="lb">${lb}</span>${ct?`<span class="ct">${ct}</span>`:""}`;bandsEl.appendChild(b);return b;}
-band(PADX+GAP/2,118,COL*NC-GAP,120,GC.hub,"Hub","");
+band(PADX+GAP/2,118,COL*NC-GAP,120,GC.hub,"Chief of Staff","");
 LANES.forEach(l=>{const top=LT+rowY(l.r0)-R0,bot=l.stack?rowY(l.r0+l.ids.length-1)+CH+18:BAND_B;band(cx(l.col)-COL/2+GAP/2,top,COL-GAP,bot-top,GC[l.g],l.name,l.ids.length);});
 const roomBand=band(PADX+GAP/2,ROOM_T,COL*NC-GAP,110,"#94a3b8","Group rooms",String(D.nodes.filter(n=>n.kind==="room").length)),storeBand=band(PADX+GAP/2,STORE_T,COL*NC-GAP,116,"#94a3b8","Data stores",String(D.nodes.filter(n=>n.kind==="store").length));
 const sched=n=>(n.schedule||[]).some(s=>/\d\d:\d\d/.test(s));
@@ -192,9 +191,9 @@ const nBots=D.nodes.filter(n=>n.kind==="bot").length,nRooms=D.nodes.filter(n=>n.
 stats.innerHTML=[[nBots,"bots"],[nRooms,"group rooms"],[nHand,"hand-offs"],[D.nodes.filter(sched).length,"on a schedule"]].map(([v,l])=>`<div class="stat"><b>${v}</b><span>${l}</span></div>`).join("");
 // layers
 const ROOMS=D.nodes.filter(n=>n.kind==="room").map(n=>n.id),STORES=D.nodes.filter(n=>n.kind==="store").map(n=>n.id);
-function layerVisible(id){const k=byId[id].kind;return k==="room"?cRooms.checked:k==="store"?cStores.checked:true;}
+function layerVisible(id){const k=byId[id].kind;return k==="room"?true:k==="store"?cStores.checked:true;}
 function worldH(){return cStores.checked?(cRooms.checked?STORE_T:ROOM_T)+104:cRooms.checked?ROOM_T+108:BAND_B+20;}
-function applyLayers(){ROOMS.forEach(id=>cardEls[id].style.display=cRooms.checked?"":"none");STORES.forEach(id=>cardEls[id].style.display=cStores.checked?"":"none");
+function applyLayers(){cRooms.checked=false;ROOMS.forEach(id=>cardEls[id].style.display="");STORES.forEach(id=>cardEls[id].style.display=cStores.checked?"":"none");
  roomBand.style.display=cRooms.checked?"":"none";storeBand.style.display=cStores.checked?"":"none";
  if(cStores.checked&&!cRooms.checked){storeBand.style.top=ROOM_T+"px";STORES.forEach(id=>cardEls[id].style.top=(ROOM_T+32)+"px");}else{storeBand.style.top=STORE_T+"px";STORES.forEach(id=>cardEls[id].style.top=(STORE_T+32)+"px");}
  document.body.classList.toggle("egg",cEgg.checked);cardEls.eggbot.querySelector(".rl").textContent=cEgg.checked?`Changes all ${nBots-1} other bots`:byId.eggbot.short;world.classList.toggle("egg",cEgg.checked);renderList();refocus();}
@@ -285,9 +284,8 @@ side.addEventListener("click",ev=>{const t=ev.target;if(t.dataset.close){sheet(f
 const listEl=document.getElementById("list");
 function mcard(id){const n=byId[id];const inc=D.edges.filter(e=>e.to===id&&isMain(e)).map(e=>"from "+(e.from==="lee"?"Lee":byId[e.from].label));
  return `<div class="mc ${n.kind==="person"?"lee":""}" data-id="${id}" style="--c:${colOf(id)}"><div class="nm">${n.kind==="person"?"Lee Purcell":esc(n.label)}${clockTxt[id]?`<span class="clk">⏱ ${clockTxt[id]}</span>`:""}</div><div class="rl">${n.kind==="person"?"You · talks to Rhiannon":esc(id==="rhiannon"?"Chief of staff · front door":n.short||"")}</div>${inc.length&&n.kind!=="person"?`<div class="fr">${inc.map(x=>`<span>${esc(x)}</span>`).join("")}</div>`:""}</div>`;}
-function renderList(){let h=mcard("lee")+`<div class="spine"></div>`+`<div class="sec" style="--c:${GC.hub}"><div class="sh">Hub</div>${mcard("rhiannon")}${mcard("pm")}</div>`;
- ["meetings","crm","research","tech","builders","biz","ops","other"].forEach(g=>{const l=LANES.find(x=>x.g===g);h+=`<div class="sec" style="--c:${GC[g]}"><div class="sh">${l.name}</div>${l.ids.map(mcard).join("")}</div>`;});
- if(cRooms.checked)h+=`<div class="sec" style="--c:#94a3b8"><div class="sh">Group rooms</div>${ROOMS.map(mcard).join("")}</div>`;
+function renderList(){let h=mcard("lee")+`<div class="spine"></div>`+`<div class="sec" style="--c:${GC.hub}"><div class="sh">Chief of Staff</div>${mcard("rhiannon")}${mcard("pm")}</div>`;
+ ["biz","tech","builders","ops","meetings","crm","research","other"].forEach(g=>{const l=LANES.find(x=>x.g===g);h+=`<div class="sec" style="--c:${GC[g]}"><div class="sh">${l.name}</div>${l.ids.map(mcard).join("")}</div>`;});
  if(cStores.checked)h+=`<div class="sec" style="--c:#94a3b8"><div class="sh">Data stores</div>${STORES.map(mcard).join("")}</div>`;
  listEl.innerHTML=h;}
 listEl.addEventListener("click",ev=>{const c=ev.target.closest(".mc");if(c)select(c.dataset.id);});
