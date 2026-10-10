@@ -151,13 +151,33 @@ aside ul{margin:4px 0 0;padding-left:18px}aside li{margin:3px 0}
  #ovw{display:block}
  .legend,.zoom{display:none}
 }
+.htw{margin-top:10px;max-width:760px;background:#fff;border:1px solid var(--line);border-left:3px solid #312E81;border-radius:12px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+.htw>summary{list-style:none;cursor:pointer;padding:8px 14px;font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#312E81;display:flex;align-items:center;gap:8px}.htw>summary::-webkit-details-marker{display:none}.htw>summary:after{content:"Show ▾";margin-left:auto;text-transform:none;letter-spacing:0;font-size:12px;color:#4F46E5}.htw[open]>summary:after{content:"Hide ▴"}
+.htw ol{margin:0;padding:0 14px 6px 32px;font-size:13px;line-height:1.45;color:var(--ink2);columns:2;column-gap:28px}.htw li{break-inside:avoid;margin:0 0 5px}.htw li b{color:var(--ink);font-weight:600}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:4px 14px 10px;font-size:12px;font-weight:600}.flow .fl{color:var(--mut);font-weight:500;margin-right:2px}.flow span.n{padding:3px 9px;border-radius:999px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;white-space:nowrap}.flow span.o{background:#312E81;color:#fff;border-color:#312E81}.flow i{font-style:normal;color:var(--mut)}
+body.hc .hero .htw{display:none}
+@media (min-width:821px){.hero .htw{display:none}}
+@media (max-width:820px){#ovw .htw{display:none}.htw ol{padding-left:28px}}
+aside .htw.dk{margin:0 0 18px;max-width:none;background:#1a2442;border:1px solid var(--pline);border-left:3px solid #818CF8;box-shadow:none}
+aside .htw.dk>summary{color:#C7D2FE;font-size:12px;padding:10px 12px}aside .htw.dk>summary:after{color:var(--acc)}
+aside .htw.dk ol{columns:1;color:var(--ptxt);font-size:12.5px;padding:0 12px 4px 28px;margin:0}aside .htw.dk li{margin:0 0 7px}aside .htw.dk li b{color:#fff}
+aside .htw.dk .flow{padding:4px 12px 12px}aside .htw.dk .flow .fl,aside .htw.dk .flow i{color:var(--pmut)}aside .htw.dk .flow span.n{background:#1e3a8a;color:#DBEAFE;border-color:#2563EB}aside .htw.dk .flow span.o{background:#4F46E5;border-color:#818CF8;color:#fff}
+
+@media (max-width:1100px){.htw ol{columns:1}}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style></head><body>
-<nav class="topnav"><a class="brand" href="index.html?v=20261010214331"><span class="mk"></span>Bot Dashboard</a><div class="links"><a href="index.html?v=20261010214331" data-p="map" class="act" style="--t:#4f46e5">Map</a><a href="connections.html?v=20261010214331" data-p="conn" style="--t:#0f766e">Connections</a><a href="mindmap.html?v=20261010214331" data-p="mind" style="--t:#047857">Mind map</a><a href="marketing.html?v=20261010214331" data-p="mkt" style="--t:#b45309">Marketing team</a><a href="bots.html?v=20261010214331" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
+<nav class="topnav"><a class="brand" href="index.html?v=20261010220530"><span class="mk"></span>Bot Dashboard</a><div class="links"><a href="index.html?v=20261010220530" data-p="map" class="act" style="--t:#4f46e5">Map</a><a href="connections.html?v=20261010220530" data-p="conn" style="--t:#0f766e">Connections</a><a href="mindmap.html?v=20261010220530" data-p="mind" style="--t:#047857">Mind map</a><a href="marketing.html?v=20261010220530" data-p="mkt" style="--t:#b45309">Marketing team</a><a href="bots.html?v=20261010220530" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
 <header class="hero" id="hdr"><button class="htog" id="htog" type="button" aria-controls="hdr" aria-expanded="true">Hide header ✕</button>
  <div><div class="eyebrow">Grok Bot organisation · v4</div><h1>Bot Dashboard</h1>
  <p class="intro">Lee's Bot Dashboard for his bot team: see who does what, how work flows, and where to build next.</p><p class="summary">22 bots work for Lee through one front door, Rhiannon. Meetings, memory and CRM sit behind her; research, tech, business-advisory and specialist bots run on demand.</p><div class="meta">Drawn Sat 10 Oct 2026, 21:43 Dubai · built from each bot's saved instructions and room memberships</div>
- <div class="runs"><div class="rh">Who runs this dashboard</div><ul><li><b>Dr Eggbot</b>: builds and changes bots, with Lee's go-ahead.</li><li><b>Bot Dashboard</b>: keeps this dashboard drawn and up to date.</li><li><b>Bot Auditor</b>: runs the real checks and reports to Dr Eggbot.</li></ul></div></div>
+ <div class="runs"><div class="rh">Who runs this dashboard</div><ul><li><b>Dr Eggbot</b>: builds and changes bots, with Lee's go-ahead.</li><li><b>Bot Dashboard</b>: keeps this dashboard drawn and up to date.</li><li><b>Bot Auditor</b>: runs the real checks and reports to Dr Eggbot.</li></ul></div>
+ <details class="htw" open><summary>How the team works</summary><ol>
+<li><b>Run like a business.</b> Lee sets direction. Rhiannon, Chief of Staff, is the hub. Leaders and Senior Staff (CTO, CFO, CMO, Risk &amp; Compliance, Projects Manager, Deal Desk) own outcomes in their areas. Specialist and skills bots do the focused work.</li>
+<li><b>Work starts with a leader.</b> When Lee brings work to a leader, that leader picks the right mix of bots and skills to deliver it, as a department head staffs a piece of work.</li>
+<li><b>Work evolves.</b> A job often starts narrow, such as a deal review in Deal Desk, then grows to need finance (CFO), tech (CTO) and a delivery plan (Projects Manager). Any bot can suggest who else to bring in; they join once Lee agrees.</li>
+<li><b>One owner, one answer.</b> The bot where the work started owns the outcome and brings back one joined‑up answer.</li>
+<li><b>Clear lines.</b> Builds go through CTO. Changes to bots and structure go through Dr Eggbot. Rhiannon is told when something worth keeping is decided or delivered, and Projects Manager keeps live status on the Notion board.</li>
+</ol><div class="flow" aria-label="Example flow"><span class="fl">Example:</span><span class="n o">Deal Desk</span><i>→</i><span class="n">CFO</span><span class="n">CTO</span><span class="n">Projects Manager</span><i>→</i><span class="n o">One answer to Lee</span></div></details></div>
  <div class="right"><div class="stats" id="stats"></div>
  <div class="controls"><input type="checkbox" id="cStores" hidden><input type="checkbox" id="cRooms" hidden><button class="btn" id="bStory">▶ Story</button></div></div>
 </header><script>(function(){var k="bcpHeaderCollapsed",b=document.getElementById("htog"),v=null;try{v=localStorage.getItem(k)}catch(e){}
@@ -320,7 +340,7 @@ function show(id){const n=byId[id];if(!n)return home();const {out,inn,fm,fi}=rel
  const notes=(n.notes||[]).filter(x=>!/^Members:/.test(x));if(notes.length)h+=`<h3>Notes</h3><ul>`+notes.map(x=>`<li>${esc(x)}</li>`).join("")+`</ul>`;
  h+=`<div class="foot"><span class="lk" data-home="1">← Overview</span></div>`;side.innerHTML=h;side.scrollTop=0;}
 function home(){const bots=D.nodes.filter(n=>n.kind==="bot");
- side.innerHTML=closeBtn+`<h2>${bots.length} bots, ${nRooms} room${nRooms===1?"":"s"}</h2><div class="t">Click any bot for its full card. Scroll or drag to move; Ctrl/⌘ + scroll or pinch to zoom.</div>
+ side.innerHTML=closeBtn+(document.querySelector(".hero .htw")||{outerHTML:""}).outerHTML.replace('class="htw"','class="htw dk"')+`<h2>${bots.length} bots, ${nRooms} room${nRooms===1?"":"s"}</h2><div class="t">Click any bot for its full card. Scroll or drag to move; Ctrl/⌘ + scroll or pinch to zoom.</div>
  <div class="pcard"><b>Main chain</b><br>Lee → Rhiannon → Boardy Rolodex · Work Brain · Meeting Brief · Projects Manager. Meeting Brief sends voice notes back to Rhiannon. Bot problems → Dr Eggbot.</div>
  <h3>What changed since v3</h3><ul class="chg">`+D.changes.map(x=>`<li>${esc(x)}</li>`).join("")+`</ul>`+(D.changes.length>3?`<button class="more" type="button" data-more="1">Show all ${D.changes.length}</button>`:"")+`
  <h3>Bots</h3><ul>`+bots.map(n=>`<li><span class="lk" data-id="${n.id}">${esc(n.label)}</span>: ${esc(n.role)}</li>`).join("")+`</ul>
