@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mind map · Lee Purcell's Bots</title>
+<meta name="description" content="Lee Purcell's Grok Bots as a radial mind map.">
+<style>
+
+:root{--ink:#0f172a;--ink2:#334155;--mut:#64748b;--line:#e6e8ef;--bg:#f7f8fb;--card:#fff;
+--hub:#5b5bd6;--meetings:#0e9f77;--crm:#d97706;--research:#0284c7;--ops:#8b5cf6;--other:#64748b;--lee:#0f172a;
+--panel:#121a30;--pline:#24304f;--ptxt:#e7ecf7;--pmut:#8f9bb8;--acc:#7c9cff;
+--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box}html,body{margin:0;height:100%}
+body{font:14px/1.5 var(--font);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;display:grid;grid-template-columns:1fr 380px;grid-template-rows:auto auto 1fr;height:100vh;overflow:hidden}
+.topnav{grid-column:1;grid-row:1;display:flex;align-items:center;gap:18px;height:50px;padding:0 32px;background:#fff;border-bottom:1px solid var(--line);position:relative;z-index:8}
+.topnav .brand{font-weight:650;font-size:14px;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:9px;letter-spacing:-.005em}
+.topnav .mk{width:18px;height:18px;border-radius:6px;background:conic-gradient(from 200deg,#5b5bd6,#0e9f77,#d97706,#0284c7,#8b5cf6,#5b5bd6);box-shadow:inset 0 0 0 4px #fff,0 0 0 1px #e6e8ef}
+.topnav .links{display:flex;gap:4px;margin-left:auto}
+.topnav .links a{font-size:13.5px;color:var(--ink2);text-decoration:none;padding:6px 12px;border-radius:999px;transition:.2s;white-space:nowrap}
+.topnav .links a:hover{background:#f1f3f8;color:var(--ink)}
+.topnav .links a.act{background:var(--ink);color:#fff}
+@media (max-width:820px){.topnav{padding:0 14px;height:auto;min-height:50px;flex-wrap:wrap;gap:6px 10px;position:sticky;top:0}.topnav .brand{font-size:13.5px}.topnav .links{margin-left:auto}.topnav .links a{padding:5px 9px;font-size:12.5px}}
+@media (max-width:420px){.topnav{padding:8px 12px}.topnav .links{margin-left:-6px;width:100%;gap:2px}}
+
+/* hero */
+.hero{grid-column:1;grid-row:2;padding:20px 32px 16px;display:flex;gap:28px;align-items:flex-end;justify-content:space-between;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#fff, #fbfcfe)}
+.eyebrow{font-size:11px;font-weight:650;letter-spacing:.09em;text-transform:uppercase;color:var(--hub)}
+h1{font-size:34px;line-height:1.1;font-weight:700;letter-spacing:-.022em;margin:6px 0 8px}
+.summary{font-size:15px;color:var(--ink2);margin:0;max-width:640px}
+.meta{font-size:12.5px;color:var(--mut);margin-top:8px}
+.right{display:flex;flex-direction:column;gap:14px;align-items:flex-end}
+.stats{display:flex;gap:10px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 14px;min-width:86px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+.stat b{display:block;font-size:22px;font-weight:650;letter-spacing:-.01em;line-height:1.15}.stat span{font-size:11.5px;color:var(--mut)}
+.controls{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.tg{font-size:12.5px;color:var(--ink2);background:#fff;border:1px solid var(--line);padding:6px 11px;border-radius:999px;cursor:pointer;user-select:none;display:inline-flex;align-items:center;gap:6px;transition:.2s}
+.tg input{display:none}.tg i{width:8px;height:8px;border-radius:50%;background:#cbd5e1;transition:.2s}.tg:has(input:checked){border-color:#c7c9f4;background:#f3f3fe;color:var(--hub)}.tg:has(input:checked) i{background:var(--hub)}
+.btn{font:inherit;font-size:12.5px;font-weight:600;border:0;border-radius:999px;padding:7px 14px;cursor:pointer;background:var(--ink);color:#fff;display:inline-flex;gap:7px;align-items:center}
+.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line);font-weight:500}
+/* stage */
+#stage{grid-column:1;grid-row:3;position:relative;overflow:hidden;cursor:grab;touch-action:none;background:radial-gradient(circle at 1px 1px,#e3e6ee 1px,transparent 1.2px) 0 0/22px 22px,var(--bg)}
+#stage.drag{cursor:grabbing}
+#world{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
+#world svg{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
+.band{position:absolute;border-radius:18px;background:color-mix(in srgb,var(--c) 5%,transparent);border:1px solid color-mix(in srgb,var(--c) 12%,transparent)}
+.band .lb{position:absolute;left:14px;top:12px;font-size:11px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
+.band .ct{position:absolute;right:14px;top:12px;font-size:11px;color:color-mix(in srgb,var(--c) 70%,#94a3b8)}
+.card{position:absolute;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px 12px 18px;cursor:pointer;
+box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px -10px rgba(15,23,42,.18);transition:opacity .3s,box-shadow .25s,transform .25s,border-color .25s;overflow:hidden}
+.card:before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:0 3px 3px 0;background:var(--c)}
+.card .nm{font-size:15px;font-weight:600;letter-spacing:-.005em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:7px}
+.card .rl{font-size:14px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+.card .clk{margin-left:auto;font-size:10.5px;font-weight:600;color:var(--c);background:color-mix(in srgb,var(--c) 10%,#fff);border-radius:999px;padding:1px 7px;flex:none}
+.card:hover,.card.sel{box-shadow:0 2px 4px rgba(15,23,42,.06),0 14px 30px -12px color-mix(in srgb,var(--c) 55%,transparent);border-color:color-mix(in srgb,var(--c) 45%,var(--line));transform:translateY(-1px)}
+.card.sel{outline:2px solid color-mix(in srgb,var(--c) 60%,transparent);outline-offset:2px}
+.card.lee{background:var(--lee);border-color:var(--lee);color:#fff;text-align:center;padding:10px}.card.lee:before{display:none}.card.lee .rl{color:#a5b0c9}.card.lee .nm{justify-content:center}
+.card.hubc{box-shadow:0 1px 2px rgba(15,23,42,.05),0 16px 36px -14px rgba(91,91,214,.45);border-color:#d6d7f7}
+.card.room{border-style:dashed;background:#fff}.card.room:before{background:#94a3b8}
+.card.store{background:#f1f4f9;box-shadow:none;border-radius:10px;padding:10px 12px 10px 16px}.card.store .nm{font-size:14px}.card.store .rl{font-size:13px}.card.store:before{background:#94a3b8}
+.dim .card:not(.on){opacity:.28}.dim .band{opacity:.75}
+.egg .card.bot{box-shadow:0 0 0 2px rgba(139,92,246,.28),0 6px 18px -10px rgba(15,23,42,.18)}.egg .card[data-id="eggbot"]{box-shadow:0 0 0 3px rgba(139,92,246,.6),0 14px 30px -12px rgba(139,92,246,.5)}
+/* edges */
+.e{fill:none;stroke:#c3c8d6;stroke-width:1.6;transition:stroke .3s,opacity .3s,stroke-width .3s}
+.dim .e{opacity:.18}.e.on{opacity:1!important;stroke:var(--c);stroke-width:2.2;stroke-dasharray:7 7;animation:flow 1s linear infinite}
+.t{fill:none;stroke:var(--c);stroke-width:2;stroke-dasharray:7 7;animation:flow 1s linear infinite;opacity:.95}
+@keyframes flow{to{stroke-dashoffset:-14}}
+.lbl{position:absolute;transform:translate(-50%,-50%);font-size:12px;font-weight:600;color:var(--ink);background:#fff;border:1px solid color-mix(in srgb,var(--c) 35%,var(--line));padding:2px 9px;border-radius:999px;white-space:nowrap;box-shadow:0 2px 8px -2px rgba(15,23,42,.15);pointer-events:none;animation:pop .25s ease}
+@keyframes pop{from{opacity:0;transform:translate(-50%,-40%)}}
+.zoom{position:absolute;right:14px;bottom:14px;display:flex;gap:6px;z-index:3}
+.zoom button{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:#fff;font:inherit;font-size:16px;cursor:pointer;color:var(--ink2);box-shadow:0 1px 2px rgba(15,23,42,.05)}
+.zoom button.w{width:auto;padding:0 12px;font-size:12.5px}
+.legend{position:absolute;left:14px;bottom:14px;z-index:3;display:flex;gap:12px;align-items:center;font-size:11.5px;color:var(--mut);background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:10px;padding:6px 10px}
+.legend s{display:inline-block;width:20px;border-top:2px solid #c3c8d6;vertical-align:middle;margin-right:5px}.legend s.f{border-top:2px dashed var(--hub)}
+/* story */
+#story{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);width:min(560px,calc(100% - 28px));background:var(--ink);color:#e2e8f0;border-radius:16px;padding:16px 18px 14px;box-shadow:0 20px 50px -18px rgba(15,23,42,.6);z-index:6;display:none}
+#story.show{display:block;animation:pop2 .3s ease}@keyframes pop2{from{opacity:0;transform:translate(-50%,8px)}}
+#story .st{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#a5b4fc;font-weight:650}
+#story h4{margin:3px 0 4px;font-size:17px;color:#fff;letter-spacing:-.01em}#story p{margin:0;font-size:14px;color:#cbd5e1}
+#story .nav{display:flex;gap:8px;margin-top:12px;align-items:center}#story .nav .sp{flex:1}
+#story .dots{display:flex;gap:5px}#story .dots i{width:6px;height:6px;border-radius:50%;background:#475569}#story .dots i.a{background:#a5b4fc;width:16px;border-radius:3px}
+#story button{font:inherit;font-size:12.5px;font-weight:600;border-radius:999px;padding:6px 13px;cursor:pointer;border:1px solid #334155;background:transparent;color:#e2e8f0}#story button.p{background:#fff;color:var(--ink);border-color:#fff}
+/* list (mobile) */
+#list{display:none}
+/* panel: unchanged look */
+aside{grid-column:2;grid-row:1/4;background:rgba(18,26,48,.98);border-left:1px solid var(--pline);overflow:auto;padding:18px 20px 30px;color:var(--ptxt);position:relative}
+aside h2{margin:0 0 2px;font-size:20px}aside .t{color:var(--pmut);font-size:12.5px;margin-bottom:12px}
+aside h3{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--pmut);margin:16px 0 6px}
+.pill{display:inline-block;font-size:11.5px;padding:3px 9px;border-radius:999px;margin:0 5px 5px 0;border:1px solid}
+.tool{background:#152a3d;border-color:#245170;color:#9fd3ff}.sch{background:#2c2140;border-color:#55407a;color:#d7b8ff}
+aside ul{margin:4px 0 0;padding-left:18px}aside li{margin:3px 0}
+.lk{color:var(--acc);cursor:pointer}.lk:hover{text-decoration:underline}
+.odd li{color:#ffd9a8}.chg li{color:#b9f6d4}.pcard{background:#18213d;border:1px solid var(--pline);border-radius:12px;padding:12px 14px;margin-top:10px}
+.foot{color:var(--pmut);font-size:11.5px;margin-top:18px}
+.close{display:none}
+/* ---------- mobile ---------- */
+@media (max-width:820px){
+ body{display:block;height:auto;overflow:auto}
+ .hero{display:block;padding:22px 18px 16px}h1{font-size:28px}.summary{font-size:14.5px}
+ .right{align-items:stretch;margin-top:14px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.stat{min-width:0;padding:7px 9px}.stat b{font-size:19px}.stat span{font-size:11px;line-height:1.25;display:block}
+ .controls{justify-content:flex-start}
+ #stage{display:none}
+ #list{display:block;padding:8px 16px 120px}
+ .sec{margin:18px 0 0}.sec .sh{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;color:var(--c);margin:0 0 8px 2px}
+ .sec .sh:after{content:"";flex:1;height:1px;background:color-mix(in srgb,var(--c) 25%,transparent)}
+ .mc{position:relative;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px 12px 18px;margin-bottom:8px;box-shadow:0 1px 2px rgba(15,23,42,.05);transition:opacity .3s}
+ .mc:before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:0 3px 3px 0;background:var(--c)}
+ .mc .nm{font-size:16px;font-weight:600;display:flex;gap:8px;align-items:center}.mc .rl{font-size:14px;color:var(--mut)}
+ .mc .clk{margin-left:auto;font-size:11px;font-weight:600;color:var(--c);background:color-mix(in srgb,var(--c) 10%,#fff);border-radius:999px;padding:1px 8px}
+ .mc .fr{margin-top:7px;display:flex;flex-wrap:wrap;gap:5px}.mc .fr span{font-size:12px;color:var(--ink2);background:#f1f5f9;border-radius:999px;padding:2px 8px}
+ .mc.lee{background:var(--lee);color:#fff;text-align:center}.mc.lee:before{display:none}.mc.lee .rl{color:#a5b0c9}.mc.lee .nm{justify-content:center}
+ .spine{width:2px;height:22px;margin:0 auto;background:repeating-linear-gradient(#c3c8d6 0 5px,transparent 5px 9px)}
+ .mdim .mc:not(.on){opacity:.3}
+ aside{position:fixed;left:0;right:0;bottom:0;top:auto;height:72vh;border-radius:18px 18px 0 0;border-left:0;transform:translateY(105%);transition:transform .3s ease;z-index:20;box-shadow:0 -20px 50px rgba(0,0,0,.35)}
+ aside.open{transform:none}aside{background:#121a30}.close{display:block;position:sticky;top:0;margin:-6px -6px 6px auto;width:34px;height:34px;border-radius:50%;border:1px solid var(--pline);background:#18213d;color:#fff;font-size:18px;cursor:pointer}
+ #story{position:fixed;bottom:14px}
+ .legend,.zoom{display:none}
+}
+
+#stage{background:radial-gradient(circle at 50% 46%,#ffffff 0,#f7f8fb 55%),var(--bg)}
+.bp{position:absolute;transform:translate(-50%,-50%);font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--c);background:#fff;border:1.5px solid color-mix(in srgb,var(--c) 40%,#fff);padding:6px 13px;border-radius:999px;white-space:nowrap;box-shadow:0 6px 16px -8px color-mix(in srgb,var(--c) 60%,transparent);transition:opacity .3s}
+.dim .bp:not(.on){opacity:.3}
+.br{fill:none;stroke:var(--c);stroke-linecap:round;opacity:.55;transition:opacity .3s}
+.dim .br{opacity:.12}.dim .br.on{opacity:.75}
+.ring{fill:none;stroke:#e3e6ee;stroke-dasharray:2 6}
+.card.lee{border-radius:999px}
+.hero.mh{padding:16px 32px 12px}.hero.mh h1{font-size:28px;margin:4px 0 6px}.hero.mh .summary{font-size:14.5px}.hero.mh .stat{padding:6px 12px}.hero.mh .stat b{font-size:19px}
+.mt{display:none}
+@media (max-width:820px){
+ #mtree{display:block;padding:6px 16px 100px}
+ .mt{display:block}
+ .tb{position:relative;margin:18px 0 0 6px;padding-left:22px}
+ .tb:before{content:"";position:absolute;left:0;top:-18px;bottom:28px;width:3px;border-radius:3px;background:var(--c);opacity:.55}
+ .tb .bh{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--c);margin:0 0 8px -22px;padding-left:12px;position:relative}
+ .tb .mc{margin-bottom:8px}.tb .mc:after{content:"";position:absolute;left:-22px;top:50%;width:22px;height:3px;background:var(--c);opacity:.55;border-radius:3px}
+}
+</style></head><body>
+<nav class="topnav"><a class="brand" href="index.html"><span class="mk"></span>Lee Purcell's Bots</a><div class="links"><a href="index.html" data-p="map">Map</a><a href="mindmap.html" data-p="mind" class="act">Mind map</a><a href="bots.html" data-p="bots">How it's built</a></div></nav>
+
+<header class="hero mh">
+ <div><div class="eyebrow">Mind map · v3</div><h1>Lee at the centre</h1>
+ <p class="summary">Every bot branches from Lee. Rhiannon sits beside him as the hub; each coloured branch is one lane of work. Hover or tap a bot to trace its hand-offs and open its full card.</p><div class="meta">Drawn Sat 10 Oct 2026, 08:15 Dubai · same data as the map</div></div>
+ <div class="right"><div class="stats" id="stats"></div></div>
+</header>
+<div id="stage"><div id="world"><svg id="svg"><defs></defs><g id="gR"></g><g id="gB"></g><g id="gE"></g></svg><div id="pills"></div><div id="cards"></div><div id="lbls"></div></div>
+ <div class="legend"><span><s style="border-top:3px solid #5b5bd6"></s>Lane branch</span><span><s style="border-top:2px dashed #b4bacb"></s>Hand-off</span><span>Hover to trace · click for details</span></div>
+ <div class="zoom"><button id="zo" aria-label="Zoom out">−</button><button id="zi" aria-label="Zoom in">+</button><button class="w" id="zf">Fit</button></div>
+</div>
+<div id="mtree" class="mt"></div>
+<aside id="side"></aside>
+<script>
+const D={"drawn": "Sat 10 Oct 2026, 08:15 Dubai", "version": "v3", "nodes": [{"id": "lee", "label": "Lee", "kind": "person", "role": "You. Talk mainly to Rhiannon; call on specialists directly when needed.", "schedule": [], "tools": [], "notes": [], "short": "You", "group": "lee", "title": ""}, {"id": "rhiannon", "label": "Rhiannon", "title": "Chief of Staff", "kind": "bot", "group": "hub", "role": "Chief of staff and single front door: answers business questions, asks the other bots for you, keeps follow-ups, and is the only writer of Notion Notes (including 'Lee update' notes).", "schedule": ["Mon–Fri 08:00 Dubai morning summary (only if something needs you)", "Otherwise on demand"], "tools": ["Gmail", "Calendar", "Drive (Meet/Gemini notes)", "Notion Notes (only writer)", "Notion Projects (read)", "Boardy_CRM (read only)"], "notes": ["Drafts emails for you to send; never sends.", "Saves voice notes and updates Meeting Brief passes on, with Source \"Lee update\".", "Never asks a bot to create a group chat or room."], "short": "Chief of staff · front door"}, {"id": "pm", "label": "Projects Manager", "kind": "bot", "group": "hub", "role": "Runs your projects from the single Notion Projects board; decides and hands out tasks for specialist bots to claim, never does the work itself.", "schedule": ["Not stated"], "tools": ["Notion Projects board (owner)"], "notes": ["Hands out tasks from the \"Project Management + Rhiannon\" room.", "Never creates a room per project.", "Which specialist bots claim tasks is not named."], "short": "Runs Notion Projects", "title": ""}, {"id": "brief", "label": "Meeting Brief", "kind": "bot", "group": "meetings", "role": "Your one meeting bot: a one-screen brief before every call with other attendees, and a follow-up email draft after it.", "schedule": ["Weekdays 07:00 Dubai: today's briefs + yesterday's follow-up drafts", "Weekdays 12:00 Dubai: new/changed briefs + this morning's follow-ups", "\"next meeting\" / \"follow-up\" on demand"], "tools": ["Calendar", "Gmail (brief to Lee; follow-ups as drafts only)", "Drive (Meet/Gemini notes)", "Notion Notes (read)"], "notes": ["Passes your voice notes and quick updates to Rhiannon to save; never writes to Notion itself.", "No longer reads either CRM sheet (that check was removed)."], "short": "Briefs & follow-ups", "title": ""}, {"id": "spp", "label": "Strategic Partner Prep", "title": "Strategic Partner Preparation", "kind": "bot", "group": "meetings", "role": "Quick prep brief for first calls with senior experts or strategic partners, with deal fit for Airvantage or eSimplified.", "schedule": ["On demand only; no routines"], "tools": ["Calendar (invite)", "LinkedIn", "Light web check", "Skill: strategic-partner-call-prep"], "notes": ["Skill says do not search Gmail or Drive.", "Company context held: Airvantage (DNI Group; Lyca Uganda, Airtel Uganda, Orange Liberia) and eSimplified (BLS, Rotterdam Hague Airport, Trip.com, Ghost, Telecoms Xchange, Iceland with a View)."], "short": "First-call partner prep"}, {"id": "rolodex", "label": "Boardy Rolodex", "title": "Boardly CRM", "kind": "bot", "group": "crm", "role": "Captures people and companies from pasted Boardy and WhatsApp intros into Boardy_CRM; moves people to the main CRM on your say-so.", "schedule": ["When you paste a message"], "tools": ["Sheets: Boardy_CRM (write)", "Sheets: Primary CRM -Lee, Boardy tab only (on instruction)"], "notes": ["Never searches Gmail or Calendar; never contacts anyone."], "short": "Intros → Boardy_CRM"}, {"id": "workbrain", "label": "Work Brain", "title": "Archive", "kind": "bot", "group": "crm", "role": "Long-term work memory: rebuilds the story of a past person, company or project from your records.", "schedule": ["On demand"], "tools": ["Gmail", "Calendar", "Drive", "Docs", "Sheets", "Slides", "PDFs"], "notes": ["Must not volunteer old work into briefs or other bots' chats."], "short": "Long-term work memory"}, {"id": "scout", "label": "Scout", "title": "Consulting Opportunities Search", "kind": "bot", "group": "research", "role": "Finds fee-based consulting, interim and advisory opportunities in two lanes: Benefits and Growth.", "schedule": ["On demand: \"Scout search …\" (last 14 days by default)"], "tools": ["Web search", "Regional/industry news", "X (confirm only)", "Google Doc \"Scout\" (read; write on \"Scout save\")"], "notes": [], "short": "Consulting leads"}, {"id": "mno", "label": "MNO Research", "title": "Research", "kind": "bot", "group": "research", "role": "Researches mobile operators in a named country for prospecting, plus LinkedIn-ready Head/Director contacts.", "schedule": ["Not stated (on request)"], "tools": ["Web research", "LinkedIn people-search links"], "notes": [], "short": "Operator research"}, {"id": "micro", "label": "Micro Insurance", "kind": "bot", "group": "research", "role": "Finds and scores full-stack insurers that could carry risk for African mobile operators and wallets (two stages).", "schedule": ["Not stated"], "tools": ["Web research", "LinkedIn (public)"], "notes": ["Has an empty automations folder."], "short": "Insurer partner search", "title": ""}, {"id": "vetter", "label": "Name Check", "title": "Vetter · Research", "kind": "bot", "group": "research", "role": "Due diligence on a named person at LIGHT, MEDIUM or DEEP level: career, sanctions, registries, court records.", "schedule": ["On demand"], "tools": ["LinkedIn", "Web/press", "Sanctions lists (OFSI, OFAC, EU)", "Company registries", "FCA / FINRA", "Court records"], "notes": ["Hidden from the sidebar."], "short": "Person due diligence"}, {"label": "Figma Bro", "group": "other", "short": "Figma → build spec", "role": "Turns a Figma frame into a build spec, audits components, tokens and motion, and builds screens from a brief.", "schedule": ["Not stated (on request)"], "tools": ["Figma (or pasted link)"], "notes": ["New since last map."], "id": "figma", "kind": "bot", "title": ""}, {"id": "recruit", "label": "Recruiting Coordinator", "kind": "bot", "group": "other", "role": "Schedules interview loops, preps interviewers and chases stalled steps.", "schedule": ["On request"], "tools": ["Calendar", "Pasted lists"], "notes": ["Never emails a candidate without you."], "short": "Interview scheduling", "title": ""}, {"id": "eggbot", "label": "Dr Eggbot", "kind": "bot", "group": "ops", "role": "Bot designer: creates and changes every Grok Bot's setup.", "schedule": ["On demand"], "tools": ["CreateAgent"], "notes": ["Makes all bot instruction and setup changes."], "short": "Builds & changes bots", "title": "Bot Builder"}, {"label": "Alfred Bot Auditor", "group": "ops", "short": "Audits the bot org", "role": "Designs, audits and governs the bot organisation so it matches real outcomes, with clear human owners and no duplicate jobs. Recommends the smallest useful structure.", "schedule": ["Not stated (on request)"], "tools": ["Not stated"], "notes": ["Never creates or changes anything without your exact yes.", "New since last map."], "id": "alfred", "kind": "bot", "title": ""}, {"id": "bounce", "label": "2nd Opinion", "title": "Bounce · Claude Check", "kind": "bot", "group": "ops", "role": "Free-thinking adviser: adds another angle, with Claude's view alongside, whenever you mention it or say \"check Bounce\".", "schedule": ["On @-mention or a relayed \"check Bounce\" / \"check Claude bot\""], "tools": ["Claude (via ask.py)", "Gmail (read)", "Drive (read)", "Calendar (read)", "Notion Notes (read)"], "notes": ["Suggests only; never acts or sends.", "Earlier name in transcripts: \"Double Double\"."], "short": "Advice with Claude"}, {"id": "botmap", "label": "Bot Map", "kind": "bot", "group": "ops", "role": "Draws this map of your Grok Bots and publishes it.", "schedule": ["On demand only"], "tools": ["Bot profiles (read)", "Publishing"], "notes": ["Its own instructions still list Meeting Summary as a Rhiannon hand-off (stale)."], "short": "Draws this map", "title": ""}, {"id": "room_nd", "label": "Nothing Dropped ++++", "kind": "room", "role": "Group room. No description.", "schedule": [], "tools": [], "notes": ["Members: Meeting Brief, Rhiannon, Work Brain"], "short": "Brief · Rhiannon · Work Brain", "title": ""}, {"id": "room_rwb", "label": "Rhiannon + Work Brain", "kind": "room", "role": "Group room. No description.", "schedule": [], "tools": [], "notes": ["Members: Rhiannon, Work Brain"], "short": "Rhiannon · Work Brain", "title": ""}, {"id": "room_pm", "label": "Project Management + Rhiannon", "kind": "room", "role": "Group room. No description. Projects Manager hands out tasks from here.", "schedule": [], "tools": [], "notes": ["Members: Rhiannon, Projects Manager"], "short": "Rhiannon · Projects Manager", "title": ""}, {"id": "s_notes", "label": "Notion Notes", "kind": "store", "role": "Notion database. Only Rhiannon writes; Meeting Brief and 2nd Opinion read it.", "schedule": [], "tools": [], "notes": [], "short": "Rhiannon writes", "title": ""}, {"id": "s_projects", "label": "Notion Projects board", "kind": "store", "role": "The single home for projects. Owned by Projects Manager.", "schedule": [], "tools": [], "notes": [], "short": "Projects Manager owns", "title": ""}, {"id": "s_boardy", "label": "Boardy_CRM", "kind": "store", "role": "Google Sheet in the Grok Bot folder. Tabs: Companies, People, Guide.", "schedule": [], "tools": [], "notes": [], "short": "Google Sheet", "title": ""}, {"id": "s_primary", "label": "Primary CRM -Lee", "kind": "store", "role": "Google Sheet in shared drives. Rolodex writes only to its Boardy tab.", "schedule": [], "tools": [], "notes": [], "short": "Google Sheet (shared)", "title": ""}, {"id": "s_scout", "label": "Scout doc", "kind": "store", "role": "Google Doc \"Scout\" in the GrokBot folder.", "schedule": [], "tools": [], "notes": [], "short": "Google Doc", "title": ""}, {"id": "s_claude", "label": "Claude", "kind": "store", "role": "External model called by 2nd Opinion via ask.py.", "schedule": [], "tools": [], "notes": [], "short": "External model", "title": ""}], "edges": [{"from": "lee", "to": "rhiannon", "label": "asks anything", "type": "lee"}, {"from": "lee", "to": "rolodex", "label": "pastes intros", "type": "lee"}, {"from": "lee", "to": "bounce", "label": "@-mention / \"check Bounce\"", "type": "lee"}, {"from": "rhiannon", "to": "rolodex", "label": "people & relationships", "type": "handoff"}, {"from": "rhiannon", "to": "workbrain", "label": "past history", "type": "handoff"}, {"from": "rhiannon", "to": "brief", "label": "pre-call briefs & follow-up drafts", "type": "handoff"}, {"from": "brief", "to": "rhiannon", "label": "voice notes & updates to save", "type": "handoff"}, {"from": "rhiannon", "to": "pm", "label": "project status", "type": "handoff"}, {"from": "rhiannon", "to": "eggbot", "label": "bot problems", "type": "handoff"}, {"from": "brief", "to": "lee", "label": "emails brief · Gmail drafts", "type": "handoff"}, {"from": "pm", "to": "room_pm", "label": "hands out tasks", "type": "handoff"}, {"from": "rhiannon", "to": "s_notes", "label": "writes (sole)", "type": "data"}, {"from": "rhiannon", "to": "s_projects", "label": "reads", "type": "data"}, {"from": "rhiannon", "to": "s_boardy", "label": "reads", "type": "data"}, {"from": "pm", "to": "s_projects", "label": "owns", "type": "data"}, {"from": "rolodex", "to": "s_boardy", "label": "writes", "type": "data"}, {"from": "rolodex", "to": "s_primary", "label": "moves rows (Boardy tab)", "type": "data"}, {"from": "brief", "to": "s_notes", "label": "reads", "type": "data"}, {"from": "scout", "to": "s_scout", "label": "reads; saves on request", "type": "data"}, {"from": "bounce", "to": "s_claude", "label": "asks Claude", "type": "data"}, {"from": "bounce", "to": "s_notes", "label": "reads", "type": "data"}, {"from": "room_nd", "to": "brief", "label": "", "type": "member"}, {"from": "room_nd", "to": "rhiannon", "label": "", "type": "member"}, {"from": "room_nd", "to": "workbrain", "label": "", "type": "member"}, {"from": "room_rwb", "to": "rhiannon", "label": "", "type": "member"}, {"from": "room_rwb", "to": "workbrain", "label": "", "type": "member"}, {"from": "room_pm", "to": "rhiannon", "label": "", "type": "member"}, {"from": "room_pm", "to": "pm", "label": "", "type": "member"}], "eggbotTargets": ["rhiannon", "pm", "brief", "spp", "rolodex", "workbrain", "scout", "mno", "micro", "vetter", "figma", "recruit", "alfred", "bounce", "botmap"], "changes": ["Removed: Meeting Summary.", "Added: Figma Bro and Alfred Bot Auditor. No Market News Watch bot exists in the files.", "Meeting Brief is now the one meeting bot: pre-call briefs plus follow-up email drafts (Gmail drafts only) at 07:00 and 12:00. It reads Notion Notes and passes your voice notes to Rhiannon. It no longer reads the CRM sheets.", "Rhiannon now asks four bots (Boardy Rolodex, Work Brain, Meeting Brief, Projects Manager) and saves voice notes as 'Lee update' notes.", "Nothing Dropped ++++ now has Meeting Brief, Rhiannon and Work Brain (was Meeting Summary, Meeting Brief and Rhiannon).", "Dr Eggbot now has the title 'Bot Builder'."], "oddities": ["Alfred Bot Auditor and Dr Eggbot overlap on bot design. Rhiannon sends bot problems only to Dr Eggbot, so nothing routes to Alfred.", "Meetings still overlap: Meeting Brief (07:00/12:00), Strategic Partner Prep and Rhiannon's 08:00 summary can all cover the same call. Open meeting actions are tracked by both Rhiannon and Meeting Brief.", "Projects Manager hands out tasks from 'Project Management + Rhiannon', but only Rhiannon and Projects Manager are in that room. Which bots claim tasks isn't named.", "All three group rooms have no description, and Rhiannon's rules forbid asking bots to create rooms.", "Bot Map's own instructions still mention Meeting Summary.", "Figma Bro and Recruiting Coordinator read like generic templates with no hand-offs (inference). Strategic Partner Prep and the research bots have no hand-offs either.", "Boardy_CRM is now read only by Rhiannon, since Meeting Brief dropped its CRM check.", "Boardy Rolodex's instructions still start with leftover chat text ('Agreed. … Full version:'); title says 'Boardly CRM'.", "Folder naming varies: 'Grok Bot folder' vs 'GrokBot folder' (Scout).", "Name Check is hidden from the sidebar. Micro Insurance has an empty automations folder. No routine files exist for any bot, so the 08:00 and 07:00/12:00 schedules are written in instructions only."]};
+const byId={};D.nodes.forEach(n=>byId[n.id]=n);
+const GC={lee:"#0f172a",hub:"#5b5bd6",meetings:"#0e9f77",crm:"#d97706",research:"#0284c7",ops:"#8b5cf6",other:"#64748b",room:"#94a3b8",store:"#94a3b8"};
+const colOf=id=>{const n=byId[id];return GC[n.kind==="room"?"room":n.kind==="store"?"store":n.group]||"#64748b"};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const isMain=e=>e.type==="lee"||e.type==="handoff";
+const BR=[{g:"hub",name:"Hub",ids:["pm"]},{g:"ops",name:"Bot ops & advice",ids:["eggbot","bounce","alfred","botmap"]},{g:"other",name:"Other specialists",ids:["figma","recruit"]},
+ {g:"research",name:"Research",ids:["vetter","micro","mno","scout"]},{g:"meetings",name:"Meetings",ids:["spp","brief"]},{g:"crm",name:"Memory & CRM",ids:["workbrain","rolodex"]}];
+const W=1640,H=1100,CX=820,CY=560,RX=650,RY=420,LW=212,LH=62,GAP=12;
+const nLeaf=BR.reduce((a,b)=>a+b.ids.length,0),step=(360-GAP*BR.length)/nLeaf;
+const P={},G={};let ang=-90-step/2; // hub (1 leaf) centred at top
+const rad=d=>d*Math.PI/180;
+BR.forEach(b=>{const a0=ang;b.leaf=[];b.ids.forEach((id,i)=>{const a=ang+step/2;ang+=step;b.leaf.push(a);const x=CX+RX*Math.cos(rad(a)),y=CY+RY*Math.sin(rad(a));P[id]=[x,y];G[id]={x:x-LW/2,y:y-LH/2,w:LW,h:LH};});
+ b.mid=(a0+ang)/2;ang+=GAP;const k=b.g==="hub"?0:.56;b.pill=[CX+RX*k*Math.cos(rad(b.mid)),CY+RY*k*Math.sin(rad(b.mid))];});
+P.lee=[CX,CY];G.lee={x:CX-95,y:CY-34,w:190,h:68};P.rhiannon=[CX,CY-170];G.rhiannon={x:CX-104,y:CY-170-38,w:208,h:76};
+const NS="http://www.w3.org/2000/svg",svg=document.getElementById("svg"),defs=svg.querySelector("defs"),gR=document.getElementById("gR"),gB=document.getElementById("gB"),gE=document.getElementById("gE");
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);parent.appendChild(e);return e;}
+function marker(id,c){const m=el("marker",{id,viewBox:"0 0 10 10",refX:"8.5",refY:"5",markerWidth:"7",markerHeight:"7",orient:"auto-start-reverse"},defs);m.innerHTML=`<path d="M0,1 L9,5 L0,9 z" fill="${c}"/>`;}
+marker("m-def","#b4bacb");Object.entries(GC).forEach(([k,c])=>marker("m-"+k,c));
+svg.setAttribute("width",W);svg.setAttribute("height",H);
+// rings
+[.56].forEach(k=>el("ellipse",{cx:CX,cy:CY,rx:RX*k,ry:RY*k,class:"ring"},gR));
+// branches
+const brEls={};
+function addBr(key,d,c,w){const p=el("path",{d,class:"br","stroke-width":w},gB);p.style.setProperty("--c",c);(brEls[key]=brEls[key]||[]).push(p);}
+const q=(a,b,bend)=>{const mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2,dx=b[0]-a[0],dy=b[1]-a[1];return `M${a} Q${mx-dy*bend},${my+dx*bend} ${b}`;};
+addBr("rhiannon",`M${CX},${CY-34} L${CX},${CY-140}`,GC.hub,7);
+BR.forEach(b=>{const c=GC[b.g];
+ if(b.g==="hub"){b.ids.forEach(id=>addBr(id,`M${CX},${CY-216} L${P[id][0]},${P[id][1]+LH/2}`,c,4));return;}
+ addBr(b.g,q([CX,CY],b.pill,.08),c,7);
+ b.ids.forEach(id=>{const [x,y]=P[id],dx=x-b.pill[0],dy=y-b.pill[1];addBr(id,`M${b.pill} C${b.pill[0]+dx*.55},${b.pill[1]+dy*.1} ${x-dx*.35},${y-dy*.25} ${x},${y}`,c,3.2);});});
+// pills
+const pillsEl=document.getElementById("pills"),pillEls={};
+BR.forEach(b=>{if(b.g==="hub")return;const p=document.createElement("div");p.className="bp";p.style.left=b.pill[0]+"px";p.style.top=b.pill[1]+"px";p.style.setProperty("--c",GC[b.g]);p.textContent=b.name;pillsEl.appendChild(p);pillEls[b.g]=p;});
+// cards
+const cardsEl=document.getElementById("cards"),cardEls={};const clockTxt={rhiannon:"08:00",brief:"07 & 12"};
+Object.keys(G).forEach(id=>{const n=byId[id],g=G[id],c=document.createElement("div");c.className="card "+(n.kind==="person"?"lee":"bot")+(id==="rhiannon"?" hubc":"");c.dataset.id=id;
+ Object.assign(c.style,{left:g.x+"px",top:g.y+"px",width:g.w+"px",height:g.h+"px"});c.style.setProperty("--c",colOf(id));
+ c.innerHTML=`<div class="nm">${n.kind==="person"?"Lee Purcell":esc(n.label)}${clockTxt[id]?`<span class="clk">⏱ ${clockTxt[id]}</span>`:""}</div><div class="rl">${n.kind==="person"?"You · the centre":esc(id==="rhiannon"?"Hub · chief of staff":n.short||"")}</div>`;
+ if(n.kind!=="person"&&id!=="rhiannon"){c.style.padding="10px 12px 10px 16px";}
+ cardsEl.appendChild(c);cardEls[id]=c;});
+// hand-off links (bot to bot / Lee), curved toward the centre
+const HO=D.edges.filter(e=>isMain(e)&&G[e.from]&&G[e.to]&&!(e.from==="lee"&&e.to==="rhiannon"));
+const seen={},hoEls=[];
+function anchor(id,toward){const g=G[id],c=[g.x+g.w/2,g.y+g.h/2],dx=toward[0]-c[0],dy=toward[1]-c[1];const sx=Math.abs(dx)/(g.w/2+6),sy=Math.abs(dy)/(g.h/2+6),s=Math.max(sx,sy);return [c[0]+dx/s,c[1]+dy/s];}
+HO.forEach(e=>{const k=[e.from,e.to].sort().join("|");if(seen[k]){seen[k].both=true;seen[k].edges.push(e);return;}
+ const a=P[e.from],b=P[e.to];const mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2;const ctrl=[mx+(CX-mx)*.45,my+(CY-my)*.45];
+ const s=anchor(e.from,ctrl),t=anchor(e.to,ctrl);const d=`M${s} Q${ctrl} ${t}`;const p=el("path",{d,class:"e","marker-end":"url(#m-def)"},gE);
+ const cands=[.66,.8,.52,.9,.4].map(u=>[0,1].map(i=>(1-u)*(1-u)*s[i]+2*(1-u)*u*ctrl[i]+u*u*t[i])),m=cands;seen[k]={p,edges:[e],m,both:false};hoEls.push(seen[k]);});
+hoEls.forEach(h=>{if(h.both)h.p.setAttribute("marker-start","url(#m-def)");});
+// stats
+const nBots=D.nodes.filter(n=>n.kind==="bot").length,nRooms=D.nodes.filter(n=>n.kind==="room").length;
+stats.innerHTML=[[nBots,"bots"],[BR.length,"lanes"],[D.edges.filter(isMain).length,"hand-offs"]].map(([v,l])=>`<div class="stat"><b>${v}</b><span>${l}</span></div>`).join("");
+// focus
+const world=document.getElementById("world"),lblEl=document.getElementById("lbls");
+function addLbl(p,t,c){const d=document.createElement("div");d.className="lbl";d.style.left=p[0]+"px";d.style.top=p[1]+"px";d.style.setProperty("--c",c);d.textContent=t;lblEl.appendChild(d);}
+let placed=[];
+function pick(c){const obst=placed.concat(BR.filter(b=>b.g!=="hub").map(b=>b.pill)).concat(Object.values(G).map(g=>[g.x+g.w/2,g.y+g.h/2,g.w/2,g.h/2]));
+ const ok=p=>obst.every(o=>{const hw=(o[2]||60)+70,hh=(o[3]||14)+13;return Math.abs(p[0]-o[0])>hw||Math.abs(p[1]-o[1])>hh;});
+ const r=c.find(ok)||c[0];placed.push(r);return r;}
+function laneOf(id){const b=BR.find(b=>b.ids.includes(id));return b&&b.g;}
+function focusNode(id){world.classList.add("dim");lblEl.innerHTML="";placed=[];const on=new Set([id]);
+ hoEls.forEach(h=>{const hit=h.edges.some(e=>e.from===id||e.to===id);h.p.classList.toggle("on",hit);const src=h.edges[0].from,grp=src==="lee"?"lee":byId[src].group;
+  h.p.style.setProperty("--c",GC[grp]);h.p.setAttribute("marker-end",hit?`url(#m-${grp})`:"url(#m-def)");if(h.both)h.p.setAttribute("marker-start",hit?`url(#m-${grp})`:"url(#m-def)");
+  if(hit){h.edges.forEach(e=>{on.add(e.from);on.add(e.to);});addLbl(pick(h.m),h.both?"briefs & follow-ups ⇄ voice notes":h.edges[0].label,GC[grp]);}});
+ if(id==="lee")on.add("rhiannon");if(id==="rhiannon")on.add("lee");
+ Object.entries(cardEls).forEach(([k,c])=>c.classList.toggle("on",on.has(k)));
+ Object.entries(brEls).forEach(([k,arr])=>arr.forEach(p=>p.classList.toggle("on",on.has(k)||[...on].some(x=>laneOf(x)===k))));
+ Object.entries(pillEls).forEach(([g,p])=>p.classList.toggle("on",[...on].some(x=>laneOf(x)===g)));}
+function clearHL(){world.classList.remove("dim");lblEl.innerHTML="";hoEls.forEach(h=>{h.p.classList.remove("on");h.p.setAttribute("marker-end","url(#m-def)");if(h.both)h.p.setAttribute("marker-start","url(#m-def)");});
+ Object.values(cardEls).forEach(c=>c.classList.remove("on"));Object.values(brEls).flat().forEach(p=>p.classList.remove("on"));Object.values(pillEls).forEach(p=>p.classList.remove("on"));}
+let selected=null;function refocus(){selected?focusNode(selected):clearHL();}
+// pan/zoom
+const stage=document.getElementById("stage");let S=1,TX=0,TY=0;
+function setT(){world.style.transform=`translate(${TX}px,${TY}px) scale(${S})`;}
+function fit(anim){const w=stage.clientWidth,h=stage.clientHeight;if(!w)return;const bx=[CX-RX-LW/2-20,CY-RY-LH/2-20,CX+RX+LW/2+20,CY+RY+LH/2+20];const bw=bx[2]-bx[0],bh=bx[3]-bx[1];
+ S=Math.min((w-30)/bw,(h-60)/bh,1.2);TX=(w-bw*S)/2-bx[0]*S;TY=(h-44-bh*S)/2-bx[1]*S;world.style.transition=anim?"transform .45s cubic-bezier(.2,.7,.2,1)":"none";setT();if(anim)setTimeout(()=>world.style.transition="none",460);}
+stage.addEventListener("wheel",ev=>{ev.preventDefault();const r=stage.getBoundingClientRect(),mx=ev.clientX-r.left,my=ev.clientY-r.top,k=Math.exp(-ev.deltaY*.0015),ns=Math.min(2.5,Math.max(.3,S*k));TX=mx-(mx-TX)*ns/S;TY=my-(my-TY)*ns/S;S=ns;setT();},{passive:false});
+let drag=null;
+stage.addEventListener("pointerdown",ev=>{if(ev.target.closest(".card,.zoom,.legend"))return;drag={x:ev.clientX,y:ev.clientY,tx:TX,ty:TY,moved:false};stage.classList.add("drag");stage.setPointerCapture(ev.pointerId);});
+stage.addEventListener("pointermove",ev=>{if(!drag)return;const dx=ev.clientX-drag.x,dy=ev.clientY-drag.y;if(Math.abs(dx)+Math.abs(dy)>3)drag.moved=true;TX=drag.tx+dx;TY=drag.ty+dy;setT();});
+stage.addEventListener("pointerup",()=>{if(drag&&!drag.moved)unselect();drag=null;stage.classList.remove("drag");});
+function zoomBy(k){const w=stage.clientWidth/2,h=stage.clientHeight/2,ns=Math.min(2.5,Math.max(.3,S*k));TX=w-(w-TX)*ns/S;TY=h-(h-TY)*ns/S;S=ns;world.style.transition="transform .25s";setT();setTimeout(()=>world.style.transition="none",260);}
+zi.onclick=()=>zoomBy(1.2);zo.onclick=()=>zoomBy(1/1.2);zf.onclick=()=>fit(true);
+cardsEl.addEventListener("mouseover",ev=>{const c=ev.target.closest(".card");if(c)focusNode(c.dataset.id);});
+cardsEl.addEventListener("mouseout",ev=>{const c=ev.target.closest(".card");if(c&&!c.contains(ev.relatedTarget))refocus();});
+cardsEl.addEventListener("click",ev=>{const c=ev.target.closest(".card");if(c)select(c.dataset.id);});
+// panel (same as the map)
+function rel(id){const out=D.edges.filter(e=>e.from===id),inn=D.edges.filter(e=>e.to===id);
+ const fm=e=>`<span class="lk" data-id="${e.to}">${esc(byId[e.to].label)}</span>${e.label?" · "+esc(e.label):""}`,fi=e=>`<span class="lk" data-id="${e.from}">${esc(byId[e.from].label)}</span>${e.label?" · "+esc(e.label):""}`;return {out,inn,fm,fi};}
+const closeBtn='<button class="close" data-close="1" aria-label="Close">×</button>';
+function show(id){const n=byId[id];if(!n)return home();const {out,inn,fm,fi}=rel(id);const isBot=n.kind==="bot";
+ let h=closeBtn+`<h2>${esc(n.kind==="person"?"Lee Purcell":n.label)}</h2><div class="t">${esc(n.title&&n.title!==n.label?n.title+" · ":"")}${({bot:"Grok Bot",room:"Group room",store:"Data store / external",person:"You"})[n.kind]}</div><div>${esc(n.role||"")}</div>`;
+ if(n.schedule&&n.schedule.length)h+=`<h3>Schedule</h3>`+n.schedule.map(s=>`<span class="pill sch">${esc(s)}</span>`).join("");
+ if(n.tools&&n.tools.length)h+=`<h3>Tools &amp; sources</h3>`+n.tools.map(s=>`<span class="pill tool">${esc(s)}</span>`).join("");
+ const ho=out.filter(e=>e.type!=="member"),ri=inn.filter(e=>e.type!=="member");if(isBot&&id!=="eggbot")ri.push({from:"eggbot",label:"instruction & setup changes"});
+ if(id==="eggbot")h+=`<h3>Changes</h3><div>All bots' instructions and setup.</div>`;
+ if(ho.length)h+=`<h3>Hands to / uses</h3><ul>`+ho.map(e=>`<li>${fm(e)}</li>`).join("")+`</ul>`;
+ if(ri.length)h+=`<h3>Receives from</h3><ul>`+ri.map(e=>`<li>${fi(e)}</li>`).join("")+`</ul>`;
+ const rooms=D.edges.filter(e=>e.type==="member"&&e.to===id).map(e=>e.from);if(rooms.length)h+=`<h3>Group rooms</h3><ul>`+rooms.map(r=>`<li><span class="lk" data-id="${r}">${esc(byId[r].label)}</span></li>`).join("")+`</ul>`;
+ if(n.kind==="room"){const m=D.edges.filter(e=>e.type==="member"&&e.from===id).map(e=>e.to);h+=`<h3>Members</h3><ul>`+m.map(r=>`<li><span class="lk" data-id="${r}">${esc(byId[r].label)}</span></li>`).join("")+`</ul>`;}
+ const notes=(n.notes||[]).filter(x=>!/^Members:/.test(x));if(notes.length)h+=`<h3>Notes</h3><ul>`+notes.map(x=>`<li>${esc(x)}</li>`).join("")+`</ul>`;
+ h+=`<div class="foot"><span class="lk" data-home="1">← Overview</span></div>`;side.innerHTML=h;side.scrollTop=0;}
+function home(){const bots=D.nodes.filter(n=>n.kind==="bot");
+ side.innerHTML=closeBtn+`<h2>${bots.length} bots, ${nRooms} rooms</h2><div class="t">Click any bot for its full card. Drag to pan, scroll or pinch to zoom.</div>
+ <div class="pcard"><b>Main chain</b><br>Lee → Rhiannon → Boardy Rolodex · Work Brain · Meeting Brief · Projects Manager. Meeting Brief sends voice notes back to Rhiannon. Bot problems → Dr Eggbot.</div>
+ <h3>What changed since v2</h3><ul class="chg">`+D.changes.map(x=>`<li>${esc(x)}</li>`).join("")+`</ul>
+ <h3>Bots</h3><ul>`+bots.map(n=>`<li><span class="lk" data-id="${n.id}">${esc(n.label)}</span>: ${esc(n.role)}</li>`).join("")+`</ul>
+ <h3>Gaps &amp; overlaps</h3><ul class="odd">`+D.oddities.map(x=>`<li>${esc(x)}</li>`).join("")+`</ul>
+ <div class="foot">Unstated items are marked "Not stated". No connection is drawn unless it appears in a bot's saved instructions, skill or room membership.</div>`;}
+
+const mobile=()=>matchMedia("(max-width:820px)").matches;
+function select(id){selected=id;Object.values(cardEls).forEach(e=>e.classList.toggle("sel",e.dataset.id===id));show(id);if(cardEls[id])focusNode(id);if(mobile())side.classList.add("open");}
+function unselect(){selected=null;Object.values(cardEls).forEach(e=>e.classList.remove("sel"));home();clearHL();side.classList.remove("open");}
+side.addEventListener("click",ev=>{const t=ev.target;if(t.dataset.close){side.classList.remove("open");return;}if(t.dataset.id)select(t.dataset.id);if(t.dataset.home)unselect();});
+// mobile tree
+const mt=document.getElementById("mtree");
+function mcard(id){const n=byId[id];return `<div class="mc ${n.kind==="person"?"lee":""}" data-id="${id}" style="--c:${colOf(id)}"><div class="nm">${n.kind==="person"?"Lee Purcell":esc(n.label)}${clockTxt[id]?`<span class="clk">⏱ ${clockTxt[id]}</span>`:""}</div><div class="rl">${n.kind==="person"?"You · the centre":esc(id==="rhiannon"?"Hub · chief of staff":n.short||"")}</div></div>`;}
+mt.innerHTML=mcard("lee")+`<div class="tb" style="--c:${GC.hub}"><div class="bh">Hub</div>${mcard("rhiannon")}${mcard("pm")}</div>`+BR.filter(b=>b.g!=="hub").map(b=>`<div class="tb" style="--c:${GC[b.g]}"><div class="bh">${b.name}</div>${b.ids.map(mcard).join("")}</div>`).join("");
+mt.addEventListener("click",ev=>{const c=ev.target.closest(".mc");if(c)select(c.dataset.id);});
+home();fit(false);addEventListener("resize",()=>fit(false));
+const h0=decodeURIComponent(location.hash.slice(1));if(byId[h0])select(h0);
+</script></body></html>
