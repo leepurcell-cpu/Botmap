@@ -41,8 +41,8 @@ h1{font-size:34px;line-height:1.1;font-weight:700;letter-spacing:-.022em;margin:
 #world{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
 #world svg{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
 .band{position:absolute;border-radius:18px;background:color-mix(in srgb,var(--c) 5%,transparent);border:1px solid color-mix(in srgb,var(--c) 12%,transparent)}
-.band .lb{position:absolute;left:14px;top:11px;font-size:12.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
-.band .ct{position:absolute;right:14px;top:12px;font-size:11px;color:color-mix(in srgb,var(--c) 70%,#94a3b8)}
+.band .lb{position:absolute;left:12px;top:10px;font-size:22px;line-height:1.15;font-weight:800;letter-spacing:-.015em;color:var(--c);border-left:4px solid var(--c);padding-left:9px;white-space:nowrap}
+.band .ct{display:none;position:absolute;right:14px;top:12px;font-size:11px;color:color-mix(in srgb,var(--c) 70%,#94a3b8)}
 .card{position:absolute;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px 12px 18px;cursor:pointer;
 box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px -10px rgba(15,23,42,.18);transition:opacity .3s,box-shadow .25s,transform .25s,border-color .25s;overflow:hidden}
 .card:before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:0 3px 3px 0;background:var(--c)}
@@ -98,7 +98,7 @@ aside ul{margin:4px 0 0;padding-left:18px}aside li{margin:3px 0}
  .controls{justify-content:flex-start}
  #stage{display:none}
  #list{display:block;padding:8px 16px 120px}
- .sec{margin:18px 0 0}.sec .sh{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--c);margin:0 0 8px 2px}
+ .sec{margin:18px 0 0}.sec .sh{display:flex;align-items:center;gap:10px;font-size:21px;line-height:1.2;font-weight:800;letter-spacing:-.015em;color:var(--c);margin:0 0 10px 0;border-left:5px solid var(--c);padding-left:10px}
  .sec .sh:after{content:"";flex:1;height:1px;background:color-mix(in srgb,var(--c) 25%,transparent)}
  .mc{position:relative;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px 12px 18px;margin-bottom:8px;box-shadow:0 1px 2px rgba(15,23,42,.05);transition:opacity .3s}
  .mc:before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:0 3px 3px 0;background:var(--c)}
@@ -115,7 +115,7 @@ aside ul{margin:4px 0 0;padding-left:18px}aside li{margin:3px 0}
 }
 
 #stage{background:radial-gradient(circle at 50% 46%,#ffffff 0,#f7f8fb 55%),var(--bg)}
-.bp{position:absolute;transform:translate(-50%,-50%);font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--c);background:#fff;border:1.5px solid color-mix(in srgb,var(--c) 40%,#fff);padding:6px 13px;border-radius:999px;white-space:nowrap;box-shadow:0 6px 16px -8px color-mix(in srgb,var(--c) 60%,transparent);transition:opacity .3s}
+.bp{position:absolute;transform:translate(-50%,-50%);font-size:22px;line-height:1.15;font-weight:800;letter-spacing:-.015em;color:var(--c);background:#fff;border:2px solid color-mix(in srgb,var(--c) 45%,#fff);padding:7px 16px;border-radius:999px;white-space:nowrap;box-shadow:0 6px 16px -8px color-mix(in srgb,var(--c) 60%,transparent);transition:opacity .3s}
 .dim .bp:not(.on){opacity:.3}
 .br{fill:none;stroke:var(--c);stroke-linecap:round;opacity:.55;transition:opacity .3s}
 .dim .br{opacity:.12}.dim .br.on{opacity:.75}
@@ -128,11 +128,11 @@ aside ul{margin:4px 0 0;padding-left:18px}aside li{margin:3px 0}
  .mt{display:block}
  .tb{position:relative;margin:18px 0 0 6px;padding-left:22px}
  .tb:before{content:"";position:absolute;left:0;top:-18px;bottom:28px;width:3px;border-radius:3px;background:var(--c);opacity:.55}
- .tb .bh{font-size:13.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--c);margin:0 0 8px -22px;padding-left:12px;position:relative}
+ .tb .bh{font-size:21px;line-height:1.2;font-weight:800;letter-spacing:-.015em;color:var(--c);margin:0 0 10px -22px;padding-left:12px;position:relative}
  .tb .mc{margin-bottom:8px}.tb .mc:after{content:"";position:absolute;left:-22px;top:50%;width:22px;height:3px;background:var(--c);opacity:.55;border-radius:3px}
 }
 </style></head><body>
-<nav class="topnav"><a class="brand" href="index.html?v=202610100846"><span class="mk"></span>Lee Purcell's Bots</a><div class="links"><a href="index.html?v=202610100846" data-p="map" style="--t:#4f46e5">Map</a><a href="mindmap.html?v=202610100846" data-p="mind" class="act" style="--t:#047857">Mind map</a><a href="bots.html?v=202610100846" data-p="bots" style="--t:#b45309">How it's built</a></div></nav>
+<nav class="topnav"><a class="brand" href="index.html?v=20261010085120"><span class="mk"></span>Lee Purcell's Bots</a><div class="links"><a href="index.html?v=20261010085120" data-p="map" style="--t:#4f46e5">Map</a><a href="mindmap.html?v=20261010085120" data-p="mind" class="act" style="--t:#047857">Mind map</a><a href="bots.html?v=20261010085120" data-p="bots" style="--t:#b45309">How it's built</a></div></nav>
 
 <header class="hero mh">
  <div><div class="eyebrow">Mind map · v3</div><h1>Lee at the centre</h1>
