@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Lee Purcell's Bot Map</title>
+<title>Bots Control Panel</title>
 <meta name="description" content="How Lee Purcell's Grok Bots work together: one front door, five lanes.">
 <style>
 :root{--ink:#0f172a;--ink2:#334155;--mut:#64748b;--line:#e6e8ef;--bg:#f7f8fb;--card:#fff;
@@ -26,6 +26,8 @@ button,input,select,textarea{font-family:inherit}
 .hero{grid-column:1;grid-row:2;padding:20px 32px 16px;display:flex;gap:28px;align-items:flex-end;justify-content:space-between;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#fff, #fbfcfe)}
 .eyebrow{font-size:11px;font-weight:650;letter-spacing:.09em;text-transform:uppercase;color:var(--hub)}
 h1{font-size:34px;line-height:1.1;font-weight:700;letter-spacing:-.022em;margin:6px 0 8px}
+.intro{font-size:15px;font-weight:600;color:var(--ink);margin:0 0 6px;max-width:640px}
+.runs{margin-top:10px;background:#fff;border:1px solid var(--line);border-left:3px solid #4F46E5;border-radius:12px;padding:8px 14px;max-width:640px;box-shadow:0 1px 2px rgba(15,23,42,.04)}.runs .rh{font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#4F46E5;margin-bottom:3px}.runs ul{margin:0;padding:0;list-style:none;font-size:13px;line-height:1.5;color:var(--ink2)}.runs b{color:var(--ink);font-weight:600}
 .summary{font-size:15px;color:var(--ink2);margin:0;max-width:640px}
 .meta{font-size:12.5px;color:var(--mut);margin-top:8px}
 .right{display:flex;flex-direction:column;gap:14px;align-items:flex-end}
@@ -139,11 +141,12 @@ aside ul{margin:4px 0 0;padding-left:18px}aside li{margin:3px 0}
 }
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style></head><body>
-<nav class="topnav"><a class="brand" href="index.html?v=20261010132538"><span class="mk"></span>Lee Purcell's Bots</a><div class="links"><a href="index.html?v=20261010132538" data-p="map" class="act" style="--t:#4f46e5">Map</a><a href="mindmap.html?v=20261010132538" data-p="mind" style="--t:#047857">Mind map</a><a href="bots.html?v=20261010132538" data-p="bots" style="--t:#b45309">How it's built</a><a href="connections.html?v=20261010132538" data-p="conn" style="--t:#0f766e">Connections</a></div></nav>
+<nav class="topnav"><a class="brand" href="index.html?v=20261010133357"><span class="mk"></span>Bots Control Panel</a><div class="links"><a href="index.html?v=20261010133357" data-p="map" class="act" style="--t:#4f46e5">Map</a><a href="mindmap.html?v=20261010133357" data-p="mind" style="--t:#047857">Mind map</a><a href="bots.html?v=20261010133357" data-p="bots" style="--t:#b45309">How it's built</a><a href="connections.html?v=20261010133357" data-p="conn" style="--t:#0f766e">Connections</a></div></nav>
 
 <header class="hero">
- <div><div class="eyebrow">Grok Bot organisation · v4</div><h1>Lee Purcell's Bot Map</h1>
- <p class="summary">22 bots work for Lee through one front door, Rhiannon. Meetings, memory and CRM sit behind her; research, tech, business-advisory and specialist bots run on demand.</p><div class="meta">Drawn Sat 10 Oct 2026, 13:03 Dubai · built from each bot's saved instructions and room memberships</div></div>
+ <div><div class="eyebrow">Grok Bot organisation · v4</div><h1>Bots Control Panel</h1>
+ <p class="intro">Lee's control panel for his bot team: see who does what, how work flows, and where to build next.</p><p class="summary">22 bots work for Lee through one front door, Rhiannon. Meetings, memory and CRM sit behind her; research, tech, business-advisory and specialist bots run on demand.</p><div class="meta">Drawn Sat 10 Oct 2026, 13:03 Dubai · built from each bot's saved instructions and room memberships</div>
+ <div class="runs"><div class="rh">Who runs this panel</div><ul><li><b>Dr Eggbot</b>: builds and changes bots, with Lee's go-ahead.</li><li><b>Bot Map</b>: keeps this panel drawn and up to date.</li><li><b>Alfred Bot Auditor</b>: checks for gaps and overlaps.</li></ul></div></div>
  <div class="right"><div class="stats" id="stats"></div>
  <div class="controls"><label class="tg"><input type="checkbox" id="cStores"><i></i>Data stores</label><label class="tg" style="display:none"><input type="checkbox" id="cRooms"><i></i>Group rooms</label><label class="tg"><input type="checkbox" id="cEgg"><i></i>Dr Eggbot coverage</label><button class="btn" id="bStory">▶ Story</button></div></div>
 </header>
