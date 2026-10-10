@@ -37,8 +37,6 @@ h1{font-size:34px;line-height:1.1;font-weight:700;letter-spacing:-.022em;margin:
 .stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 14px;min-width:86px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
 .stat b{display:block;font-size:22px;font-weight:650;letter-spacing:-.01em;line-height:1.15}.stat span{font-size:11.5px;color:var(--mut)}
 .controls{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
-.tg{font-size:12.5px;color:var(--ink2);background:#fff;border:1px solid var(--line);padding:6px 11px;border-radius:999px;cursor:pointer;user-select:none;display:inline-flex;align-items:center;gap:6px;transition:.2s}
-.tg input{display:none}.tg i{width:8px;height:8px;border-radius:50%;background:#cbd5e1;transition:.2s}.tg:has(input:checked){border-color:#c7c9f4;background:#f3f3fe;color:var(--hub)}.tg:has(input:checked) i{background:var(--hub)}
 .btn{font:inherit;font-size:12.5px;font-weight:600;border:0;border-radius:999px;padding:7px 14px;cursor:pointer;background:var(--ink);color:#fff;display:inline-flex;gap:7px;align-items:center}
 .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line);font-weight:500}
 .hero{position:relative}
@@ -78,7 +76,7 @@ box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px -10px rgba(15,23,42,.18);tran
 .card.room{border-style:dashed;background:#fff}.card.room:before{background:#94a3b8}
 .card.store{background:#f1f4f9;box-shadow:none;border-radius:10px;padding:10px 12px 10px 16px}.card.store .nm{font-size:12px}.card.store .rl{font-size:10.5px}.card.store:before{background:#94a3b8}
 .dim .card:not(.on){opacity:.28}
-.egg .card.bot{box-shadow:0 0 0 2px rgba(2,132,199,.28),0 6px 18px -10px rgba(15,23,42,.18)}.egg .card[data-id="eggbot"]{box-shadow:0 0 0 3px rgba(2,132,199,.6),0 14px 30px -12px rgba(2,132,199,.5)}
+
 /* edges */
 .e{fill:none;stroke:#c3c8d6;stroke-width:1.6;transition:stroke .3s,opacity .3s,stroke-width .3s}
 .dim .e{opacity:.18}.e.on{opacity:1!important;stroke:var(--c);stroke-width:2.2;stroke-dasharray:7 7;animation:flow 1s linear infinite}
@@ -125,7 +123,7 @@ aside ul{margin:4px 0 0;padding-left:18px}aside li{margin:3px 0}
  body{display:block;height:auto;overflow:auto}
  .hero{display:block;padding:22px 18px 16px}h1{font-size:28px}.summary{font-size:14.5px}
  .right{align-items:stretch;margin-top:14px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.stat{min-width:0;padding:7px 9px}.stat b{font-size:19px}.stat span{font-size:11px;line-height:1.25;display:block}
- .controls{justify-content:flex-start;gap:8px}.tg,.btn{min-height:44px;padding:0 14px;font-size:13.5px}
+ .controls{justify-content:flex-start;gap:8px}.btn{min-height:44px;padding:0 14px;font-size:13.5px}
  #stage{display:none}
  #list{display:block;padding:8px 16px 120px}
  .sec{margin:18px 0 0}.sec .sh{display:flex;align-items:center;gap:10px;font-size:21px;line-height:1.2;font-weight:800;letter-spacing:-.015em;color:#fff;margin:0 0 10px 0;background:var(--cf,var(--c));border-radius:999px;padding:6px 16px;width:fit-content;max-width:100%;box-shadow:0 1px 2px rgba(15,23,42,.18),0 4px 12px -4px color-mix(in srgb,var(--cf,var(--c)) 55%,transparent)}
@@ -200,7 +198,7 @@ aside ul{margin:4px 0 0;padding-left:18px}aside li{margin:3px 0}
  .mlb .hint{position:absolute;bottom:calc(16px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);color:#cbd5e1;font-size:12.5px;background:rgba(255,255,255,.1);padding:6px 12px;border-radius:999px;white-space:nowrap;transition:opacity .6s}
 }
 </style></head><body>
-<nav class="topnav"><a class="brand" href="index.html?v=20261010153406"><span class="mk"></span>Bots Control Panel</a><div class="links"><a href="index.html?v=20261010153406" data-p="map" style="--t:#4f46e5">Map</a><a href="connections.html?v=20261010153406" data-p="conn" style="--t:#0f766e">Connections</a><a href="mindmap.html?v=20261010153406" data-p="mind" class="act" style="--t:#047857">Mind map</a><a href="nextteam.html?v=20261010153406" data-p="next" style="--t:#b45309">Next team</a><a href="bots.html?v=20261010153406" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
+<nav class="topnav"><a class="brand" href="index.html?v=20261010153902"><span class="mk"></span>Bots Control Panel</a><div class="links"><a href="index.html?v=20261010153902" data-p="map" style="--t:#4f46e5">Map</a><a href="connections.html?v=20261010153902" data-p="conn" style="--t:#0f766e">Connections</a><a href="mindmap.html?v=20261010153902" data-p="mind" class="act" style="--t:#047857">Mind map</a><a href="nextteam.html?v=20261010153902" data-p="next" style="--t:#b45309">Next team</a><a href="bots.html?v=20261010153902" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
 <header class="hero mh" id="hdr"><button class="htog" id="htog" type="button" aria-controls="hdr" aria-expanded="true">Hide header ✕</button>
  <div><div class="eyebrow">Mind map · v4</div><h1>Lee at the centre</h1>
  <p class="summary">Every bot branches from Lee. Rhiannon, one step out, is the hub, and research results flow back to her for Notion Notes; each coloured branch is one lane of work. Hover or tap a bot to trace its hand-offs and open its full card.</p><div class="meta">Drawn Sat 10 Oct 2026, 15:20 Dubai · same data as the map</div></div>
@@ -217,11 +215,11 @@ b.onclick=function(){untip();set(!document.body.classList.contains("hc"),true)}}
  <div class="zoom"><button id="zo" aria-label="Zoom out">−</button><button id="zi" aria-label="Zoom in">+</button><button class="w" id="zf">Fit</button></div>
 </div>
 <button class="mprev" id="mprev" type="button" aria-label="Open full mind map image">
- <div class="im"><picture><source srcset="mindmap-preview.webp?v=20261010153406" type="image/webp"><img src="mindmap-preview.png?v=20261010153406" alt="Full radial mind map of Lee's bots" width="2440" height="1470"></picture><span class="pill">⤢ Tap to explore the full map.</span></div>
+ <div class="im"><picture><source srcset="mindmap-preview.webp?v=20261010153902" type="image/webp"><img src="mindmap-preview.png?v=20261010153902" alt="Full radial mind map of Lee's bots" width="2440" height="1470"></picture><span class="pill">⤢ Tap to explore the full map.</span></div>
  <div class="cap"><b>Best viewed on desktop: full radial layout</b><span>Lee at the centre, every lane as a coloured branch.</span></div>
 </button>
-<div class="mlb" id="lb" role="dialog" aria-modal="true" aria-label="Mind map image"><div class="vp" id="lbvp"><img id="lbimg" alt="Full radial mind map" src="" data-src="mindmap-preview.png?v=20261010153406"></div>
- <div class="bar"><a href="mindmap-preview.png?v=20261010153406" target="_blank" rel="noopener">Open image ↗</a><button class="x" id="lbx" aria-label="Close">×</button></div>
+<div class="mlb" id="lb" role="dialog" aria-modal="true" aria-label="Mind map image"><div class="vp" id="lbvp"><img id="lbimg" alt="Full radial mind map" src="" data-src="mindmap-preview.png?v=20261010153902"></div>
+ <div class="bar"><a href="mindmap-preview.png?v=20261010153902" target="_blank" rel="noopener">Open image ↗</a><button class="x" id="lbx" aria-label="Close">×</button></div>
  <div class="hint" id="lbhint">Pinch or double-tap to zoom · drag to pan</div></div>
 <details id="ovw"><summary id="ovwS">Overview</summary><div class="ob" id="ovwB"></div></details><div id="mtree" class="mt"></div><div id="scrim"></div>
 <aside id="side"></aside>
