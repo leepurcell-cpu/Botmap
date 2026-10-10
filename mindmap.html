@@ -46,15 +46,15 @@ h1{font-size:34px;line-height:1.1;font-weight:700;letter-spacing:-.022em;margin:
 .card{position:absolute;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 10px 10px 15px;display:flex;flex-direction:column;justify-content:center;cursor:pointer;
 box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px -10px rgba(15,23,42,.18);transition:opacity .3s,box-shadow .25s,transform .25s,border-color .25s;overflow:hidden}
 .card:before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:0 3px 3px 0;background:var(--c)}
-.card .nm{font-size:13px;line-height:1.25;font-weight:600;letter-spacing:-.005em;display:flex;align-items:flex-start;gap:6px}.card .nm>span:first-child{min-width:0}
-.card .rl{font-size:11px;color:#475569;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+.card .nm{font-size:12px;line-height:1.2;font-weight:600;letter-spacing:-.005em;display:flex;align-items:flex-start;gap:6px;overflow-wrap:anywhere}.card .nm>span:first-child{min-width:0}
+.card .rl{font-size:10.5px;line-height:1.3;color:#475569;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden;margin-top:2px;flex:none}
 .card .clk{margin-left:0;font-size:10.5px;font-weight:600;color:color-mix(in srgb,var(--c) 60%,#0f172a);background:color-mix(in srgb,var(--c) 10%,#fff);border-radius:999px;padding:1px 7px;flex:none}
 .card:hover,.card.sel{box-shadow:0 2px 4px rgba(15,23,42,.06),0 14px 30px -12px color-mix(in srgb,var(--c) 55%,transparent);border-color:color-mix(in srgb,var(--c) 45%,var(--line));transform:translateY(-1px)}
 .card.sel{outline:2px solid color-mix(in srgb,var(--c) 60%,transparent);outline-offset:2px}
 .card.lee{background:var(--lee);border-color:var(--lee);color:#fff;text-align:center;padding:10px}.card.lee:before{display:none}.card.lee .rl{color:#a5b0c9}.card.lee .nm{justify-content:center}
 .card.hubc{box-shadow:0 1px 2px rgba(15,23,42,.05),0 16px 36px -14px rgba(91,91,214,.45);border-color:#d6d7f7}
 .card.room{border-style:dashed;background:#fff}.card.room:before{background:#94a3b8}
-.card.store{background:#f1f4f9;box-shadow:none;border-radius:10px;padding:10px 12px 10px 16px}.card.store .nm{font-size:13px}.card.store .rl{font-size:11px}.card.store:before{background:#94a3b8}
+.card.store{background:#f1f4f9;box-shadow:none;border-radius:10px;padding:10px 12px 10px 16px}.card.store .nm{font-size:12px}.card.store .rl{font-size:10.5px}.card.store:before{background:#94a3b8}
 .dim .card:not(.on){opacity:.28}
 .egg .card.bot{box-shadow:0 0 0 2px rgba(124,58,237,.28),0 6px 18px -10px rgba(15,23,42,.18)}.egg .card[data-id="eggbot"]{box-shadow:0 0 0 3px rgba(124,58,237,.6),0 14px 30px -12px rgba(124,58,237,.5)}
 /* edges */
@@ -126,7 +126,7 @@ aside ul{margin:4px 0 0;padding-left:18px}aside li{margin:3px 0}
 .br{fill:none;stroke:var(--c);stroke-linecap:round;opacity:.55;transition:opacity .3s}
 .dim .br{opacity:.12}.dim .br.on{opacity:.75}
 .ring{fill:none;stroke:#e3e6ee;stroke-dasharray:2 6}
-.card.lee{border-radius:999px}.card .nm{white-space:nowrap;font-size:20.5px;font-weight:650}.card.bot:not(.hubc) .rl{display:none}.card .rl{font-size:19.5px}.card .clk{font-size:16px}
+.card.lee{border-radius:999px}.card .nm{white-space:nowrap;font-size:20.5px;font-weight:650}.card.bot:not(.hubc) .rl{display:none}.card .rl{font-size:19.5px;display:block;white-space:nowrap;text-overflow:ellipsis}.card .clk{font-size:16px}
 #world .e{opacity:0;stroke-width:1.4}.dim #world .e,#world.dim .e{opacity:0}#world.dim .e.on{opacity:1;stroke-width:2.6}.br{opacity:.35}.br[stroke-width="7"]{opacity:.55}.dim .br.on{opacity:.75}
 .bp{font-size:24px}.lbl{font-size:16px;padding:5px 11px}
 .hero.mh{padding:16px 32px 12px}.hero.mh h1{font-size:28px;margin:4px 0 6px}.hero.mh .summary{font-size:14.5px}.hero.mh .stat{padding:6px 12px}.hero.mh .stat b{font-size:19px}
@@ -160,7 +160,7 @@ aside ul{margin:4px 0 0;padding-left:18px}aside li{margin:3px 0}
  .mlb .hint{position:absolute;bottom:calc(16px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);color:#cbd5e1;font-size:12.5px;background:rgba(255,255,255,.1);padding:6px 12px;border-radius:999px;white-space:nowrap;transition:opacity .6s}
 }
 </style></head><body>
-<nav class="topnav"><a class="brand" href="index.html?v=20261010114625"><span class="mk"></span>Lee Purcell's Bots</a><div class="links"><a href="index.html?v=20261010114625" data-p="map" style="--t:#4f46e5">Map</a><a href="mindmap.html?v=20261010114625" data-p="mind" class="act" style="--t:#047857">Mind map</a><a href="bots.html?v=20261010114625" data-p="bots" style="--t:#b45309">How it's built</a></div></nav>
+<nav class="topnav"><a class="brand" href="index.html?v=20261010114835"><span class="mk"></span>Lee Purcell's Bots</a><div class="links"><a href="index.html?v=20261010114835" data-p="map" style="--t:#4f46e5">Map</a><a href="mindmap.html?v=20261010114835" data-p="mind" class="act" style="--t:#047857">Mind map</a><a href="bots.html?v=20261010114835" data-p="bots" style="--t:#b45309">How it's built</a></div></nav>
 
 <header class="hero mh">
  <div><div class="eyebrow">Mind map · v4</div><h1>Lee at the centre</h1>
@@ -172,11 +172,11 @@ aside ul{margin:4px 0 0;padding-left:18px}aside li{margin:3px 0}
  <div class="zoom"><button id="zo" aria-label="Zoom out">−</button><button id="zi" aria-label="Zoom in">+</button><button class="w" id="zf">Fit</button></div>
 </div>
 <button class="mprev" id="mprev" type="button" aria-label="Open full mind map image">
- <div class="im"><picture><source srcset="mindmap-preview.webp?v=20261010114625" type="image/webp"><img src="mindmap-preview.png?v=20261010114625" alt="Full radial mind map of Lee's bots" width="2440" height="1470"></picture><span class="pill">⤢ Tap to explore the full map.</span></div>
+ <div class="im"><picture><source srcset="mindmap-preview.webp?v=20261010114835" type="image/webp"><img src="mindmap-preview.png?v=20261010114835" alt="Full radial mind map of Lee's bots" width="2440" height="1470"></picture><span class="pill">⤢ Tap to explore the full map.</span></div>
  <div class="cap"><b>Best viewed on desktop: full radial layout</b><span>Lee at the centre, every lane as a coloured branch.</span></div>
 </button>
-<div class="mlb" id="lb" role="dialog" aria-modal="true" aria-label="Mind map image"><div class="vp" id="lbvp"><img id="lbimg" alt="Full radial mind map" src="" data-src="mindmap-preview.png?v=20261010114625"></div>
- <div class="bar"><a href="mindmap-preview.png?v=20261010114625" target="_blank" rel="noopener">Open image ↗</a><button class="x" id="lbx" aria-label="Close">×</button></div>
+<div class="mlb" id="lb" role="dialog" aria-modal="true" aria-label="Mind map image"><div class="vp" id="lbvp"><img id="lbimg" alt="Full radial mind map" src="" data-src="mindmap-preview.png?v=20261010114835"></div>
+ <div class="bar"><a href="mindmap-preview.png?v=20261010114835" target="_blank" rel="noopener">Open image ↗</a><button class="x" id="lbx" aria-label="Close">×</button></div>
  <div class="hint" id="lbhint">Pinch or double-tap to zoom · drag to pan</div></div>
 <details id="ovw"><summary id="ovwS">Overview</summary><div class="ob" id="ovwB"></div></details><div id="mtree" class="mt"></div><div id="scrim"></div>
 <aside id="side"></aside>
@@ -193,12 +193,12 @@ const W=1600,H=1000,CX=800,CY=500,RX=600,RY=370,LW=224,LH=46,GAP=12;
 const nLeaf=BR.reduce((a,b)=>a+b.ids.length,0),step=(360-GAP*BR.length)/nLeaf;
 const P={},G={};let ang=-90-step/2; // hub (1 leaf) centred at top
 const rad=d=>d*Math.PI/180;
-BR.forEach(b=>{const a0=ang;b.leaf=[];b.ids.forEach((id,i)=>{const a=ang+step/2;ang+=step;b.leaf.push(a);const st=1;const lw=Math.round(44+byId[id].label.length*11+(id==="brief"?78:0));const x=CX+RX*st*Math.cos(rad(a)),y=CY+RY*st*Math.sin(rad(a));P[id]=[x,y];G[id]={x:x-lw/2,w:lw,y:y-LH/2,h:LH};});
+BR.forEach(b=>{const a0=ang;b.leaf=[];b.ids.forEach((id,i)=>{const a=ang+step/2;ang+=step;b.leaf.push(a);const st=1;const lw=Math.round(44+byId[id].label.length*12+(id==="brief"?78:0));const x=CX+RX*st*Math.cos(rad(a)),y=CY+RY*st*Math.sin(rad(a));P[id]=[x,y];G[id]={x:x-lw/2,w:lw,y:y-LH/2,h:LH};});
  b.mid=(a0+ang)/2;ang+=GAP;const k=b.g==="hub"?0:.6;b.pill=[CX+RX*k*Math.cos(rad(b.mid)),CY+RY*k*Math.sin(rad(b.mid))];});
 // nudge overlapping leaves apart: move the later card outward along its ray
 (()=>{const ids=BR.flatMap(b=>b.ids),ov=(A,B)=>A.x<B.x+B.w+12&&B.x<A.x+A.w+12&&A.y<B.y+B.h+10&&B.y<A.y+A.h+10;
  for(let it=0;it<40;it++){let moved=false;ids.forEach((id,i)=>{ids.slice(0,i).forEach(o=>{if(ov(G[id],G[o])){const [x,y]=P[id],dx=x-CX,dy=y-CY;P[id]=[CX+dx*1.05,CY+dy*1.05];G[id].x+=dx*.05;G[id].y+=dy*.05;moved=true;}});});if(!moved)break;}})();
-P.lee=[CX,CY];G.lee={x:CX-105,y:CY-38,w:210,h:76};P.rhiannon=[CX,CY-122];G.rhiannon={x:CX-110,y:CY-122-38,w:220,h:76};
+P.lee=[CX,CY];G.lee={x:CX-105,y:CY-38,w:210,h:76};P.rhiannon=[CX,CY-122];G.rhiannon={x:CX-140,y:CY-122-38,w:280,h:76};
 const NS="http://www.w3.org/2000/svg",svg=document.getElementById("svg"),defs=svg.querySelector("defs"),gR=document.getElementById("gR"),gB=document.getElementById("gB"),gE=document.getElementById("gE");
 function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);parent.appendChild(e);return e;}
 function marker(id,c){const m=el("marker",{id,viewBox:"0 0 10 10",refX:"8.5",refY:"5",markerWidth:"7",markerHeight:"7",orient:"auto-start-reverse"},defs);m.innerHTML=`<path d="M0,1 L9,5 L0,9 z" fill="${c}"/>`;}

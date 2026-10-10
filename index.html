@@ -45,15 +45,15 @@ h1{font-size:34px;line-height:1.1;font-weight:700;letter-spacing:-.022em;margin:
 .card{position:absolute;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 10px 10px 15px;display:flex;flex-direction:column;justify-content:center;cursor:pointer;
 box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px -10px rgba(15,23,42,.18);transition:opacity .3s,box-shadow .25s,transform .25s,border-color .25s;overflow:hidden}
 .card:before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:0 3px 3px 0;background:var(--c)}
-.card .nm{font-size:13px;line-height:1.25;font-weight:600;letter-spacing:-.005em;display:flex;align-items:flex-start;gap:6px}.card .nm>span:first-child{min-width:0}
-.card .rl{font-size:11px;color:#475569;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+.card .nm{font-size:12px;line-height:1.2;font-weight:600;letter-spacing:-.005em;display:flex;align-items:flex-start;gap:6px;overflow-wrap:anywhere}.card .nm>span:first-child{min-width:0}
+.card .rl{font-size:10.5px;line-height:1.3;color:#475569;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden;margin-top:2px;flex:none}
 .card .clk{margin-left:0;font-size:10.5px;font-weight:600;color:color-mix(in srgb,var(--c) 60%,#0f172a);background:color-mix(in srgb,var(--c) 10%,#fff);border-radius:999px;padding:1px 7px;flex:none}
 .card:hover,.card.sel{box-shadow:0 2px 4px rgba(15,23,42,.06),0 14px 30px -12px color-mix(in srgb,var(--c) 55%,transparent);border-color:color-mix(in srgb,var(--c) 45%,var(--line));transform:translateY(-1px)}
 .card.sel{outline:2px solid color-mix(in srgb,var(--c) 60%,transparent);outline-offset:2px}
 .card.lee{background:var(--lee);border-color:var(--lee);color:#fff;text-align:center;padding:10px}.card.lee:before{display:none}.card.lee .rl{color:#a5b0c9}.card.lee .nm{justify-content:center}
 .card.hubc{box-shadow:0 1px 2px rgba(15,23,42,.05),0 16px 36px -14px rgba(91,91,214,.45);border-color:#d6d7f7}
 .card.room{border-style:dashed;background:#fff}.card.room:before{background:#94a3b8}
-.card.store{background:#f1f4f9;box-shadow:none;border-radius:10px;padding:10px 12px 10px 16px}.card.store .nm{font-size:13px}.card.store .rl{font-size:11px}.card.store:before{background:#94a3b8}
+.card.store{background:#f1f4f9;box-shadow:none;border-radius:10px;padding:10px 12px 10px 16px}.card.store .nm{font-size:12px}.card.store .rl{font-size:10.5px}.card.store:before{background:#94a3b8}
 .dim .card:not(.on){opacity:.28}
 .egg .card.bot{box-shadow:0 0 0 2px rgba(124,58,237,.28),0 6px 18px -10px rgba(15,23,42,.18)}.egg .card[data-id="eggbot"]{box-shadow:0 0 0 3px rgba(124,58,237,.6),0 14px 30px -12px rgba(124,58,237,.5)}
 /* edges */
@@ -119,7 +119,7 @@ aside ul{margin:4px 0 0;padding-left:18px}aside li{margin:3px 0}
  .legend,.zoom{display:none}
 }
 </style></head><body>
-<nav class="topnav"><a class="brand" href="index.html?v=20261010114625"><span class="mk"></span>Lee Purcell's Bots</a><div class="links"><a href="index.html?v=20261010114625" data-p="map" class="act" style="--t:#4f46e5">Map</a><a href="mindmap.html?v=20261010114625" data-p="mind" style="--t:#047857">Mind map</a><a href="bots.html?v=20261010114625" data-p="bots" style="--t:#b45309">How it's built</a></div></nav>
+<nav class="topnav"><a class="brand" href="index.html?v=20261010114835"><span class="mk"></span>Lee Purcell's Bots</a><div class="links"><a href="index.html?v=20261010114835" data-p="map" class="act" style="--t:#4f46e5">Map</a><a href="mindmap.html?v=20261010114835" data-p="mind" style="--t:#047857">Mind map</a><a href="bots.html?v=20261010114835" data-p="bots" style="--t:#b45309">How it's built</a></div></nav>
 
 <header class="hero">
  <div><div class="eyebrow">Grok Bot organisation · v4</div><h1>Lee Purcell's Bot Map</h1>
@@ -141,7 +141,7 @@ const GC={lee:"#0f172a",hub:"#5b5bd6",meetings:"#0e9f77",crm:"#d97706",research:
 const colOf=id=>{const n=byId[id];return GC[n.kind==="room"?"room":n.kind==="store"?"store":n.group]||"#64748b"};
 const LANES=[{g:"biz",name:"Business Advisory",ids:["cfo","analyst","risk"],col:0,r0:0},{g:"tech",name:"Tech: Build & Design",ids:["cto","dev","figma"],col:1,r0:0},{g:"builders",name:"Bot Builders & Audit",ids:["eggbot","alfred","botmap"],col:2,r0:0},{g:"ops",name:"Advice",ids:["bounce"],col:3,r0:0,stack:1},{g:"meetings",name:"Meetings",ids:["brief","spp"],col:3,r0:2,stack:1},{g:"crm",name:"Memory & CRM",ids:["workbrain","rolodex","room_nd","room_rwb"],col:4,r0:0},{g:"research",name:"Research",ids:["mno","night","vetter","micro","scout"],col:5,r0:0,stack:1},{g:"other",name:"Other specialists",ids:["recruit"],col:5,r0:6,stack:1}];
 const MAXR=Math.max(...LANES.map(l=>l.r0+l.ids.length));
-const NC=6,PADX=12,COL=155,GAP=16,CW=COL-GAP-12,CH=66,W=PADX*2+COL*NC,LT=278,R0=336,RP=78;
+const NC=6,PADX=12,COL=155,GAP=16,CW=COL-GAP-12,CH=78,W=PADX*2+COL*NC,LT=278,R0=336,RP=90;
 const cx=i=>PADX+COL/2+COL*i, rowY=r=>R0+r*RP, LC=PADX+COL*NC/2;
 const G={}; // rects
 G.lee={x:LC-90,y:20,w:180,h:60};G.rhiannon={x:LC-95,y:138,w:190,h:80};G.pm={x:cx(1)-CW/2-10,y:144,w:CW+20,h:70};
@@ -182,7 +182,7 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",
 const cardEls={};
 D.nodes.forEach(n=>{const g=G[n.id];if(!g)return;const c=document.createElement("div");
  c.className="card "+(n.kind==="person"?"lee":n.kind)+(n.id==="rhiannon"?" hubc":"")+(sched(n)?" sched":"");c.dataset.id=n.id;
- Object.assign(c.style,{left:g.x+"px",top:g.y+"px",width:g.w+"px",height:g.h+"px"});c.style.setProperty("--c",colOf(n.id));
+ Object.assign(c.style,{left:g.x+"px",top:g.y+"px",width:g.w+"px",minHeight:g.h+"px"});c.style.setProperty("--c",colOf(n.id));
  c.title=n.kind==="person"?"Lee Purcell":n.label;c.innerHTML=`<div class="nm"><span>${n.kind==="person"?"Lee Purcell":esc(n.label)}</span></div><div class="rl">${clockTxt[n.id]?`<span class="clk">⏱ ${clockTxt[n.id]}</span> `:""}${n.kind==="person"?"You":esc(n.short||"")}</div>`;
  if(n.id==="rhiannon")c.querySelector(".rl").innerHTML=`<span class="clk">⏱ 08:00</span> Chief of staff · front door`;
  cardsEl.appendChild(c);cardEls[n.id]=c;});
