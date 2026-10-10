@@ -225,7 +225,7 @@ aside .htw.dk .flow{padding:4px 12px 12px}aside .htw.dk .flow .fl,aside .htw.dk 
  .mlb .hint{position:absolute;bottom:calc(16px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);color:#cbd5e1;font-size:12.5px;background:rgba(255,255,255,.1);padding:6px 12px;border-radius:999px;white-space:nowrap;transition:opacity .6s}
 }
 </style></head><body>
-<nav class="topnav"><a class="brand" href="index.html?v=20261010232922"><span class="mk"></span>Bot Dashboard</a><div class="links"><a href="index.html?v=20261010232922" data-p="map" style="--t:#4f46e5">Map</a><a href="connections.html?v=20261010232922" data-p="conn" style="--t:#0f766e">Connections</a><a href="mindmap.html?v=20261010232922" data-p="mind" class="act" style="--t:#047857">Mind map</a><a href="marketing.html?v=20261010232922" data-p="mkt" style="--t:#b45309">Marketing team</a><a href="bots.html?v=20261010232922" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
+<nav class="topnav"><a class="brand" href="index.html?v=20261010233029"><span class="mk"></span>Bot Dashboard</a><div class="links"><a href="index.html?v=20261010233029" data-p="map" style="--t:#4f46e5">Map</a><a href="connections.html?v=20261010233029" data-p="conn" style="--t:#0f766e">Connections</a><a href="mindmap.html?v=20261010233029" data-p="mind" class="act" style="--t:#047857">Mind map</a><a href="marketing.html?v=20261010233029" data-p="mkt" style="--t:#b45309">Marketing team</a><a href="bots.html?v=20261010233029" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
 <header class="hero mh" id="hdr"><button class="htog" id="htog" type="button" aria-controls="hdr" aria-expanded="true">Hide header ✕</button>
  <div><div class="eyebrow">Mind map · v4</div><h1>Lee at the centre</h1>
  <p class="summary">Every bot branches from Lee. Rhiannon, one step out, is the hub, and research results flow back to her for Notion Notes; each coloured branch is one lane of work. Hover or tap a bot to trace its hand-offs and open its full card.</p><div class="meta">Drawn Sat 10 Oct 2026, 21:43 Dubai · same data as the map</div></div>
@@ -242,11 +242,11 @@ b.onclick=function(){untip();set(!document.body.classList.contains("hc"),true)}}
  <div class="zoom"><button id="zo" aria-label="Zoom out">−</button><button id="zi" aria-label="Zoom in">+</button><button class="w" id="zf">Fit</button></div>
 </div>
 <button class="mprev" id="mprev" type="button" aria-label="Open full mind map image">
- <div class="im"><picture><source srcset="mindmap-preview.webp?v=20261010232922" type="image/webp"><img src="mindmap-preview.png?v=20261010232922" alt="Full radial mind map of Lee's bots" width="2440" height="1470"></picture><span class="pill">⤢ Tap to explore the full map.</span></div>
+ <div class="im"><picture><source srcset="mindmap-preview.webp?v=20261010233029" type="image/webp"><img src="mindmap-preview.png?v=20261010233029" alt="Full radial mind map of Lee's bots" width="2440" height="1470"></picture><span class="pill">⤢ Tap to explore the full map.</span></div>
  <div class="cap"><b>Best viewed on desktop: full radial layout</b><span>Lee at the centre, every lane as a coloured branch.</span></div>
 </button>
-<div class="mlb" id="lb" role="dialog" aria-modal="true" aria-label="Mind map image"><div class="vp" id="lbvp"><img id="lbimg" alt="Full radial mind map" src="" data-src="mindmap-preview.png?v=20261010232922"></div>
- <div class="bar"><a href="mindmap-preview.png?v=20261010232922" target="_blank" rel="noopener">Open image ↗</a><button class="x" id="lbx" aria-label="Close">×</button></div>
+<div class="mlb" id="lb" role="dialog" aria-modal="true" aria-label="Mind map image"><div class="vp" id="lbvp"><img id="lbimg" alt="Full radial mind map" src="" data-src="mindmap-preview.png?v=20261010233029"></div>
+ <div class="bar"><a href="mindmap-preview.png?v=20261010233029" target="_blank" rel="noopener">Open image ↗</a><button class="x" id="lbx" aria-label="Close">×</button></div>
  <div class="hint" id="lbhint">Pinch or double-tap to zoom · drag to pan</div></div>
 <details id="ovw"><summary id="ovwS">Overview</summary><div class="ob" id="ovwB"></div></details><div id="mtree" class="mt"></div><div id="scrim"></div>
 <aside id="side"></aside>
@@ -384,13 +384,13 @@ function show(id){const n=byId[id];if(!n)return home();const {out,inn,fm,fi}=rel
  const notes=(n.notes||[]).filter(x=>!/^Members:/.test(x));if(notes.length)h+=`<h3>Notes</h3><ul>`+notes.map(x=>`<li>${esc(x)}</li>`).join("")+`</ul>`;
  h+=`<div class="foot"><span class="lk" data-home="1">← Overview</span></div>`;side.innerHTML=h;side.scrollTop=0;}
 function home(){const bots=D.nodes.filter(n=>n.kind==="bot");
- side.innerHTML=closeBtn+(document.querySelector(".hero .htw")||{outerHTML:""}).outerHTML.replace('class="htw"','class="htw dk"')+`<h2>${bots.length} bots, ${nRooms} room${nRooms===1?"":"s"}</h2><div class="t">Click any bot for its full card. Scroll or drag to move; Ctrl/⌘ + scroll or pinch to zoom.</div>
+ side.innerHTML=closeBtn+(document.querySelector(".hero .htw")||{outerHTML:""}).outerHTML.replace('class="htw"','class="htw dk"')+`<h2>${bots.length} bots</h2><div class="t">Click any bot for its full card. Scroll or drag to move; Ctrl/⌘ + scroll or pinch to zoom.</div>
  <div class="pcard"><b>Main chain</b><br>Lee → Rhiannon → Boardy Rolodex · Work Brain · Meeting Brief · Projects Manager. Meeting Brief sends voice notes back to Rhiannon. Bot problems → Dr Eggbot.</div>
  <h3>What changed since v3</h3><ul class="chg">`+D.changes.map(x=>`<li>${esc(x)}</li>`).join("")+`</ul>`+(D.changes.length>3?`<button class="more" type="button" data-more="1">Show all ${D.changes.length}</button>`:"")+`
  <h3>Bots</h3><ul>`+bots.map(n=>`<li><span class="lk" data-id="${n.id}">${esc(n.label)}</span>: ${esc(n.role)}</li>`).join("")+`</ul>
  <p class="t">Gaps and overlaps are checked weekly by Dr Eggbot and reported to Lee in chat.</p>
  <div class="foot">Unstated items are marked "Not stated". No connection is drawn unless it appears in a bot's saved instructions, skill or room membership.</div>`
- const ob=document.getElementById("ovwB");if(ob){ob.innerHTML=side.innerHTML.replace(/<h2>.*?<\/h2>/,"");document.getElementById("ovwS").textContent=`${bots.length} bots, ${nRooms} room${nRooms===1?"":"s"} · overview`;}}
+ const ob=document.getElementById("ovwB");if(ob){ob.innerHTML=side.innerHTML.replace(/<h2>.*?<\/h2>/,"");document.getElementById("ovwS").textContent=`${bots.length} bots · overview`;}}
 document.addEventListener("click",ev=>{const b=ev.target.closest("[data-more]");if(b){const u=b.previousElementSibling;u.classList.toggle("all");b.textContent=u.classList.contains("all")?"Show fewer":`Show all ${u.children.length}`;}});
 const ovwEl=document.getElementById("ovw");if(ovwEl)ovwEl.addEventListener("click",ev=>{const t=ev.target.closest("[data-id]");if(t){ev.preventDefault();select(t.dataset.id);}});
 
