@@ -180,6 +180,16 @@ aside .htw.dk .flow{padding:4px 12px 12px}aside .htw.dk .flow .fl,aside .htw.dk 
 @media (max-width:1100px){.htw ol{columns:1}}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 @media (hover:hover){.card:hover{box-shadow:0 2px 4px rgba(15,23,42,.06),0 14px 30px -12px color-mix(in srgb,var(--c) 55%,transparent);border-color:color-mix(in srgb,var(--c) 45%,var(--line));transform:translateY(-1px)}.card.hubc:hover{box-shadow:0 0 0 4px #C7D2FE,0 18px 36px -12px rgba(79,70,229,.6);border-color:#2563EB}}
+.msk{margin-top:10px;max-width:760px;background:#fff;border:1px solid var(--line);border-left:3px solid #374151;border-radius:12px}
+.msk>summary{list-style:none;cursor:pointer;padding:10px 14px;font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#374151;display:flex;align-items:center;gap:8px}.msk>summary::-webkit-details-marker{display:none}.msk>summary b{background:#374151;color:#fff;border-radius:999px;padding:0 8px;font-size:11px;letter-spacing:0}
+.msk .mskb{padding:0 14px 14px}.msk .msp{margin:0 0 10px;font-size:13px;color:var(--ink2);line-height:1.5}
+.mskg{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.mskc{border:1px solid var(--line);border-left:3px solid #0c8564;border-radius:10px;padding:11px 12px;display:flex;flex-direction:column;gap:5px;background:#fbfcfe}
+.mskc .mn{font-size:13.5px;font-weight:700;color:var(--ink);word-break:break-word}.mskc .mp{font-size:13px;line-height:1.45;color:var(--ink2)}.mskc .mu{font-size:12px;color:#475569}
+.mskc .dbtn{align-self:flex-start;margin-top:4px;background:#0f172a;color:#fff;font-size:13px;padding:8px 14px;min-height:40px}
+@media (max-width:820px){.mskg{grid-template-columns:1fr}.msk .mskb{padding:0 12px 12px}.mskc .mp{font-size:14px}}
+body.hc .hero .msk{display:none}
+[data-skill]{cursor:pointer}.ocs span[data-skill]:hover,.mskc[data-skill]:hover{border-color:#0c8564}.skp.lk{cursor:pointer}
 
 #stage{background:radial-gradient(circle at 50% 46%,#ffffff 0,#f7f8fb 55%),var(--bg)}
 .bp{position:absolute;transform:translate(-50%,-50%);font-size:22px;line-height:1.15;font-weight:800;letter-spacing:-.015em;color:#fff;background:var(--cf);border:2px solid var(--cf);padding:7px 16px;border-radius:999px;white-space:nowrap;box-shadow:0 2px 4px rgba(15,23,42,.18),0 8px 18px -8px color-mix(in srgb,var(--cf) 70%,transparent);transition:opacity .3s}
@@ -228,7 +238,7 @@ aside .htw.dk .flow{padding:4px 12px 12px}aside .htw.dk .flow .fl,aside .htw.dk 
  .mlb .hint{position:absolute;bottom:calc(16px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);color:#cbd5e1;font-size:12.5px;background:rgba(255,255,255,.1);padding:6px 12px;border-radius:999px;white-space:nowrap;transition:opacity .6s}
 }
 </style></head><body>
-<nav class="topnav"><a class="brand" href="index.html?v=20261011211550"><span class="mk"></span>Bot Dashboard</a><div class="links"><a href="index.html?v=20261011211550" data-p="map" style="--t:#4f46e5">Map</a><a href="connections.html?v=20261011211550" data-p="conn" style="--t:#0f766e">Connections</a><a href="mindmap.html?v=20261011211550" data-p="mind" class="act" style="--t:#047857">Mind map</a><a href="marketing.html?v=20261011211550" data-p="mkt" style="--t:#b45309">Marketing team</a><a href="bots.html?v=20261011211550" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
+<nav class="topnav"><a class="brand" href="index.html?v=20261011211940"><span class="mk"></span>Bot Dashboard</a><div class="links"><a href="index.html?v=20261011211940" data-p="map" style="--t:#4f46e5">Map</a><a href="connections.html?v=20261011211940" data-p="conn" style="--t:#0f766e">Connections</a><a href="mindmap.html?v=20261011211940" data-p="mind" class="act" style="--t:#047857">Mind map</a><a href="marketing.html?v=20261011211940" data-p="mkt" style="--t:#b45309">Marketing team</a><a href="bots.html?v=20261011211940" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
 <header class="hero mh" id="hdr"><button class="htog" id="htog" type="button" aria-controls="hdr" aria-expanded="true">Hide header ✕</button>
  <div><div class="eyebrow">Mind map · v4</div><h1>Lee at the centre</h1>
  <p class="summary">Every bot branches from Lee. Rhiannon, one step out, is the hub, and research results flow back to her for Notion Notes; each coloured branch is one lane of work. Hover or tap a bot to trace its hand-offs and open its full card.</p><div class="meta">Drawn Sun 11 Oct 2026, 21:15 Dubai · same data as the map</div></div>
@@ -245,11 +255,11 @@ b.onclick=function(){untip();set(!document.body.classList.contains("hc"),true)}}
  <div class="zoom"><button id="zo" aria-label="Zoom out">−</button><button id="zi" aria-label="Zoom in">+</button><button class="w" id="zf">Fit</button></div>
 </div>
 <button class="mprev" id="mprev" type="button" aria-label="Open full mind map image">
- <div class="im"><picture><source srcset="mindmap-preview.webp?v=20261011211550" type="image/webp"><img src="mindmap-preview.png?v=20261011211550" alt="Full radial mind map of Lee's bots" width="2440" height="1470"></picture><span class="pill">⤢ Tap to explore the full map.</span></div>
+ <div class="im"><picture><source srcset="mindmap-preview.webp?v=20261011211940" type="image/webp"><img src="mindmap-preview.png?v=20261011211940" alt="Full radial mind map of Lee's bots" width="2440" height="1470"></picture><span class="pill">⤢ Tap to explore the full map.</span></div>
  <div class="cap"><b>Best viewed on desktop: full radial layout</b><span>Lee at the centre, every lane as a coloured branch.</span></div>
 </button>
-<div class="mlb" id="lb" role="dialog" aria-modal="true" aria-label="Mind map image"><div class="vp" id="lbvp"><img id="lbimg" alt="Full radial mind map" src="" data-src="mindmap-preview.png?v=20261011211550"></div>
- <div class="bar"><a href="mindmap-preview.png?v=20261011211550" target="_blank" rel="noopener">Open image ↗</a><button class="x" id="lbx" aria-label="Close">×</button></div>
+<div class="mlb" id="lb" role="dialog" aria-modal="true" aria-label="Mind map image"><div class="vp" id="lbvp"><img id="lbimg" alt="Full radial mind map" src="" data-src="mindmap-preview.png?v=20261011211940"></div>
+ <div class="bar"><a href="mindmap-preview.png?v=20261011211940" target="_blank" rel="noopener">Open image ↗</a><button class="x" id="lbx" aria-label="Close">×</button></div>
  <div class="hint" id="lbhint">Pinch or double-tap to zoom · drag to pan</div></div>
 <details id="ovw"><summary id="ovwS">Overview</summary><div class="ob" id="ovwB"></div></details><div id="mtree" class="mt"></div><div id="scrim"></div>
 <aside id="side"></aside>
@@ -345,7 +355,7 @@ function pick(c){const obst=placed.concat(BR.filter(b=>b.g!=="hub").map(b=>b.pil
  const ok=p=>obst.every(o=>{const hw=(o[2]||60)+70,hh=(o[3]||14)+13;return Math.abs(p[0]-o[0])>hw||Math.abs(p[1]-o[1])>hh;});
  const r=c.find(ok)||c[0];placed.push(r);return r;}
 function laneOf(id){const b=BR.find(b=>b.ids.includes(id));return b&&b.g;}
-function focusNode(id){world.classList.add("dim");lblEl.innerHTML="";placed=[];const on=new Set([id]);
+function focusNode(id){world.classList.add("dim");lblEl.innerHTML="";placed=[];const on=new Set([id]);if(byId[id]&&byId[id].kind==="skill"&&typeof skUsers==="function")skUsers(id).forEach(u=>on.add(u));
  hoEls.forEach(h=>{const hit=h.edges.some(e=>e.from===id||e.to===id);h.p.classList.toggle("on",hit);const src=h.edges[0].from,grp=src==="lee"?"lee":byId[src].group;
   h.p.style.setProperty("--c",GC[grp]);h.p.setAttribute("marker-end",hit?`url(#m-${grp})`:"url(#m-def)");if(h.both)h.p.setAttribute("marker-start",hit?`url(#m-${grp})`:"url(#m-def)");
   if(hit){h.edges.forEach(e=>{on.add(e.from);on.add(e.to);});addLbl(pick(h.m),h.both?"briefs & follow-ups ⇄ voice notes":h.edges[0].label,GC[grp]);}});
@@ -375,12 +385,15 @@ cardsEl.addEventListener("click",ev=>{const c=ev.target.closest(".card");if(c)se
 function rel(id){const out=D.edges.filter(e=>e.from===id),inn=D.edges.filter(e=>e.to===id);
  const fm=e=>`<span class="lk" data-id="${e.to}">${esc(byId[e.to].label)}</span>${e.label?" · "+esc(e.label):""}`,fi=e=>`<span class="lk" data-id="${e.from}">${esc(byId[e.from].label)}</span>${e.label?" · "+esc(e.label):""}`;return {out,inn,fm,fi};}
 const closeBtn='<button class="close" data-close="1" aria-label="Close">×</button>';
+(D.skills||[]).filter(k=>!k.helper).forEach(k=>{if(byId[k.id])return;byId[k.id]={id:k.id,kind:"skill",group:"skills",label:k.name.replace("myskill-collabor8-","").replace(/-/g," ").replace(/^./,c=>c.toUpperCase()),title:"",short:k.purpose.split(/(?<=[.:;])\s/)[0].replace(/[:;]$/,""),role:k.purpose,schedule:[],tools:[],notes:[]};});
+const skUsers=id=>{const k=(D.skills||[]).find(x=>x.id===id);return k?k.users:[];};
+const skNote=id=>{const k=(D.skills||[]).find(x=>x.id===id);return k?(k.usersNote||""):"";};
 const descBtn=id=>`<button class="dbtn" type="button" data-desc="${id}">📄 Description</button>`;
 const chainTxt=n=>"";
 function show(id){const n=byId[id];if(!n)return home();const {out,inn,fm,fi}=rel(id);const isBot=n.kind==="bot";
- let h=closeBtn+`<h2>${esc(n.kind==="person"?"Lee Purcell":n.label)}</h2><div class="t">${esc(n.title&&n.title!==n.label?n.title+" · ":"")}${({bot:"Grok Bot",room:"Group room",store:"Data store / external",person:"You"})[n.kind]}</div><div>${esc(n.role||"")}</div>`+(isBot&&n.type?`<div class="ptype"><b>Type:</b> ${n.type==="role"?"Role bot · staff with a whole job":"Expert bot · one task"}</div>${chainTxt(n)?`<div class="ptype"><b>Chain:</b> ${chainTxt(n)}</div>`:""}`:"")+(isBot?descBtn(id):"");
+ let h=closeBtn+`<h2>${esc(n.kind==="person"?"Lee Purcell":n.label)}</h2><div class="t">${esc(n.title&&n.title!==n.label?n.title+" · ":"")}${({skill:"Skill · "+esc((D.skills.find(x=>x.id===id)||{}).name||""),bot:"Grok Bot",room:"Group room",store:"Data store / external",person:"You"})[n.kind]}</div><div>${esc(n.role||"")}</div>`+(isBot&&n.type?`<div class="ptype"><b>Type:</b> ${n.type==="role"?"Role bot · staff with a whole job":"Expert bot · one task"}</div>${chainTxt(n)?`<div class="ptype"><b>Chain:</b> ${chainTxt(n)}</div>`:""}`:"")+((isBot||n.kind==="skill")?descBtn(id):"")+(n.kind==="skill"?`<h3>Used by</h3>`+(skUsers(id).length?`<ul>`+skUsers(id).map(u=>`<li><span class="lk" data-id="${u}">${esc(byId[u].label)}</span></li>`).join("")+`</ul>`:`<div>${esc(skNote(id)||"Any bot can call it")}</div>`)+(skNote(id)&&skUsers(id).length?`<div class="t">${esc(skNote(id))}</div>`:""):"");
  if(n.schedule&&n.schedule.length)h+=`<h3>Schedule</h3>`+n.schedule.map(s=>`<span class="pill sch">${esc(s)}</span>`).join("");
- if((n.skills||[]).length)h+=`<h3>Skills</h3>`+n.skills.map(k=>`<a class="pill skp" href="bots.html#${k}">🧩 ${esc(SKN[k])}</a>`).join(" ");
+ if((n.skills||[]).length)h+=`<h3>Skills</h3>`+n.skills.map(k=>`<span class="pill skp lk" data-id="${k}">🧩 ${esc(SKN[k])}</span>`).join(" ");
  if(n.tools&&n.tools.length)h+=`<h3>Tools &amp; sources</h3>`+n.tools.map(s=>`<span class="pill tool">${esc(s)}</span>`).join("");
  const ho=out.filter(e=>e.type!=="member"),ri=inn.filter(e=>e.type!=="member");if(isBot&&id!=="eggbot")ri.push({from:"eggbot",label:"instruction & setup changes"});
  if(id==="eggbot")h+=`<h3>Changes</h3><div>All bots' instructions and setup.</div>`;
@@ -400,6 +413,7 @@ function home(){const bots=D.nodes.filter(n=>n.kind==="bot");
  const ob=document.getElementById("ovwB");if(ob){ob.innerHTML=side.innerHTML.replace(/<h2>.*?<\/h2>/,"");document.getElementById("ovwS").textContent=`${bots.length} bots · overview`;}}
 document.addEventListener("click",ev=>{const b=ev.target.closest("[data-more]");if(b){const u=b.previousElementSibling;u.classList.toggle("all");b.textContent=u.classList.contains("all")?"Show fewer":`Show all ${u.children.length}`;}});
 const ovwEl=document.getElementById("ovw");if(ovwEl)ovwEl.addEventListener("click",ev=>{const t=ev.target.closest("[data-id]");if(t){ev.preventDefault();select(t.dataset.id);}});
+document.addEventListener("click",ev=>{if(ev.target.closest("[data-desc]"))return;const t=ev.target.closest("[data-skill]");if(t&&byId[t.dataset.skill]){ev.preventDefault();ev.stopPropagation();select(t.dataset.skill);}},true);
 
 const mobile=()=>matchMedia("(max-width:820px)").matches;
 function sheet(on){if(!on&&selected!=null){unselect();return;}side.classList.toggle("open",on);const sc=document.getElementById("scrim");sc.classList.toggle("on",on&&mobile());sc.onclick=()=>sheet(false);document.documentElement.style.overflow=on&&mobile()?"hidden":"";}
