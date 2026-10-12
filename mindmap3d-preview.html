@@ -38,7 +38,7 @@ html{scrollbar-gutter:stable}
 .lab.cx{opacity:0;pointer-events:none}.dim .lab:not(.on){opacity:0;pointer-events:none}.dim .lab.pin:not(.on){opacity:.75;pointer-events:auto}.lab.pin.cx{opacity:1}.lab.rh{background:#1e40af;font-size:14px}.lab.lyoff,.dim .lab.lyoff,.zt.lyoff{opacity:.05!important;transition:opacity .35s;pointer-events:none}.lab.cx.lyoff,.dim .lab.lyoff:not(.on):not(.pin),.zt.cx.lyoff{opacity:0!important}.lab.hide{display:none}
 .zt{font:700 12px Inter,system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--zt,var(--c));background:rgba(255,255,255,.9);border:1px solid color-mix(in srgb,var(--c) 40%,#fff);padding:3px 9px;border-radius:999px;pointer-events:none;white-space:nowrap}
 .dim .zt{opacity:.35}
-.lt{font:600 13px Inter,system-ui,sans-serif;color:#334155;background:#fff;border:1px solid #cbd5e1;border-radius:8px 0 0 8px;border-right:3px solid #64748b;padding:5px 10px;pointer-events:auto;cursor:pointer;transform:translateX(-50%);white-space:nowrap}.lt.fx{position:absolute;left:12px;transform:none;z-index:6;border-radius:8px;border-right:0;border-left:3px solid #64748b}.zt.cx{opacity:0}.lt b{color:#64748b;margin-right:2px}.lt.on{background:var(--ink);color:#fff}
+.lt{font:600 13px Inter,system-ui,sans-serif;color:#334155;background:#fff;border:1px solid #cbd5e1;border-radius:8px 0 0 8px;border-right:3px solid #64748b;padding:5px 10px;pointer-events:auto;cursor:pointer;transform:translateX(-50%);white-space:nowrap}.lt.fx{position:absolute;left:12px;transform:none;z-index:6;font:600 13px Inter,system-ui,sans-serif;border:1px solid #cbd5e1;border-radius:999px;padding:8px 14px;min-height:40px;display:inline-flex;align-items:center;background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(15,23,42,.08)}.lt.fx.on{background:var(--ink);color:#fff;border-color:var(--ink)}#bPause[aria-pressed="true"]{background:var(--ink);color:#fff}body.flat #bPause{display:none}.zt.cx{opacity:0}.lt b{color:#64748b;margin-right:2px}.lt.on{background:var(--ink);color:#fff}
 .cnt{display:none}
 .cap{font:600 13px Inter,system-ui,sans-serif;color:#fff;background:#0f172a;border-radius:999px;padding:5px 12px;box-shadow:0 4px 12px rgba(15,23,42,.2);transform:translateY(-30px);pointer-events:none;white-space:nowrap}
 .chips3{position:absolute;left:16px;bottom:16px;display:flex;gap:8px;z-index:7;flex-wrap:wrap}
@@ -79,9 +79,9 @@ body.flat #gl,body.flat #l2,body.flat .chips3,body.flat .hint{display:none}body.
 </style>
 <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js","three/addons/":"./vendor/"}}</script>
 </head><body>
-<nav class="topnav"><a class="brand" href="index.html?v=20261012200705"><span class="mk"></span>Bot Dashboard</a><div class="links"><a href="index.html?v=20261012200705" data-p="map" style="--t:#4f46e5">Map</a><a href="connections.html?v=20261012200705" data-p="conn" style="--t:#0f766e">Connections</a><a href="mindmap.html?v=20261012200705" data-p="mind" style="--t:#047857">Mind map</a><a href="mindmap3d.html?v=20261012200705" data-p="mind3d" class="act" style="--t:#0e7490">Mind map 3D</a><a href="marketing.html?v=20261012200705" data-p="mkt" style="--t:#b45309">Marketing team</a><a href="bots.html?v=20261012200705" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
+<nav class="topnav"><a class="brand" href="index.html?v=20261012201306"><span class="mk"></span>Bot Dashboard</a><div class="links"><a href="index.html?v=20261012201306" data-p="map" style="--t:#4f46e5">Map</a><a href="connections.html?v=20261012201306" data-p="conn" style="--t:#0f766e">Connections</a><a href="mindmap.html?v=20261012201306" data-p="mind" style="--t:#047857">Mind map</a><a href="mindmap3d.html?v=20261012201306" data-p="mind3d" class="act" style="--t:#0e7490">Mind map 3D</a><a href="marketing.html?v=20261012201306" data-p="mkt" style="--t:#b45309">Marketing team</a><a href="bots.html?v=20261012201306" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
 <div class="bar3"><b>Mind map · 3D layers</b><span style="color:var(--mut);font-size:13px">preview</span><span class="sp"></span>
-<button class="btn" id="bReset" type="button">Reset view</button><button class="btn pri" id="bFlow" type="button">▶ Show a flow</button></div>
+<button class="btn" id="bPause" type="button" aria-pressed="false">⏸ Pause</button><button class="btn" id="bReset" type="button">Reset view</button><button class="btn pri" id="bFlow" type="button">▶ Show a flow</button></div>
 <div class="wrap"><div id="stage"><div id="gl"></div><div id="l2"></div><div id="v2d"></div>
 <div class="chips3" id="lchips"></div><div class="hint" id="hint">Drag to orbit · Scroll or pinch to zoom · Hover a bot to trace · Esc resets</div></div>
 <aside id="side"><button class="close" data-close="1" aria-label="Close">×</button><div class="info" id="info">
@@ -199,7 +199,7 @@ async function start3D(){
   const geo=new THREE.CylinderGeometry(r,r,.16,96,1);const mat=new THREE.MeshPhysicalMaterial({color:0xf8fafc,transparent:true,opacity:.42,roughness:.25,clearcoat:.6,depthWrite:false});g.add(new THREE.Mesh(geo,mat));
   const rim=new THREE.Mesh(new THREE.TorusGeometry(r,.035,8,128),new THREE.MeshBasicMaterial({color:0x94a3b8,transparent:true,opacity:.6}));rim.rotation.x=Math.PI/2;g.add(rim);
   const pr=new THREE.PolarGridHelper(r*.92,12,4,96,0xcbd5e1,0xe2e8f0);pr.position.y=.09;pr.material.transparent=true;pr.material.opacity=.35;g.add(pr);
-  const td=document.createElement("div");td.className="lt fx";td.innerHTML=`<b>${k+1}</b> ${esc(L.name)}`;stage.appendChild(td);sideTags.push(td);td.addEventListener("click",()=>layerHL(lhl===k?null:k));
+  const td=document.createElement("div");td.className="btn lt fx";td.setAttribute("role","button");td.tabIndex=0;td.innerHTML=`${k+1} · ${esc(L.name)}`;td.addEventListener("keydown",ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();td.click();}});stage.appendChild(td);sideTags.push(td);td.addEventListener("click",()=>layerHL(lhl===k?null:k));
   // sections as arc segments around the rim
   const zs=L.z.filter(([g])=>g!=="hub");const tot=zs.reduce((a,[,l])=>a+l.length+1.2,0);let a0=Math.PI*.5;  // start at front
   if(k===0){[["lee",0,-.6],["rhiannon",-1.7,1.5],["s_notes",2.1,1.2]].forEach(([id,x,z])=>P[id]=[k,x,z]);const hb=new THREE.Mesh(new THREE.RingGeometry(r-.32,r-.05,96),new THREE.MeshBasicMaterial({color:new THREE.Color("#2563EB"),transparent:true,opacity:.35,side:THREE.DoubleSide,depthWrite:false}));hb.rotation.x=-Math.PI/2;hb.position.y=.1;g.add(hb);}
@@ -237,6 +237,7 @@ async function start3D(){
  function setDim(on,set){lit=on?set:null;stage.classList.toggle("dim",on);ids.forEach(id=>{if(!nodes[id])return;const L=!on||set.has(id);labs[id].classList.toggle("on",on&&set.has(id));nodes[id].m.material.opacity=L?1:.18;nodes[id].hal.material.opacity=L?.25:.05;});applyLayer();}
  function focus(id){cur=id;clearCss(bg);bg.clear();eg.clear();if(!id){setDim(false,null);if(!flow)drawBundles();return;}
   const set=new Set([id]);E.filter(e=>(e.a===id||e.b===id)&&nodes[e.a]&&nodes[e.b]&&!M.hidden.has(secOf[e.a])&&!M.hidden.has(secOf[e.b])).forEach(e=>{set.add(e.a);set.add(e.b);const em=edgeMesh(e);em.userData.ks=[layerOf[e.a],layerOf[e.b]];eg.add(em);});setDim(true,set);}
+ let paused=false,pT=0;const bP=document.getElementById("bPause");bP.onclick=()=>{paused=!paused;bP.setAttribute("aria-pressed",paused);bP.textContent=paused?"▶ Play":"⏸ Pause";if(paused){ctl.autoRotate=false;ctl.enableDamping=false;ctl.update();ctl.enableDamping=true;pT=performance.now();}else{if(flow)flow.t0+=performance.now()-pT;idle=0;}};
  let fly=null;function flyTo(id){if(RM)return;const t=wp(id).lerp(TGT0,.6);const off=cam.position.clone().sub(ctl.target).multiplyScalar(.85);fly={t0:performance.now(),fromT:ctl.target.clone(),toT:t,fromP:cam.position.clone(),toP:t.clone().add(off)};ctl.autoRotate=false;}
  function select(id){if(!nodes[id])return;stopFlow();pinned=true;focus(id);flyTo(id);M.show(id);}
  function reset(){pinned=false;stopFlow();layerHL(null);M.hide();focus(null);if(RM){cam.position.copy(CAM0);ctl.target.copy(TGT0);}else fly={t0:performance.now(),fromT:ctl.target.clone(),toT:TGT0.clone(),fromP:cam.position.clone(),toP:CAM0.clone()};ctl.autoRotate=!RM;}
@@ -250,8 +251,8 @@ async function start3D(){
   ids.forEach(id=>{if(!nodes[id]||k===null||layerOf[id]===k)return;nodes[id].m.material.opacity*=FADE;nodes[id].hal.material.opacity*=FADE;});
   [eg,bg].forEach(G=>G.children.forEach(c=>{const ks=c.userData.ks||[];const f=k===null?1:(ks[0]===k&&ks[1]===k?1:(ks.includes(k)?.3:FADE));fset(c,f);}));
   ids.forEach(id=>{if(labs[id])labs[id].classList.toggle("lyoff",k!==null&&layerOf[id]!==k);});zts.forEach(z=>z.classList.toggle("lyoff",k!==null&&+z.dataset.k!==k));}
- let lhl=null;const lch=document.getElementById("lchips");LAY.forEach((L,k)=>{const b=document.createElement("button");b.className="btn";b.type="button";b.textContent=(k+1)+" · "+L.name;b.onclick=()=>layerHL(lhl===k?null:k);lch.appendChild(b);});
- function layerHL(k){lhl=k;slabs.forEach((s,j)=>{s.target=k===null?0:(j===k?.5:0);});setDim(!!lit,lit);document.querySelectorAll(".lt").forEach((t,j)=>t.classList.toggle("on",j===k));[...lch.children].forEach((b,j)=>b.classList.toggle("on",j===k));}
+ let lhl=null;const lch=document.getElementById("lchips");lch.style.display="none";
+ function layerHL(k){lhl=k;slabs.forEach((s,j)=>{s.target=k===null?0:(j===k?.5:0);});setDim(!!lit,lit);document.querySelectorAll(".lt").forEach((t,j)=>t.classList.toggle("on",j===k));}
  const dotM=new THREE.Mesh(new THREE.SphereGeometry(.14,24,12),new THREE.MeshBasicMaterial({color:0x2563EB}));
  const capO=new THREE.Object3D();const capD=document.createElement("div");capD.className="cap";capO.add(new CSS2DObject(capD));
  function stopFlow(){if(!flow)return;flow=null;scene.remove(dotM);scene.remove(capO);capD.remove();document.getElementById("bFlow").textContent="▶ Show a flow";focus(null);}
@@ -268,8 +269,8 @@ async function start3D(){
  drawBundles();let frames=0;M.fps=()=>frames;
  R.setAnimationLoop(now=>{frames++;if(fly){const k=Math.min(1,(now-fly.t0)/800),e=1-Math.pow(1-k,3);ctl.target.lerpVectors(fly.fromT,fly.toT,e);cam.position.lerpVectors(fly.fromP,fly.toP,e);if(k>=1)fly=null;}
   slabs.forEach(s=>{const ty=s.y0+(s.target||0);s.g.position.y+=(ty-s.g.position.y)*(RM?1:.15);});
-  if(!ctl.autoRotate&&!RM&&!pinned&&!flow&&!fly&&now-idle>6000)ctl.autoRotate=true;
-  stepFlow(now);ctl.update();R.render(scene,cam);L2.render(scene,cam);placeTags();if(now-lastC>120){lastC=now;collide();}});
+  if(!paused&&!ctl.autoRotate&&!RM&&!pinned&&!flow&&!fly&&now-idle>6000)ctl.autoRotate=true;
+  if(!paused)stepFlow(now);ctl.update();R.render(scene,cam);L2.render(scene,cam);placeTags();if(now-lastC>120){lastC=now;collide();}});
  M.three={scene,cam,ctl};}
 </script>
 <style>
