@@ -35,7 +35,7 @@ html{scrollbar-gutter:stable}
 .lab:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c);box-shadow:0 0 0 2px rgba(255,255,255,.85)}
 .lab.lee{font-size:14px;background:#312E81}.lab.notes{background:rgba(71,85,105,.9)}.lab small{display:block;font-weight:500;font-size:12px;color:var(--mut)}
 .lab.on{background:#0f172a;box-shadow:0 0 0 2px var(--c),0 4px 12px rgba(15,23,42,.25)}
-.lab.cx{opacity:0;pointer-events:none}.dim .lab:not(.on){opacity:0;pointer-events:none}.dim .lab.pin:not(.on){opacity:.75;pointer-events:auto}.lab.pin.cx{opacity:1}.lab.rh{background:#1e40af;font-size:14px}.lab.lyoff,.dim .lab.lyoff,.zt.lyoff{opacity:.05!important;transition:opacity .35s;pointer-events:none}.lab.cx.lyoff,.dim .lab.lyoff:not(.on):not(.pin),.zt.cx.lyoff{opacity:0!important}.lab.hide{display:none}
+.lab.cx{opacity:0;pointer-events:none}.dim .lab:not(.on){opacity:0;pointer-events:none}body.lfz .zt{opacity:0!important}.lab.fz{opacity:1!important;pointer-events:auto!important;z-index:5}.lab.fz.cx{opacity:1}.dim .lab.pin:not(.on){opacity:.75;pointer-events:auto}.lab.pin.cx{opacity:1}.lab.rh{background:#1e40af;font-size:14px}.lab.lyoff,.dim .lab.lyoff,.zt.lyoff{opacity:0!important;transition:opacity .35s;pointer-events:none}.lab.cx.lyoff,.dim .lab.lyoff:not(.on):not(.pin),.zt.cx.lyoff{opacity:0!important}.lab.hide{display:none}
 .zt{font:700 12px Inter,system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--zt,var(--c));background:rgba(255,255,255,.9);border:1px solid color-mix(in srgb,var(--c) 40%,#fff);padding:3px 9px;border-radius:999px;pointer-events:none;white-space:nowrap}
 .dim .zt{opacity:.35}
 .lt{font:600 13px Inter,system-ui,sans-serif;color:#334155;background:#fff;border:1px solid #cbd5e1;border-radius:8px 0 0 8px;border-right:3px solid #64748b;padding:5px 10px;pointer-events:auto;cursor:pointer;transform:translateX(-50%);white-space:nowrap}.lt.fx{position:absolute;left:12px;transform:none;z-index:6;font:600 13px Inter,system-ui,sans-serif;border:1px solid #cbd5e1;border-radius:999px;padding:8px 14px;min-height:40px;display:inline-flex;align-items:center;background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(15,23,42,.08)}.lt.fx.on{background:var(--ink);color:#fff;border-color:var(--ink)}#bPause[aria-pressed="true"]{background:var(--ink);color:#fff}body.flat #bPause{display:none}.zt.cx{opacity:0}.lt b{color:#64748b;margin-right:2px}.lt.on{background:var(--ink);color:#fff}
@@ -79,10 +79,10 @@ body.flat #gl,body.flat #l2,body.flat .chips3,body.flat .hint{display:none}body.
 </style>
 <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js","three/addons/":"./vendor/"}}</script>
 </head><body>
-<nav class="topnav"><a class="brand" href="index.html?v=20261012201306"><span class="mk"></span>Bot Dashboard</a><div class="links"><a href="index.html?v=20261012201306" data-p="map" style="--t:#4f46e5">Map</a><a href="connections.html?v=20261012201306" data-p="conn" style="--t:#0f766e">Connections</a><a href="mindmap.html?v=20261012201306" data-p="mind" style="--t:#047857">Mind map</a><a href="mindmap3d.html?v=20261012201306" data-p="mind3d" class="act" style="--t:#0e7490">Mind map 3D</a><a href="marketing.html?v=20261012201306" data-p="mkt" style="--t:#b45309">Marketing team</a><a href="bots.html?v=20261012201306" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
+<nav class="topnav"><a class="brand" href="index.html?v=20261012202540"><span class="mk"></span>Bot Dashboard</a><div class="links"><a href="index.html?v=20261012202540" data-p="map" style="--t:#4f46e5">Map</a><a href="connections.html?v=20261012202540" data-p="conn" style="--t:#0f766e">Connections</a><a href="mindmap.html?v=20261012202540" data-p="mind" style="--t:#047857">Mind map</a><a href="mindmap3d.html?v=20261012202540" data-p="mind3d" class="act" style="--t:#0e7490">Mind map 3D</a><a href="marketing.html?v=20261012202540" data-p="mkt" style="--t:#b45309">Marketing team</a><a href="bots.html?v=20261012202540" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
 <div class="bar3"><b>Mind map · 3D layers</b><span style="color:var(--mut);font-size:13px">preview</span><span class="sp"></span>
 <button class="btn" id="bPause" type="button" aria-pressed="false">⏸ Pause</button><button class="btn" id="bReset" type="button">Reset view</button><button class="btn pri" id="bFlow" type="button">▶ Show a flow</button></div>
-<div class="wrap"><div id="stage"><div id="gl"></div><div id="l2"></div><div id="v2d"></div>
+<div class="wrap"><div id="stage"><div id="gl"></div><svg id="ldr" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4"></svg><div id="l2"></div><div id="v2d"></div>
 <div class="chips3" id="lchips"></div><div class="hint" id="hint">Drag to orbit · Scroll or pinch to zoom · Hover a bot to trace · Esc resets</div></div>
 <aside id="side"><button class="close" data-close="1" aria-label="Close">×</button><div class="info" id="info">
 <h2>How work flows</h2>
@@ -252,7 +252,33 @@ async function start3D(){
   [eg,bg].forEach(G=>G.children.forEach(c=>{const ks=c.userData.ks||[];const f=k===null?1:(ks[0]===k&&ks[1]===k?1:(ks.includes(k)?.3:FADE));fset(c,f);}));
   ids.forEach(id=>{if(labs[id])labs[id].classList.toggle("lyoff",k!==null&&layerOf[id]!==k);});zts.forEach(z=>z.classList.toggle("lyoff",k!==null&&+z.dataset.k!==k));}
  let lhl=null;const lch=document.getElementById("lchips");lch.style.display="none";
- function layerHL(k){lhl=k;slabs.forEach((s,j)=>{s.target=k===null?0:(j===k?.5:0);});setDim(!!lit,lit);document.querySelectorAll(".lt").forEach((t,j)=>t.classList.toggle("on",j===k));}
+ function layerHL(k){const prev=lhl;lhl=k;slabs.forEach((s,j)=>{s.target=k===null?0:(j===k?.5:0);});
+  if(prev!==null)exitFocus();setDim(!!lit,lit);document.querySelectorAll(".lt").forEach((t,j)=>t.classList.toggle("on",j===k));if(k!==null)enterFocus(k);}
+ // ---- layer focus: stop rotation, top-down camera on the disc, every label radial outside the rim, declutter ----
+ let fz=null;const ldr=document.getElementById("ldr");
+ const onLayer=k=>ids.filter(id=>nodes[id]&&layerOf[id]===k&&!M.hidden.has(secOf[id]));
+ function enterFocus(k){document.body.classList.add("lfz");const r=RR[k]-.25;fz={k,saveP:cam.position.clone(),saveT:ctl.target.clone(),wasAuto:ctl.autoRotate,leaders:[]};ctl.autoRotate=false;
+  onLayer(k).forEach(id=>{const [,x,z]=P[id];const a=Math.atan2(z,x);const n=nodes[id];n.o.position.set(Math.cos(a)*(r+1.0)-x,-.16,Math.sin(a)*(r+1.0)-z);labs[id].classList.add("fz");labs[id].classList.remove("cx");});
+  const y=LY[k]+.5;const T=new THREE.Vector3(0,y,0);const vf=THREE.MathUtils.degToRad(cam.fov)/2,hf=Math.atan(Math.tan(vf)*W()/H());const half=r+2.6;const d=half/Math.tan(Math.min(vf,hf))*1.02;
+  const az=ctl.getAzimuthalAngle(),pol=.62;const P2=new THREE.Vector3(Math.sin(pol)*Math.sin(az),Math.cos(pol),Math.sin(pol)*Math.cos(az)).multiplyScalar(d).add(T);
+  ctl.minDistance=Math.min(ctl.minDistance,d*.5);ctl.maxDistance=Math.max(ctl.maxDistance,d*1.3);
+  if(RM){cam.position.copy(P2);ctl.target.copy(T);ctl.update();setTimeout(declutter,60);}else fly={t0:performance.now(),fromT:ctl.target.clone(),toT:T,fromP:cam.position.clone(),toP:P2,done:()=>setTimeout(declutter,60)};}
+ function exitFocus(){document.body.classList.remove("lfz");if(!fz)return;onLayer(fz.k).concat(ids.filter(id=>labs[id]&&labs[id].classList.contains("fz"))).forEach(id=>{nodes[id].o.position.set(0,0,0);const e=labs[id];e.classList.remove("fz");e.style.marginLeft=e.style.marginTop="";});ldr.innerHTML="";
+  const f=fz;fz=null;if(RM){cam.position.copy(f.saveP);ctl.target.copy(f.saveT);}else fly={t0:performance.now(),fromT:ctl.target.clone(),toT:f.saveT,fromP:cam.position.clone(),toP:f.saveP};ctl.autoRotate=!paused&&!RM&&!pinned;idle=performance.now()-7000;}
+ function declutter(){if(!fz)return;const sb=stage.getBoundingClientRect();const ob=sideTags.map(t=>t.getBoundingClientRect()).map(o=>({x:o.left-sb.left,y:o.top-sb.top,w:o.width,h:o.height}));
+  const c=new THREE.Vector3(0,slabs[fz.k].g.position.y,0).project(cam);const cx=(c.x+1)/2*W(),cy=(1-c.y)/2*H();
+  const it=onLayer(fz.k).map(id=>{const e=labs[id];e.style.marginLeft=e.style.marginTop="0px";const q=e.getBoundingClientRect();const x=q.left-sb.left,y=q.top-sb.top;const mx=x+q.width/2;const dx=(mx<cx?-1:1)*q.width/2*.9;return {id,e,x:x+dx,y,w:q.width,h:q.height,ox:dx,oy:0,sy:(y+q.height/2<cy?-1:1)};});
+  const ovl=(a,b,g=4)=>a.x<b.x+b.w+g&&a.x+a.w+g>b.x&&a.y<b.y+b.h+g&&a.y+a.h+g>b.y;const clamp=a=>{const W0=W(),H0=H();if(a.x<4){a.ox+=4-a.x;a.x=4;}if(a.x+a.w>W0-4){a.ox-=a.x+a.w-W0+4;a.x=W0-4-a.w;}if(a.y<4){a.oy+=4-a.y;a.y=4;}if(a.y+a.h>H0-4){a.oy-=a.y+a.h-H0+4;a.y=H0-4-a.h;}};
+  it.forEach(clamp);
+  for(let pass=0;pass<120;pass++){let moved=false;
+   for(const a of it){for(const o of ob){if(ovl(a,o)){const d=(o.x+o.w+6)-a.x;a.x+=d;a.ox+=d;moved=true;}}}
+   for(let i=0;i<it.length;i++)for(let j=i+1;j<it.length;j++){const a=it[i],b=it[j];if(!ovl(a,b))continue;moved=true;const top=a.y<b.y?a:b,bot=top===a?b:a;const need=(top.y+top.h+5)-bot.y;
+    if(bot.y+bot.h+need/2<H()-4&&top.y-need/2>4){bot.y+=need/2;bot.oy+=need/2;top.y-=need/2;top.oy-=need/2;}else if(bot.y+bot.h+need<H()-4){bot.y+=need;bot.oy+=need;}else{top.y-=need;top.oy-=need;}}
+   it.forEach(clamp);if(!moved)break;}
+  it.forEach(a=>{a.e.style.marginLeft=a.ox+"px";a.e.style.marginTop=a.oy+"px";});drawLeaders();}
+ function drawLeaders(){if(!fz){ldr.innerHTML="";return;}const sb=stage.getBoundingClientRect();let h="";onLayer(fz.k).forEach(id=>{nodes[id].m.getWorldPosition(v);v.project(cam);const x=(v.x+1)/2*W(),y=(1-v.y)/2*H();const q=labs[id].getBoundingClientRect();const lx=Math.max(q.left-sb.left,Math.min(x,q.right-sb.left)),ly=Math.max(q.top-sb.top,Math.min(y,q.bottom-sb.top));
+   h+=`<line x1="${x}" y1="${y}" x2="${lx}" y2="${ly}" stroke="${labs[id].style.getPropertyValue("--c")}" stroke-width="1.5" stroke-opacity=".7"/><circle cx="${x}" cy="${y}" r="2.5" fill="${labs[id].style.getPropertyValue("--c")}"/>`;});ldr.innerHTML=h;}
+ ctl.addEventListener("end",()=>{if(fz)setTimeout(declutter,30);});addEventListener("resize",()=>{if(fz)setTimeout(declutter,80);});
  const dotM=new THREE.Mesh(new THREE.SphereGeometry(.14,24,12),new THREE.MeshBasicMaterial({color:0x2563EB}));
  const capO=new THREE.Object3D();const capD=document.createElement("div");capD.className="cap";capO.add(new CSS2DObject(capD));
  function stopFlow(){if(!flow)return;flow=null;scene.remove(dotM);scene.remove(capO);capD.remove();document.getElementById("bFlow").textContent="▶ Show a flow";focus(null);}
@@ -262,15 +288,15 @@ async function start3D(){
   dotM.position.copy(c.getPoint(k));dotM.material.color.set(t==="back"?0x334155:0x2563EB);capO.position.copy(c.getPoint(.5)).add(new THREE.Vector3(0,.5,0));capD.textContent=cap;if(e>MV+HOLD){flow.i++;flow.t0=now;if(flow.i>=FLOW.length)stopFlow();}}
  // label collision pass: priority = focused/lit, Lee, roles, then nearer to camera; hide overlaps (they return on focus)
  const v=new THREE.Vector3();let lastC=0;const PRI=id=>(id==="lee"||id==="rhiannon"?-2:lit&&lit.has(id)?0:layerOf[id]<=1?2:3);
- function placeTags(){const b=stage.getBoundingClientRect();sideTags.forEach((t,k)=>{v.set(0,slabs[k].g.position.y,0).project(cam);t.style.top=((1-v.y)/2*H()-14)+"px";});}
- function collide(){placeTags();const ob=sideTags.map(t=>t.getBoundingClientRect());const sb=stage.getBoundingClientRect();const zk=[...ob];zts.slice().sort((a,b)=>b.getBoundingClientRect().bottom-a.getBoundingClientRect().bottom).forEach(z=>{const r=z.getBoundingClientRect();const hit=zk.some(o=>r.left<o.right+6&&r.right>o.left-6&&r.top<o.bottom+4&&r.bottom>o.top-4);z.classList.toggle("cx",hit);if(!hit)zk.push(r);});const rs=zk.map(o=>({x:o.left-sb.left,y:o.top-sb.top,w:o.width,h:o.height,p:-1}));const wd=W(),ht=H();const items=ids.filter(id=>labs[id]&&!labs[id].classList.contains("hide")).map(id=>{nodes[id].o.getWorldPosition(v);const d=v.distanceTo(cam.position);v.project(cam);const el=labs[id];const q=el.getBoundingClientRect();return {id,el,x:q.left-sb.left,y:q.top-sb.top,w:q.width,h:q.height,d,p:PRI(id)};}).sort((a,b)=>a.p-b.p||a.d-b.d);
+ function placeTags(){let last=-1e9;const ys=sideTags.map((t,k)=>{v.set(0,slabs[k].g.position.y,0).project(cam);return (1-v.y)/2*H()-20;});const top=8,bot=H()-48,gap=48;let y=ys.map(x=>x);for(let i=0;i<y.length;i++){y[i]=Math.max(y[i],top+i*gap,i?y[i-1]+gap:top);}for(let i=y.length-1;i>=0;i--){y[i]=Math.min(y[i],bot-(y.length-1-i)*gap,i<y.length-1?y[i+1]-gap:bot);}sideTags.forEach((t,i)=>t.style.top=y[i]+"px");}
+ function collide(){placeTags();const ob=sideTags.map(t=>t.getBoundingClientRect());const sb=stage.getBoundingClientRect();const zk=[...ob];zts.slice().sort((a,b)=>b.getBoundingClientRect().bottom-a.getBoundingClientRect().bottom).forEach(z=>{const r=z.getBoundingClientRect();const hit=zk.some(o=>r.left<o.right+6&&r.right>o.left-6&&r.top<o.bottom+4&&r.bottom>o.top-4);z.classList.toggle("cx",hit);if(!hit)zk.push(r);});const rs=zk.map(o=>({x:o.left-sb.left,y:o.top-sb.top,w:o.width,h:o.height,p:-1}));const wd=W(),ht=H();const items=ids.filter(id=>labs[id]&&!labs[id].classList.contains("hide")&&!labs[id].classList.contains("fz")&&!(fz&&layerOf[id]!==fz.k)).map(id=>{nodes[id].o.getWorldPosition(v);const d=v.distanceTo(cam.position);v.project(cam);const el=labs[id];const q=el.getBoundingClientRect();return {id,el,x:q.left-sb.left,y:q.top-sb.top,w:q.width,h:q.height,d,p:PRI(id)};}).sort((a,b)=>a.p-b.p||a.d-b.d);
   items.forEach(it=>{const hit=rs.some(r=>it.x<r.x+r.w+4&&it.x+it.w+4>r.x&&it.y<r.y+r.h+2&&it.y+it.h+2>r.y);const keep=it.p===-2||!hit||(lit&&lit.has(it.id)&&it.p===0&&rs.filter(r=>r.p===0).length<1);it.el.classList.toggle("cx",!keep);if(keep)rs.push(it);});}
  addEventListener("resize",()=>{cam.aspect=W()/H();cam.updateProjectionMatrix();R.setSize(W(),H());L2.setSize(W(),H());fitCam();});
  drawBundles();let frames=0;M.fps=()=>frames;
- R.setAnimationLoop(now=>{frames++;if(fly){const k=Math.min(1,(now-fly.t0)/800),e=1-Math.pow(1-k,3);ctl.target.lerpVectors(fly.fromT,fly.toT,e);cam.position.lerpVectors(fly.fromP,fly.toP,e);if(k>=1)fly=null;}
+ R.setAnimationLoop(now=>{frames++;if(fly){const k=Math.min(1,(now-fly.t0)/800),e=1-Math.pow(1-k,3);ctl.target.lerpVectors(fly.fromT,fly.toT,e);cam.position.lerpVectors(fly.fromP,fly.toP,e);if(k>=1){const dn=fly.done;fly=null;dn&&dn();}}
   slabs.forEach(s=>{const ty=s.y0+(s.target||0);s.g.position.y+=(ty-s.g.position.y)*(RM?1:.15);});
-  if(!paused&&!ctl.autoRotate&&!RM&&!pinned&&!flow&&!fly&&now-idle>6000)ctl.autoRotate=true;
-  if(!paused)stepFlow(now);ctl.update();R.render(scene,cam);L2.render(scene,cam);placeTags();if(now-lastC>120){lastC=now;collide();}});
+  if(!paused&&!fz&&!ctl.autoRotate&&!RM&&!pinned&&!flow&&!fly&&now-idle>6000)ctl.autoRotate=true;
+  if(!paused)stepFlow(now);ctl.update();R.render(scene,cam);L2.render(scene,cam);placeTags();if(fz)drawLeaders();if(now-lastC>120){lastC=now;collide();}});
  M.three={scene,cam,ctl};}
 </script>
 <style>
