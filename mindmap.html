@@ -262,8 +262,9 @@ aside .htw.dk .ocb.bt{background:#2a2550;border-color:#8b7bd8}aside .htw.dk .ocb
  .mlb .x{margin-left:auto;width:42px;height:42px;border-radius:50%;border:0;background:rgba(255,255,255,.16);color:#fff;font-size:24px;line-height:1;cursor:pointer}
  .mlb .hint{position:absolute;bottom:calc(16px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);color:#cbd5e1;font-size:12.5px;background:rgba(255,255,255,.1);padding:6px 12px;border-radius:999px;white-space:nowrap;transition:opacity .6s}
 }
+.card.bot:not(.hubc):not(.chub):not(.chip) .nm{display:flex;align-items:center;white-space:nowrap;overflow:visible;-webkit-line-clamp:unset}.card.bot:not(.hubc) .ty{flex:none;margin-left:8px}
 </style></head><body>
-<nav class="topnav"><a class="brand" href="index.html?v=20261025130749"><span class="mk"></span>GrokBot Team Dashboard</a><div class="links"><a href="index.html?v=20261025130749" data-p="map" style="--t:#4f46e5">Map</a><a href="connections.html?v=20261025130749" data-p="conn" style="--t:#0f766e">Connections</a><a href="mindmap.html?v=20261025130749" data-p="mind" class="act" style="--t:#047857">Mind map</a><a href="mindmap3d.html?v=20261025130749" data-p="mind3d" style="--t:#0e7490">Mind map 3D</a><a href="marketing.html?v=20261025130749" data-p="mkt" style="--t:#b45309">Marketing team</a><a href="bots.html?v=20261025130749" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
+<nav class="topnav"><a class="brand" href="index.html?v=20261025132442"><span class="mk"></span>GrokBot Team Dashboard</a><div class="links"><a href="index.html?v=20261025132442" data-p="map" style="--t:#4f46e5">Map</a><a href="connections.html?v=20261025132442" data-p="conn" style="--t:#0f766e">Connections</a><a href="mindmap.html?v=20261025132442" data-p="mind" class="act" style="--t:#047857">Mind map</a><a href="mindmap3d.html?v=20261025132442" data-p="mind3d" style="--t:#0e7490">Mind map 3D</a><a href="marketing.html?v=20261025132442" data-p="mkt" style="--t:#b45309">Marketing team</a><a href="bots.html?v=20261025132442" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
 <header class="hero mh" id="hdr"><button class="htog" id="htog" type="button" aria-controls="hdr" aria-expanded="true">Hide header ✕</button>
  <div><div class="eyebrow">Mind map · v4</div><h1>Lee at the centre</h1>
  <p class="summary">Every bot branches from Lee. Non Stop, one step out, is the hub, and research results flow back to her for Notion Notes; each coloured branch is one lane of work. Hover or tap a bot to trace its hand-offs and open its full card.</p><div class="meta">Drawn Mon 19 Oct 2026, 10:14 Dubai · same data as the map</div></div>
@@ -280,11 +281,11 @@ b.onclick=function(){untip();set(!document.body.classList.contains("hc"),true)}}
  <div class="zoom"><button id="zo" aria-label="Zoom out">−</button><button id="zi" aria-label="Zoom in">+</button><button class="w" id="zf">Fit</button></div>
 </div>
 <button class="mprev" id="mprev" type="button" aria-label="Open full mind map image">
- <div class="im"><picture><source srcset="mindmap-preview.webp?v=20261025130749" type="image/webp"><img src="mindmap-preview.png?v=20261025130749" alt="Full radial mind map of Lee's bots" width="2440" height="1470"></picture><span class="pill">⤢ Tap to explore the full map.</span></div>
+ <div class="im"><picture><source srcset="mindmap-preview.webp?v=20261025132442" type="image/webp"><img src="mindmap-preview.png?v=20261025132442" alt="Full radial mind map of Lee's bots" width="2440" height="1470"></picture><span class="pill">⤢ Tap to explore the full map.</span></div>
  <div class="cap"><b>Best viewed on desktop: full radial layout</b><span>Lee at the centre, every lane as a coloured branch.</span></div>
 </button>
-<div class="mlb" id="lb" role="dialog" aria-modal="true" aria-label="Mind map image"><div class="vp" id="lbvp"><img id="lbimg" alt="Full radial mind map" src="" data-src="mindmap-preview.png?v=20261025130749"></div>
- <div class="bar"><a href="mindmap-preview.png?v=20261025130749" target="_blank" rel="noopener">Open image ↗</a><button class="x" id="lbx" aria-label="Close">×</button></div>
+<div class="mlb" id="lb" role="dialog" aria-modal="true" aria-label="Mind map image"><div class="vp" id="lbvp"><img id="lbimg" alt="Full radial mind map" src="" data-src="mindmap-preview.png?v=20261025132442"></div>
+ <div class="bar"><a href="mindmap-preview.png?v=20261025132442" target="_blank" rel="noopener">Open image ↗</a><button class="x" id="lbx" aria-label="Close">×</button></div>
  <div class="hint" id="lbhint">Pinch or double-tap to zoom · drag to pan</div></div>
 <details id="ovw"><summary id="ovwS">Overview</summary><div class="ob" id="ovwB"></div></details><div id="mtree" class="mt"></div><div id="scrim"></div>
 <aside id="side"></aside>
@@ -300,22 +301,23 @@ const SI=g=>(D.sections.find(x=>x.g===g)||{ids:[]}).ids;const BR=[{g:"setup",nam
 BR.push({g:"skills",name:"Skills",ids:SKB});{const O=D.order||[];BR.sort((x,y)=>O.indexOf(x.g)-O.indexOf(y.g));}
 const W=1600,H=1000,CX=800,CY=500,RX=680,RY=410,LW=224,LH=46,GAP=12;
 // 2D radial layout (mindmap-2d-layout-revamp.md): origin at Lee, 0° = 12 o'clock clockwise, x=r*sin θ, y=-r*cos θ
-const R1=240,R2A=400,R2B=448,rad=d=>d*Math.PI/180,pol=(r,a)=>[CX+r*Math.sin(rad(a)),CY-r*Math.cos(rad(a))];
+const R1=240,R2A=400,R2B=448,RS={lead:[240,420,468],skills:[280,480,528],experts:[260,460,508],setup:[240,400,448],routine:[240,420,468],team:[240,400,400],night:[240,400,400]},sideOf=a=>{a=((a%360)+360)%360;return a>=20&&a<160?"L":a>=160&&a<=200?"T":a>200&&a<340?"R":"B";},rad=d=>d*Math.PI/180,pol=(r,a)=>[CX+r*Math.sin(rad(a)),CY-r*Math.cos(rad(a))];
 {const np=BR.filter(b=>b.g==="night"||b.g==="personal");if(np.length>1){const m={g:"night",name:"Night + Personal",ids:np.flatMap(b=>b.ids)};BR.splice(0,BR.length,...BR.filter(b=>!np.includes(b)),m);}}
 const SEC={lead:[45,28,62],skills:[90,68,112],experts:[135,118,152],setup:[180,158,202],routine:[225,208,242],team:[270,255,285],night:[315,295,335]};
 BR.sort((x,y)=>(SEC[x.g]||[999])[0]-(SEC[y.g]||[999])[0]);
 const P={},G={};const LH2=36;
-const lwOf=id=>Math.round(30+byId[id].label.length*7.2+(id==="brief"?44:0)+(byId[id].type==="role"?40:byId[id].type?50:0));
-BR.forEach(b=>{const s=SEC[b.g]||[0,-15,15];b.mid=s[0];b.pill=pol(R1,s[0]);b.leaf=[];const n=b.ids.length,lo=s[1]+6,hi=s[2]-6;
- let step=n>1?(hi-lo)/(n-1):0;const minStep=Math.max(12,(s[2]-s[1])/(n+1));if(n>1&&step<minStep&&n<6)step=Math.min(minStep,(hi-lo+8)/(n-1)); // borrow up to 4° per side
+const lwOf=id=>Math.max(120,Math.round(40+byId[id].label.length*7.4+(id==="brief"?64:0)+(byId[id].type?62:0)));
+BR.forEach(b=>{const s=SEC[b.g]||[0,-15,15];const rr=RS[b.g]||[R1,R2A,R2B];b.mid=s[0];b.side=sideOf(s[0]);b.pill=pol(rr[0],s[0]);b.leaf=[];const n=b.ids.length,lo=s[1]+8,hi=s[2]-8;
+ let step=n>1?(hi-lo)/(n-1):0;const minStep=Math.max(14,(s[2]-s[1])/(n+1));if(n>1&&step<minStep&&n<6)step=Math.min(minStep,(hi-lo+8)/(n-1)); // borrow up to 4° per side
  const a0=n>1?s[0]-step*(n-1)/2:s[0];
- b.ids.forEach((id,i)=>{const a=a0+i*step,r=n>=6&&i%2===1?R2B:R2A;b.leaf.push(a);const lw=lwOf(id),[x,y]=pol(r,a);P[id]=[x,y];G[id]={x:x-lw/2,w:lw,y:y-LH2/2,h:LH2};});});
+ b.ids.forEach((id,i)=>{const a=a0+i*step,r=n>=6&&i%2===1?rr[2]:rr[1];b.leaf.push(a);const lw=lwOf(id),[px,py]=pol(r,a);const x=b.side==="L"?px+lw/2:b.side==="R"?px-lw/2:px,y=b.side==="T"?py+LH2/2:py;P[id]=[x,y];G[id]={x:x-lw/2,w:lw,y:y-LH2/2,h:LH2};});});
+BR.forEach(b=>{if(b.side!=="L"&&b.side!=="R")return;const L=b.ids.slice().sort((x,y)=>P[x][1]-P[y][1]);for(let i=1;i<L.length;i++){const A=G[L[i-1]],B=G[L[i]],need=A.y+A.h+12-B.y;if(need>0){B.y+=need;P[L[i]][1]+=need;}}});
 P.lee=[CX,CY];G.lee={x:CX-105,y:CY-38,w:210,h:76};
 {const [nx,ny]=pol(R1,0);P.rhiannon=[nx,ny];G.rhiannon={x:nx-150,y:ny-48,w:300,h:96};}
 // Connection hub: same row as Non Stop, 64px clear of her right edge; three chips stacked under it (10px gaps)
 const CH=D.connHub&&byId[D.connHub.hub]?D.connHub:null,CHK=CH?CH.children.filter(i=>byId[i]):[];const CHL={conn_tasks:"Google Tasks · reminders",conn_whatsapp:"TimelinesAI · WhatsApp (read only)",conn_eleven:"ElevenLabs · voice, pay-per-use"};let CHP=null;
-if(CH){const hw=275,hx=G.rhiannon.x+G.rhiannon.w+72,hy=P.rhiannon[1]-30;G[CH.hub]={x:hx,y:hy,w:hw,h:60};P[CH.hub]=[hx+hw/2,hy+30];CHK.forEach((id,i)=>{const y=hy-10-36-(CHK.length-1-i)*46;G[id]={x:hx,y,w:hw,h:36};P[id]=[hx+hw/2,y+18];});
- const top=hy-CHK.length*46;CHP={x:hx-20,y:top-20-22,w:hw+40,h:hy+60-top+40+22};} // chips stacked above the hub so the panel stays out of the Leaders pill
+if(CH){const hw=G.rhiannon.w,hx=G.rhiannon.x,hy=G.rhiannon.y-24-20-60;G[CH.hub]={x:hx,y:hy,w:hw,h:60};P[CH.hub]=[hx+hw/2,hy+30];CHK.forEach((id,i)=>{const y=hy-10-36-(CHK.length-1-i)*46;G[id]={x:hx,y,w:hw,h:36};P[id]=[hx+hw/2,y+18];});
+ const top=hy-CHK.length*46;CHP={x:hx-16,y:top-20-22,w:hw+32,h:hy+60-top+20+22+8};} // chips stacked above the hub so the panel stays out of the Leaders pill
 const pillRect=b=>{const w=Math.min(200,b.name.length*7.6+34),h=40;return {x:b.pill[0]-w/2,y:b.pill[1]-h/2,w,h};};
 // safety: leaves that touch each other slide apart vertically (away from Lee's row); leaves on a pill, Lee, Non Stop or the hub step outward along the ray
 (()=>{const ids=BR.flatMap(b=>b.ids),obs=[G.lee,G.rhiannon].concat(CHP?[CHP]:[]).concat(BR.map(pillRect));
@@ -337,10 +339,10 @@ addBr("rhiannon",`M${CX},${CY-38} L${CX},${G.rhiannon.y+G.rhiannon.h}`,"#312E81"
 BR.forEach(b=>{const c=GC[b.g];
  if(b.g==="hub"){b.ids.forEach(id=>addBr(id,`M${CX},${CY-143} L${P[id][0]},${P[id][1]+LH/2}`,c,4));return;}
  addBr(b.g,q([CX,CY],b.pill,.08),c,7);
- b.ids.forEach(id=>{const [x,y]=P[id],dx=x-b.pill[0],dy=y-b.pill[1];addBr(id,`M${b.pill} C${b.pill[0]+dx*.55},${b.pill[1]+dy*.1} ${x-dx*.35},${y-dy*.25} ${x},${y}`,c,3.2);});});
+ b.ids.forEach(id=>{const g=G[id],sd=b.side,t=sd==="L"?[g.x,g.y+g.h/2]:sd==="R"?[g.x+g.w,g.y+g.h/2]:[g.x+g.w/2,g.y],pr=pillRect(b),s0=sd==="L"?[pr.x+pr.w,b.pill[1]]:sd==="R"?[pr.x,b.pill[1]]:[b.pill[0],pr.y+pr.h];const c1=sd==="T"?[s0[0],s0[1]+(t[1]-s0[1])*.55]:[s0[0]+(t[0]-s0[0])*.55,s0[1]],c2=sd==="T"?[t[0],t[1]-(t[1]-s0[1])*.45]:[t[0]-(t[0]-s0[0])*.45,t[1]];addBr(id,`M${s0} C${c1} ${c2} ${t}`,c,3.2);});});
 // connection hub panel + dashed teal infrastructure line (no spokes to other bots)
 if(CHP){const pn=document.createElement("div");pn.className="chpanel";Object.assign(pn.style,{left:CHP.x+"px",top:CHP.y+"px",width:CHP.w+"px",height:CHP.h+"px"});pn.innerHTML='<span>Connection hub · whole team</span>';document.getElementById("pills").appendChild(pn);
- const y=P.rhiannon[1],x1=G.rhiannon.x+G.rhiannon.w,x2=G[CH.hub].x;el("path",{d:`M${x1},${y} L${x2},${y}`,class:"chl"},gB);}
+ el("path",{d:`M${CX},${G.rhiannon.y} L${CX},${CHP.y+CHP.h}`,class:"chl"},gB);}
 // pills
 const pillsEl=document.getElementById("pills"),pillEls={};
 BR.forEach(b=>{if(b.g==="hub")return;const p=document.createElement("div");p.className="bp";p.style.left=b.pill[0]+"px";p.style.top=b.pill[1]+"px";p.style.setProperty("--c",GC[b.g]);p.style.setProperty("--cf",fc(GC[b.g]));p.textContent=b.name;if(b.name.length>22)p.classList.add("long");pillsEl.appendChild(p);pillEls[b.g]=p;});
@@ -405,11 +407,11 @@ const stage=document.getElementById("stage");let S=1,TX=0,TY=0;
 function setT(){world.style.transform=`translate(${TX}px,${TY}px) scale(${S})`;}
 function fit(anim){const w=stage.clientWidth,h=stage.clientHeight;if(!w)return;
  // bbox of every node rect + pills + hub panel, 72px pad; zoom clamp 0.55-1.35; centre bbox in the map canvas (stage excludes sidebar)
- const R=Object.values(G).concat(BR.map(pillRect)).concat(CHP?[CHP]:[]),PAD=72,bx=[Math.min(...R.map(g=>g.x))-PAD,Math.min(...R.map(g=>g.y))-PAD,Math.max(...R.map(g=>g.x+g.w))+PAD,Math.max(...R.map(g=>g.y+g.h))+PAD],bw=bx[2]-bx[0],bh=bx[3]-bx[1];
+ const R=Object.values(G).concat(BR.map(pillRect)).concat(CHP?[CHP]:[]),PAD=80,bx=[Math.min(...R.map(g=>g.x))-PAD,Math.min(...R.map(g=>g.y))-PAD,Math.max(...R.map(g=>g.x+g.w))+PAD,Math.max(...R.map(g=>g.y+g.h))+PAD],bw=bx[2]-bx[0],bh=bx[3]-bx[1];
  const leg=stage.querySelector(".legend"),lh=leg&&leg.offsetParent?leg.offsetHeight+12:0,ch=h-lh;
  S=Math.min(1.35,Math.max(.55,Math.min(w/bw,ch/bh)));const cx=(bx[0]+bx[2])/2,cy=(bx[1]+bx[3])/2;
  let mL=0,mR=0;BR.forEach(b=>b.ids.forEach(id=>{const g=G[id],a=g.w*g.h;(g.x+g.w/2<cx?mL+=a:mR+=a);}));const tot=mL+mR||1,nudge=Math.max(-40,Math.min(40,(mL-mR)/tot*80));
- TX=w/2-cx*S+nudge;TY=ch/2-cy*S;world.style.transition=anim?"transform .45s cubic-bezier(.2,.7,.2,1)":"none";setT();if(anim)setTimeout(()=>world.style.transition="none",460);}
+ TX=w/2-cx*S+nudge;TY=ch/2-cy*S;if(CHP&&CHP.y*S+TY<8)TY=8-CHP.y*S;world.style.transition=anim?"transform .45s cubic-bezier(.2,.7,.2,1)":"none";setT();if(anim)setTimeout(()=>world.style.transition="none",460);}
 stage.addEventListener("wheel",ev=>{ev.preventDefault();const r=stage.getBoundingClientRect(),mx=ev.clientX-r.left,my=ev.clientY-r.top,k=Math.exp(-ev.deltaY*.0015),ns=Math.min(2.5,Math.max(.3,S*k));TX=mx-(mx-TX)*ns/S;TY=my-(my-TY)*ns/S;S=ns;setT();},{passive:false});
 let drag=null;
 stage.addEventListener("pointerdown",ev=>{if(ev.target.closest(".card,.zoom,.legend"))return;drag={x:ev.clientX,y:ev.clientY,tx:TX,ty:TY,moved:false};stage.classList.add("drag");stage.setPointerCapture(ev.pointerId);});
