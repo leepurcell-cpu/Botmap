@@ -79,7 +79,7 @@ body.flat #gl,body.flat #l2,body.flat .chips3,body.flat .hint{display:none}body.
 </style>
 <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js","three/addons/":"./vendor/"}}</script>
 </head><body>
-<nav class="topnav"><a class="brand" href="index.html?v=20261025114506"><span class="mk"></span>Bot Dashboard</a><div class="links"><a href="index.html?v=20261025114506" data-p="map" style="--t:#4f46e5">Map</a><a href="connections.html?v=20261025114506" data-p="conn" style="--t:#0f766e">Connections</a><a href="mindmap.html?v=20261025114506" data-p="mind" style="--t:#047857">Mind map</a><a href="mindmap3d.html?v=20261025114506" data-p="mind3d" class="act" style="--t:#0e7490">Mind map 3D</a><a href="marketing.html?v=20261025114506" data-p="mkt" style="--t:#b45309">Marketing team</a><a href="bots.html?v=20261025114506" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
+<nav class="topnav"><a class="brand" href="index.html?v=20261025114901"><span class="mk"></span>Bot Dashboard</a><div class="links"><a href="index.html?v=20261025114901" data-p="map" style="--t:#4f46e5">Map</a><a href="connections.html?v=20261025114901" data-p="conn" style="--t:#0f766e">Connections</a><a href="mindmap.html?v=20261025114901" data-p="mind" style="--t:#047857">Mind map</a><a href="mindmap3d.html?v=20261025114901" data-p="mind3d" class="act" style="--t:#0e7490">Mind map 3D</a><a href="marketing.html?v=20261025114901" data-p="mkt" style="--t:#b45309">Marketing team</a><a href="bots.html?v=20261025114901" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
 <div class="bar3"><b>Mind map · 3D layers</b><span class="sp"></span>
 <button class="btn" id="bPause" type="button" aria-pressed="false">⏸ Pause</button><button class="btn" id="bReset" type="button">Reset view</button><button class="btn pri" id="bFlow" type="button">▶ Show a flow</button></div>
 <div class="wrap"><div id="stage"><div id="gl"></div><svg id="ldr" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4"></svg><div id="l2"></div><div id="v2d"></div>
@@ -109,7 +109,7 @@ window.M=(()=>{const D={"drawn": "Mon 19 Oct 2026, 10:14 Dubai", "version": "v4"
  const ZT={hub:"#475569",team:"#5b4bb8",routine:"#047857",night:"#A16207",setup:"#9b3f63",personal:"#0e7490",conn:"#0f766e"};
  const GN={hub:"Lee & Chief of Staff",lead:"Leaders",experts:"Experts",team:"Bot Team",routine:"Collabor8 Routine",skills:"Skills (any bot can call)",night:"Night",setup:"Client Setup Team",personal:"Personal",conn:"Connection hub (tools for the whole team)"};
  const CHB=D.connHub&&byId[D.connHub.hub]?D.connHub:null;const CIDS=CHB?[CHB.hub,...CHB.children.filter(i=>byId[i])]:[];
- const LAY=[{name:"Lee & Chief of Staff",z:[["hub",["lee","rhiannon","s_notes"]]].concat(CHB?[["conn",CIDS]]:[])},{name:"Leaders",z:[["lead",(SEC.lead||[]).filter(i=>i!=="rhiannon")]]},
+ const LAY=[{name:"Lee & Chief of Staff",z:[["hub",["lee","rhiannon","s_notes"]]]},...(CHB?[{name:"Connection hub",z:[["conn",CIDS]]}]:[]),{name:"Leaders",z:[["lead",(SEC.lead||[]).filter(i=>i!=="rhiannon")]]},
   {name:"Experts & teams",z:[["experts",SEC.experts||[]],["team",SEC.team||[]],["setup",SEC.setup||[]]]},
   {name:"Routine, skills & night",z:[["routine",SEC.routine||[]],["skills",SK.map(k=>k.id)],["night",SEC.night||[]],["personal",SEC.personal||[]]]}];
  const secOf={},layerOf={},pos={};
@@ -198,7 +198,7 @@ async function start3D(){
  const L2=new CSS2DRenderer();L2.setSize(W(),H());l2h.appendChild(L2.domElement);L2.domElement.style.pointerEvents="none";
  const scene=new THREE.Scene();const cam=new THREE.PerspectiveCamera(34,W()/H(),.1,300);
  // globe: radius RS, three slices
- const RS=8.6,LY=[6.0,2.2,-2.0,-5.6];const RR=LY.map(y=>Math.sqrt(RS*RS-y*y));
+ const RS=8.6,LY=LAY.length>4?[6.6,3.3,0,-3.3,-6.6]:[6.0,2.2,-2.0,-5.6];const RR=LY.map(y=>Math.sqrt(RS*RS-y*y));
  const TGT0=new THREE.Vector3(0,.2,0);const DIR=new THREE.Vector3(.12,.48,1).normalize();const CAM0=new THREE.Vector3();
  const fitCam=()=>{const a=W()/H();const vf=THREE.MathUtils.degToRad(cam.fov)/2;const hf=Math.atan(Math.tan(vf)*a);const d=(RS*1.12)/Math.sin(Math.min(vf,hf));CAM0.copy(DIR).multiplyScalar(d).add(TGT0);ctl&&(ctl.maxDistance=d*1.5,ctl.minDistance=d*.5);};
  let ctl=null;fitCam();cam.position.copy(CAM0);
@@ -217,8 +217,8 @@ async function start3D(){
   const pr=new THREE.PolarGridHelper(r*.92,12,4,96,0xcbd5e1,0xe2e8f0);pr.position.y=.09;pr.material.transparent=true;pr.material.opacity=.35;g.add(pr);
   const td=document.createElement("div");td.className="btn lt fx";td.setAttribute("role","button");td.tabIndex=0;td.innerHTML=`${k+1} · ${esc(L.name)}`;td.addEventListener("keydown",ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();td.click();}});stage.appendChild(td);sideTags.push(td);td.addEventListener("click",()=>layerHL(lhl===k?null:k));
   // sections as arc segments around the rim
-  const zs=L.z.filter(([g])=>g!=="hub"&&g!=="conn");const tot=zs.reduce((a,[,l])=>a+l.length+1.2,0);let a0=Math.PI*.5;  // start at front
-  if(k===0){[["lee",0,-.6],["rhiannon",-1.7,1.5],["s_notes",2.1,1.2]].forEach(([id,x,z])=>P[id]=[k,x,z]);if(CHB){P[CIDS[0]]=[k,3.4,-1.2];[[4.9,-2.9],[5.4,-1.2],[4.9,.5]].forEach(([x,z],i)=>{if(CIDS[i+1])P[CIDS[i+1]]=[k,x,z];});}const hb=new THREE.Mesh(new THREE.RingGeometry(r-.32,r-.05,96),new THREE.MeshBasicMaterial({color:new THREE.Color("#2563EB"),transparent:true,opacity:.35,side:THREE.DoubleSide,depthWrite:false}));hb.rotation.x=-Math.PI/2;hb.position.y=.1;g.add(hb);}
+  const zs=L.z.filter(([g])=>g!=="hub");const tot=zs.reduce((a,[,l])=>a+l.length+1.2,0);let a0=Math.PI*.5;  // start at front
+  if(k===0){[["lee",0,-.6],["rhiannon",-1.7,1.5],["s_notes",2.1,1.2]].forEach(([id,x,z])=>P[id]=[k,x,z]);const hb=new THREE.Mesh(new THREE.RingGeometry(r-.32,r-.05,96),new THREE.MeshBasicMaterial({color:new THREE.Color("#2563EB"),transparent:true,opacity:.35,side:THREE.DoubleSide,depthWrite:false}));hb.rotation.x=-Math.PI/2;hb.position.y=.1;g.add(hb);}
   zs.forEach(([gname,list])=>{const span=(list.length+1.2)/tot*2*Math.PI;const c=new THREE.Color(COL[gname]);
    const band=new THREE.Mesh(new THREE.RingGeometry(r-.32,r-.05,64,1,a0+.06,span-.12),new THREE.MeshBasicMaterial({color:c,transparent:true,opacity:.55,side:THREE.DoubleSide,depthWrite:false}));band.rotation.x=-Math.PI/2;band.position.y=.1;band.scale.z=-1;g.add(band);
    const mid=a0+span/2;if(zs.length>1){const zt=new THREE.Object3D();zt.position.set(Math.cos(mid)*(r+.7),.1,Math.sin(mid)*(r+.7));g.add(zt);const d=css2(esc(GN[gname]),"zt",zt);d.style.setProperty("--c",COL[gname]);if(ZT[gname])d.style.setProperty("--zt",ZT[gname]);d.dataset.k=k;zts.push(d);}
