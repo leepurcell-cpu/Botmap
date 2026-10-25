@@ -264,7 +264,7 @@ aside .htw.dk .ocb.bt{background:#2a2550;border-color:#8b7bd8}aside .htw.dk .ocb
 }
 .card.bot:not(.hubc):not(.chub):not(.chip) .nm{display:flex;align-items:center;white-space:nowrap;overflow:visible;-webkit-line-clamp:unset}.card.bot:not(.hubc) .ty{flex:none;margin-left:8px}
 </style></head><body>
-<nav class="topnav"><a class="brand" href="index.html?v=20261025132442"><span class="mk"></span>GrokBot Team Dashboard</a><div class="links"><a href="index.html?v=20261025132442" data-p="map" style="--t:#4f46e5">Map</a><a href="connections.html?v=20261025132442" data-p="conn" style="--t:#0f766e">Connections</a><a href="mindmap.html?v=20261025132442" data-p="mind" class="act" style="--t:#047857">Mind map</a><a href="mindmap3d.html?v=20261025132442" data-p="mind3d" style="--t:#0e7490">Mind map 3D</a><a href="marketing.html?v=20261025132442" data-p="mkt" style="--t:#b45309">Marketing team</a><a href="bots.html?v=20261025132442" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
+<nav class="topnav"><a class="brand" href="index.html?v=20261025133131"><span class="mk"></span>GrokBot Team Dashboard</a><div class="links"><a href="index.html?v=20261025133131" data-p="map" style="--t:#4f46e5">Map</a><a href="connections.html?v=20261025133131" data-p="conn" style="--t:#0f766e">Connections</a><a href="mindmap.html?v=20261025133131" data-p="mind" class="act" style="--t:#047857">Mind map</a><a href="mindmap3d.html?v=20261025133131" data-p="mind3d" style="--t:#0e7490">Mind map 3D</a><a href="marketing.html?v=20261025133131" data-p="mkt" style="--t:#b45309">Marketing team</a><a href="bots.html?v=20261025133131" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
 <header class="hero mh" id="hdr"><button class="htog" id="htog" type="button" aria-controls="hdr" aria-expanded="true">Hide header ✕</button>
  <div><div class="eyebrow">Mind map · v4</div><h1>Lee at the centre</h1>
  <p class="summary">Every bot branches from Lee. Non Stop, one step out, is the hub, and research results flow back to her for Notion Notes; each coloured branch is one lane of work. Hover or tap a bot to trace its hand-offs and open its full card.</p><div class="meta">Drawn Mon 19 Oct 2026, 10:14 Dubai · same data as the map</div></div>
@@ -281,11 +281,11 @@ b.onclick=function(){untip();set(!document.body.classList.contains("hc"),true)}}
  <div class="zoom"><button id="zo" aria-label="Zoom out">−</button><button id="zi" aria-label="Zoom in">+</button><button class="w" id="zf">Fit</button></div>
 </div>
 <button class="mprev" id="mprev" type="button" aria-label="Open full mind map image">
- <div class="im"><picture><source srcset="mindmap-preview.webp?v=20261025132442" type="image/webp"><img src="mindmap-preview.png?v=20261025132442" alt="Full radial mind map of Lee's bots" width="2440" height="1470"></picture><span class="pill">⤢ Tap to explore the full map.</span></div>
+ <div class="im"><picture><source srcset="mindmap-preview.webp?v=20261025133131" type="image/webp"><img src="mindmap-preview.png?v=20261025133131" alt="Full radial mind map of Lee's bots" width="2440" height="1470"></picture><span class="pill">⤢ Tap to explore the full map.</span></div>
  <div class="cap"><b>Best viewed on desktop: full radial layout</b><span>Lee at the centre, every lane as a coloured branch.</span></div>
 </button>
-<div class="mlb" id="lb" role="dialog" aria-modal="true" aria-label="Mind map image"><div class="vp" id="lbvp"><img id="lbimg" alt="Full radial mind map" src="" data-src="mindmap-preview.png?v=20261025132442"></div>
- <div class="bar"><a href="mindmap-preview.png?v=20261025132442" target="_blank" rel="noopener">Open image ↗</a><button class="x" id="lbx" aria-label="Close">×</button></div>
+<div class="mlb" id="lb" role="dialog" aria-modal="true" aria-label="Mind map image"><div class="vp" id="lbvp"><img id="lbimg" alt="Full radial mind map" src="" data-src="mindmap-preview.png?v=20261025133131"></div>
+ <div class="bar"><a href="mindmap-preview.png?v=20261025133131" target="_blank" rel="noopener">Open image ↗</a><button class="x" id="lbx" aria-label="Close">×</button></div>
  <div class="hint" id="lbhint">Pinch or double-tap to zoom · drag to pan</div></div>
 <details id="ovw"><summary id="ovwS">Overview</summary><div class="ob" id="ovwB"></div></details><div id="mtree" class="mt"></div><div id="scrim"></div>
 <aside id="side"></aside>
@@ -312,6 +312,9 @@ BR.forEach(b=>{const s=SEC[b.g]||[0,-15,15];const rr=RS[b.g]||[R1,R2A,R2B];b.mid
  const a0=n>1?s[0]-step*(n-1)/2:s[0];
  b.ids.forEach((id,i)=>{const a=a0+i*step,r=n>=6&&i%2===1?rr[2]:rr[1];b.leaf.push(a);const lw=lwOf(id),[px,py]=pol(r,a);const x=b.side==="L"?px+lw/2:b.side==="R"?px-lw/2:px,y=b.side==="T"?py+LH2/2:py;P[id]=[x,y];G[id]={x:x-lw/2,w:lw,y:y-LH2/2,h:LH2};});});
 BR.forEach(b=>{if(b.side!=="L"&&b.side!=="R")return;const L=b.ids.slice().sort((x,y)=>P[x][1]-P[y][1]);for(let i=1;i<L.length;i++){const A=G[L[i-1]],B=G[L[i]],need=A.y+A.h+12-B.y;if(need>0){B.y+=need;P[L[i]][1]+=need;}}});
+// polish pass (25 Oct): Routine leaf order + pull-outs, Leaders/Night pushed clear of Non Stop
+{const rb=BR.find(b=>b.g==="routine");if(rb){const ord=["workbrain","mno","vetter","bounce","scout","micro","rolodex","brief"].filter(i=>rb.ids.includes(i)).concat(rb.ids.filter(i=>!["workbrain","mno","vetter","bounce","scout","micro","rolodex","brief"].includes(i)));const slots=rb.ids.slice().sort((x,y)=>P[x][1]-P[y][1]).map(i=>({y:P[i][1],xr:G[i].x+G[i].w}));const pull={workbrain:90,vetter:90,scout:90},XR=Math.max(...slots.map(z=>z.xr));ord.forEach((id,k)=>{const sl=slots[k],g=G[id],xr=XR-(k>=5?(k-4)*30:0)-(pull[id]||0);g.x=xr-g.w;g.y=sl.y-g.h/2;P[id]=[g.x+g.w/2,sl.y];});}}
+{const OFF={lead:[90,0],night:[-90,-10]};BR.forEach(b=>{const o=OFF[b.g];if(!o)return;b.pill=[b.pill[0]+o[0],b.pill[1]+o[1]];b.ids.forEach(id=>{P[id]=[P[id][0]+o[0],P[id][1]+o[1]];G[id].x+=o[0];G[id].y+=o[1];});});}
 P.lee=[CX,CY];G.lee={x:CX-105,y:CY-38,w:210,h:76};
 {const [nx,ny]=pol(R1,0);P.rhiannon=[nx,ny];G.rhiannon={x:nx-150,y:ny-48,w:300,h:96};}
 // Connection hub: same row as Non Stop, 64px clear of her right edge; three chips stacked under it (10px gaps)
@@ -357,10 +360,10 @@ Object.keys(G).forEach(id=>{const n=byId[id],g=G[id],c=document.createElement("d
 // research results back to Non Stop: leaf -> research pill (dashed), one trunk pill -> Non Stop
 (()=>{const m=el("marker",{id:"m-feed",viewBox:"0 0 10 10",refX:"9",refY:"5",markerWidth:"12",markerHeight:"12",markerUnits:"userSpaceOnUse",orient:"auto"},defs);m.innerHTML='<path d="M0,0 L10,5 L0,10 z" fill="#0e9f77"/>';
  const rb=BR.find(b=>b.g==="routine"),RH=G.rhiannon,F=D.edges.filter(e=>e.type==="feed"&&e.to==="rhiannon");
- const gF=el("g",{},gB);const pp=rb.pill;const tgt=[RH.x+RH.w+6,RH.y+RH.h*.62];
- F.forEach(e=>{if(rb.ids.includes(e.from))return;const a=P[e.from];el("path",{d:`M${a} Q${(a[0]+tgt[0])/2},${Math.min(a[1],tgt[1])-60} ${tgt[0]+30},${tgt[1]+8}`,class:"rf"},gF);});
- const p=el("path",{d:`M${pp[0]},${pp[1]-20} C${pp[0]},${tgt[1]} ${tgt[0]+120},${tgt[1]} ${tgt[0]},${tgt[1]}`,class:"rf","marker-end":"url(#m-feed)"},gF);
- {const l=document.createElement("div");l.className="flbl";l.textContent="Research feeds Non Stop";l.style.left=((pp[0]+tgt[0])/2+40)+"px";l.style.top=((pp[1]+tgt[1])/2-30)+"px";document.getElementById("pills").appendChild(l);const lw=l.offsetWidth/2,lh=l.offsetHeight/2,lx=parseFloat(l.style.left),ly=parseFloat(l.style.top);if(lx-lw<RH.x+RH.w+12&&lx+lw>RH.x-12&&ly-lh<RH.y+RH.h+12&&ly+lh>RH.y-12)l.style.left=(RH.x+RH.w+lw+14)+"px";const hit=()=>{const L=l.getBoundingClientRect();return [...document.querySelectorAll("#pills .bp,#cards .card")].some(x=>{const r=x.getBoundingClientRect();return L.left<r.right+4&&r.left<L.right+4&&L.top<r.bottom+4&&r.top<L.bottom+4;});};const y0=parseFloat(l.style.top);for(let k=1;k<30&&hit();k++)l.style.top=(y0+(k%2?1:-1)*Math.ceil(k/2)*8)+"px";}})();
+ const gF=el("g",{},gB);const pp=rb.pill;const tgt=[CX,RH.y+RH.h+3];
+ F.forEach(e=>{if(rb.ids.includes(e.from))return;const a=P[e.from];el("path",{d:`M${a} Q${(a[0]+tgt[0])/2},${Math.min(a[1],tgt[1])-60} ${tgt[0]},${tgt[1]}`,class:"rf"},gF);});
+ const p=el("path",{d:`M${pp[0]},${pp[1]-20} C${pp[0]},${tgt[1]+90} ${tgt[0]-70},${tgt[1]+60} ${tgt[0]},${tgt[1]}`,class:"rf","marker-end":"url(#m-feed)"},gF);
+})();
 const HO=D.edges.filter(e=>isMain(e)&&G[e.from]&&G[e.to]&&!(e.from==="lee"&&e.to==="rhiannon"));
 const seen={},hoEls=[];
 function anchor(id,toward){const g=G[id],c=[g.x+g.w/2,g.y+g.h/2],dx=toward[0]-c[0],dy=toward[1]-c[1];const sx=Math.abs(dx)/(g.w/2+6),sy=Math.abs(dy)/(g.h/2+6),s=Math.max(sx,sy);return [c[0]+dx/s,c[1]+dy/s];}
