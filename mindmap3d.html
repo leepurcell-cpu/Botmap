@@ -33,12 +33,12 @@ html{scrollbar-gutter:stable}
 /* labels (CSS2D, always face camera) */
 .lab{pointer-events:auto;cursor:pointer;white-space:nowrap;background:rgba(15,23,42,.88);color:#f8fafc;border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:5px 12px 5px 10px;font:600 13px/1.35 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;box-shadow:0 2px 8px rgba(15,23,42,.22);transform:translateY(-20px);transition:opacity .18s var(--ease);text-align:left;display:inline-flex;align-items:center;gap:6px}
 .lab:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c);box-shadow:0 0 0 2px rgba(255,255,255,.85)}
-.lab.notes{background:rgba(71,85,105,.75);border:1.5px dashed #94a3b8;font-size:12px}.lab.hub{background:#0f766e;font-weight:700}.lab.svc{background:rgba(15,118,110,.82);font:600 11px/1.35 Inter,system-ui,sans-serif;padding:3px 9px;opacity:.92}.lab.sk{background:rgba(248,250,252,.72);color:#334155;border:1.5px solid #94a3b8;box-shadow:none;font-size:12px;opacity:.72}.lab.sk.on,.lab.sk.fz{opacity:.95!important;border-color:#475569}.lab small{display:block;font-weight:500;font-size:12px;color:var(--mut)}
+.lab.notes{background:rgba(71,85,105,.75);border:1.5px dashed #94a3b8;font-size:12px}.lab.hub{background:#0f766e;font-weight:700;justify-content:center;text-align:center;flex-direction:column;gap:0;line-height:1.2}.lab.svc{background:rgba(15,118,110,.82);font:600 11px/1.35 Inter,system-ui,sans-serif;padding:3px 9px;opacity:.92}.lab.sk{background:rgba(248,250,252,.72);color:#334155;border:1.5px solid #94a3b8;box-shadow:none;font-size:12px;opacity:.72}.lab.sk.on,.lab.sk.fz{opacity:.95!important;border-color:#475569}.lab small{display:block;font-weight:500;font-size:12px;color:var(--mut)}
 .lab:hover,.lab.on{box-shadow:0 0 0 2px #fff,0 0 0 5px color-mix(in srgb,var(--c) 55%,transparent),0 6px 16px rgba(15,23,42,.28)}.lab.on{box-shadow:0 0 0 2px #fff,0 0 0 5px var(--c),0 6px 16px rgba(15,23,42,.28);z-index:6}
 .lab.cx{opacity:0;pointer-events:none}.dim .lab.cx:not(.on){opacity:0}.dim .lab:not(.on){opacity:.35;pointer-events:none}body.lfz .zt{opacity:0!important}.lab.fz{opacity:1!important;pointer-events:auto!important;z-index:5}.lab.fz.cx{opacity:1}.dim .lab.pin:not(.on){opacity:.75;pointer-events:auto}.lab.pin.cx{opacity:1}.lab.rh{background:#4F46E5;font:700 15px/1.35 Inter,system-ui,sans-serif;padding:6px 14px;box-shadow:0 0 0 3px rgba(79,70,229,.35),0 8px 20px rgba(79,70,229,.25)}.lab.rh small{color:#e0e7ff!important}.lab.lyoff,.dim .lab.lyoff,.zt.lyoff{opacity:.04!important;transition:opacity .35s;pointer-events:none}.lab.cx.lyoff,.zt.cx.lyoff,body.lfz .lab.lyoff{opacity:0!important}.lab.hide{display:none}
 .zt{opacity:.85;font:700 11px Inter,system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--zt,var(--c));background:rgba(255,255,255,.9);border:1px solid color-mix(in srgb,var(--c) 40%,#fff);padding:3px 9px;border-radius:999px;pointer-events:none;white-space:nowrap}
 .dim .zt{opacity:.35}
-.lt{font:600 13px Inter,system-ui,sans-serif;color:#334155;background:#fff;border:1px solid #cbd5e1;border-radius:8px 0 0 8px;border-right:3px solid #64748b;padding:5px 10px;pointer-events:auto;cursor:pointer;transform:translateX(-50%);white-space:nowrap}.lt.fx{position:absolute;left:16px;transform:none;z-index:6;font:600 13px/1.2 Inter,system-ui,sans-serif;border:1px solid #cbd5e1;border-radius:999px;padding:8px 16px 8px 14px;min-height:44px;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);color:var(--ink);box-shadow:0 2px 8px rgba(15,23,42,.08)}.lt.fx .n{display:inline-flex;width:22px;height:22px;border-radius:999px;align-items:center;justify-content:center;font:700 11px Inter,system-ui,sans-serif;background:#e2e8f0;color:#0f172a}.lt.fx.on{background:#0f172a;color:#fff;border-color:#0f172a;box-shadow:inset 4px 0 0 var(--a),0 4px 14px rgba(15,23,42,.25)}.lt.fx.on .n{background:var(--a);color:#fff}#bPause{display:none}.zt.cx{opacity:0}.lt b{color:#64748b;margin-right:2px}.lt.on{background:#0f172a;color:#fff}
+.lt{font:600 13px Inter,system-ui,sans-serif;color:#334155;background:#fff;border:1px solid #cbd5e1;border-radius:8px 0 0 8px;border-right:3px solid #64748b;padding:5px 10px;pointer-events:auto;cursor:pointer;transform:translateX(-50%);white-space:nowrap}.lt.fx{position:absolute;left:16px;transform:none;z-index:6;font:600 13px/1.2 Inter,system-ui,sans-serif;border:1px solid #cbd5e1;border-radius:999px;padding:8px 16px 8px 14px;min-height:44px;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);color:var(--ink);box-shadow:0 2px 8px rgba(15,23,42,.08)}.lt.fx .n{display:inline-flex;width:22px;height:22px;border-radius:999px;align-items:center;justify-content:center;font:700 11px Inter,system-ui,sans-serif;background:#e2e8f0;color:#0f172a}.lt.fx.on{background:#0f172a;color:#fff;border-color:#0f172a;box-shadow:inset 4px 0 0 var(--a),0 4px 14px rgba(15,23,42,.25)}.lt.fx.on .n{background:var(--a);color:#fff}#bPause{display:none}.bar3{position:relative;min-height:42px;box-sizing:border-box}#bReset{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}.zt.cx{opacity:0}.lt b{color:#64748b;margin-right:2px}.lt.on{background:#0f172a;color:#fff}
 .cnt{display:none}
 .cap{font:600 13px Inter,system-ui,sans-serif;color:#fff;background:#0f172a;border-radius:999px;padding:5px 12px;box-shadow:0 4px 12px rgba(15,23,42,.2);transform:translateY(-30px);pointer-events:none;white-space:nowrap}
 .chips3{position:absolute;left:16px;bottom:16px;display:flex;gap:8px;z-index:7;flex-wrap:wrap}
@@ -89,17 +89,17 @@ body.flat #gl,body.flat #l2,body.flat .chips3,body.flat .hint{display:none}body.
 </style>
 <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js","three/addons/":"./vendor/"}}</script>
 </head><body>
-<nav class="topnav"><a class="brand" href="index.html?v=20261025141328"><span class="mk"></span>GrokBot Team Dashboard</a><div class="links"><a href="connections.html?v=20261025141328" data-p="conn" style="--t:#0f766e">Connections</a><a href="index.html?v=20261025141328" data-p="map" style="--t:#4f46e5">Map</a><a href="mindmap.html?v=20261025141328" data-p="mind" style="--t:#047857">Mind map</a><a href="mindmap3d.html?v=20261025141328" data-p="mind3d" class="act" style="--t:#0e7490">Mind map 3D</a><a href="marketing.html?v=20261025141328" data-p="mkt" style="--t:#b45309">Marketing team</a><a href="bots.html?v=20261025141328" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
+<nav class="topnav"><a class="brand" href="index.html?v=20261025142356"><span class="mk"></span>GrokBot Team Dashboard</a><div class="links"><a href="connections.html?v=20261025142356" data-p="conn" style="--t:#0f766e">Connections</a><a href="index.html?v=20261025142356" data-p="map" style="--t:#4f46e5">Map</a><a href="mindmap.html?v=20261025142356" data-p="mind" style="--t:#047857">Mind map</a><a href="mindmap3d.html?v=20261025142356" data-p="mind3d" class="act" style="--t:#0e7490">Mind map 3D</a><a href="marketing.html?v=20261025142356" data-p="mkt" style="--t:#b45309">Marketing team</a><a href="bots.html?v=20261025142356" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
 <div class="bar3"><b>Mind map · 3D layers</b><span class="sp"></span>
 <button class="btn" id="bPause" type="button" aria-pressed="false">⏸ Pause</button><button class="btn" id="bReset" type="button">Reset view</button></div>
 <div class="wrap"><div id="stage"><div id="gl"></div><svg id="ldr" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4"></svg><div id="l2"></div><div id="v2d"></div>
 <div class="chips3" id="lchips"></div><div id="ckStage" hidden aria-live="polite"></div><div class="hint" id="hint">Drag to orbit · Scroll or pinch to zoom · Click a layer to focus it · Esc resets</div></div>
 <aside id="side"><button class="close" data-close="1" aria-label="Close">×</button><div class="info" id="info">
 <h2>How the team is layered</h2>
-<div class="rule"><b>1</b><span><b>Non Stop &amp; hub.</b> Chief of Staff, the Connection hub and its tools, and Notion Notes (only Non Stop writes).</span></div>
+<div class="rule"><b>1</b><span><b>Non Stop &amp; Hub.</b> Chief of Staff, the Connection hub and its tools, and Notion Notes (only Non Stop writes).</span></div>
 <div class="rule"><b>2</b><span><b>Leaders &amp; Experts.</b> Real jobs: leaders and specialists in seats.</span></div>
 <div class="rule"><b>3</b><span><b>Triggered work.</b> Work Lee kicks off: Client Setup and the Collabor8 Routine.</span></div>
-<div class="rule"><b>4</b><span><b>Bot Team &amp; personal.</b> Fleet builders, plus Lee-only personal and night bots.</span></div>
+<div class="rule"><b>4</b><span><b>Bot Team &amp; Personal.</b> Fleet builders, plus Lee-only personal and night bots.</span></div>
 <div class="rule"><b>5</b><span><b>Skills.</b> Shared toolkit any bot or Lee can call.</span></div>
 <p style="color:#94a3b8;font-size:12px">Who works with whom lives on the Connections and Map pages.</p>
 <h3>Search</h3><input id="q" type="search" placeholder="Search a bot or skill…" autocomplete="off">
@@ -117,10 +117,10 @@ window.M=(()=>{const D={"drawn": "Mon 19 Oct 2026, 10:14 Dubai", "version": "v4"
  const GN={hub:"Non Stop & Notion Notes",lead:"Leaders",experts:"Experts",team:"Bot Team",routine:"Collabor8 Routine",skills:"Skills",night:"Night",setup:"Client Setup Team",personal:"Personal",conn:"Connection hub (tools for the whole team)"};
  const CHB=D.connHub&&byId[D.connHub.hub]?D.connHub:null;const CIDS=CHB?[CHB.hub,...CHB.children.filter(i=>byId[i])]:[];
  const LEAD4=["cfo","cto","cmo","risk"];const LDS=(SEC.lead||[]).filter(i=>i!=="rhiannon"&&!CIDS.includes(i));
- const LAY=[{name:"Non Stop & hub",z:[["hub",["rhiannon","s_notes"]],["conn",CIDS]]},
+ const LAY=[{name:"Non Stop & Hub",z:[["hub",["rhiannon","s_notes"]],["conn",CIDS]]},
   {name:"Leaders & Experts",z:[["lead",LDS],["experts",(SEC.experts||[]).filter(i=>!CIDS.includes(i))]]},
   {name:"Triggered work",z:[["setup",SEC.setup||[]],["routine",SEC.routine||[]]]},
-  {name:"Bot Team & personal",z:[["team",SEC.team||[]],["personal",SEC.personal||[]],["night",SEC.night||[]]]},
+  {name:"Bot Team & Personal",z:[["team",SEC.team||[]],["personal",SEC.personal||[]],["night",SEC.night||[]]]},
   {name:"Skills",z:[["skills",SK.map(k=>k.id)]]}];
  const secOf={},layerOf={},pos={};
  LAY.forEach((L,k)=>L.z.forEach(([g,ids])=>ids.forEach(id=>{secOf[id]=g;layerOf[id]=k;})));
@@ -161,10 +161,10 @@ window.M=(()=>{const D={"drawn": "Mon 19 Oct 2026, 10:14 Dubai", "version": "v4"
  // filter chips + search (call into the active view)
  const fc=document.getElementById("fchips");M.hidden=new Set();
  const CK=M.CK=[
-  {n:"Non Stop & hub",r:[[null,"#4F46E5","Non Stop","Non Stop — Chief of Staff"],["conn","#0f766e","Connection hub","Connection hub (Composio) — tools for the whole team"],[null,"#64748b","Notion Notes","Notion Notes — only Non Stop writes"]]},
+  {n:"Non Stop & Hub",r:[[null,"#4F46E5","Non Stop","Non Stop — Chief of Staff"],["conn","#0f766e","Connection hub","Connection hub (Composio) — tools for the whole team"],[null,"#64748b","Notion Notes","Notion Notes — only Non Stop writes"]]},
   {n:"Leaders & Experts",r:[["lead","#2563EB","Leaders","Leaders — C-suite / senior staff"],["experts","#374151","Experts","Experts — specialists in a seat"]]},
   {n:"Triggered work",r:[["setup","#b45a7c","Client Setup","Client Setup Team"],["routine","#0e9f77","Routine","Collabor8 Routine — work Lee kicks off"]]},
-  {n:"Bot Team & personal",r:[["team","#8b7bd8","Bot Team","Bot Team — fleet builders"],["personal","#0891b2","Personal","Personal — Lee only"],["night","#CA8A04","Night","Night — overnight automations"]]},
+  {n:"Bot Team & Personal",r:[["team","#8b7bd8","Bot Team","Bot Team — fleet builders"],["personal","#0891b2","Personal","Personal — Lee only"],["night","#CA8A04","Night","Night — overnight automations"]]},
   {n:"Skills",r:[["skills","#475569","Skills","Skills — shared toolkit any bot can call"]]}];
  fc.innerHTML=CK.map((L,k)=>`<div class="ck-grp" data-k="${k}"><div class="ck-layer">${k+1} · ${esc(L.n)}</div>${L.r.map(([g,c,,lg])=>g&&g!=="conn"?`<button type="button" class="ck-row on" data-g="${g}" aria-pressed="true" style="--c:${c}"><span class="dot"></span>${esc(lg)}</button>`:`<button type="button" class="ck-row on" disabled style="--c:${c}"><span class="dot"></span>${esc(lg)}</button>`).join("")}</div>`).join("");
  fc.querySelectorAll(".ck-row[data-g]").forEach(b=>b.onclick=()=>{const on=!b.classList.contains("on");b.classList.toggle("on",on);b.classList.toggle("off",!on);b.setAttribute("aria-pressed",on);on?M.hidden.delete(b.dataset.g):M.hidden.add(b.dataset.g);M.view.filter();});
@@ -239,7 +239,7 @@ async function start3D(){
   // sections as arc segments around the rim
   const zs=k===0?[]:L.z.filter(([g])=>g!=="hub");const tot=zs.reduce((a,[,l])=>a+l.length+1.2,0);let a0=Math.PI*.5;  // start at front
   if(k===0){const CHB=M.D.connHub&&M.byId[M.D.connHub.hub]?M.D.connHub:null,CIDS=CHB?[CHB.hub,...CHB.children.filter(i=>M.byId[i])]:[];const D2=Math.PI/180,pp=(a,rd)=>[k,Math.cos(a*D2)*rd,Math.sin(a*D2)*rd];
-   P.rhiannon=pp(-90,r*.5);P.s_notes=pp(180,r*.45);const HA=25,CA=[-25,25,75];let tA=[HA];if(CHB){P[CHB.hub]=pp(HA,r*.4);CIDS.slice(1).forEach((id,i)=>{const a=CA[i%3]+(i>2?12:0);tA.push(a);P[id]=pp(a,r-1.0);});}
+   P.rhiannon=pp(-90,r*.5);P.s_notes=pp(180,r*.45);const CA=[-15,55,125];let tA=[];if(CHB){P[CHB.hub]=[k,0,0];CIDS.slice(1).forEach((id,i)=>{const a=CA[i%3]+(i>2?12:0);tA.push(a);P[id]=pp(a,r*.55);});}if(!tA.length)tA=[0];
    const tmin=Math.min(...tA)-14,tmax=Math.max(...tA)+14;
    [["#0f766e",.60,-(tmin+tmax)/2*D2,(tmax-tmin)*D2],["#4F46E5",.55,Math.PI/2,1.3]].forEach(([c,o,m,sp])=>{const tb=new THREE.Mesh(new THREE.RingGeometry(r-.32,r-.05,64,1,m-sp/2,sp),new THREE.MeshBasicMaterial({color:new THREE.Color(c),transparent:true,opacity:o,side:THREE.DoubleSide,depthWrite:false}));tb.rotation.x=-Math.PI/2;tb.scale.z=-1;tb.position.y=.1;g.add(tb);});}
   zs.forEach(([gname,list])=>{const span=(list.length+1.2)/tot*2*Math.PI;const c=new THREE.Color(COL[gname]);
@@ -252,7 +252,7 @@ async function start3D(){
  ids.forEach(id=>{if(!P[id])return;const [k,x,z]=P[id];const g=slabs[k].g;const isHub=id===HUBID,isSvc=!isHub&&secOf[id]==="conn",isSk=secOf[id]==="skills";const hex=id==="lee"?"#312E81":id==="rhiannon"?"#4F46E5":isHub?"#0f766e":id==="s_notes"?"#64748b":COL[secOf[id]];const c=new THREE.Color(hex);
   const pr=id==="lee"?.3:id==="rhiannon"?.36:isHub?.22:isSvc?.14:isSk?.12:id==="s_notes"?.16:0;const m=new THREE.Mesh(pr?new THREE.SphereGeometry(pr,32,16):sph,new THREE.MeshStandardMaterial({color:c,emissive:c,emissiveIntensity:id==="rhiannon"?.22:(isSk||id==="s_notes")?0:.12,roughness:.45,transparent:true}));m.position.set(x,.26,z);m.userData.id=id;g.add(m);
   const hal=new THREE.Mesh(id==="rhiannon"?new THREE.RingGeometry(.42,.55,48):isHub?new THREE.RingGeometry(.28,.4,40):new THREE.RingGeometry(.24,.34,32),new THREE.MeshBasicMaterial({color:c,transparent:true,opacity:id==="rhiannon"?.30:.25,side:THREE.DoubleSide,depthWrite:false}));hal.rotation.x=-Math.PI/2;hal.position.set(x,.1,z);hal.userData.hal=1;g.add(hal);
-  const o=new THREE.Object3D();m.add(o);const d=css2(id==="rhiannon"?`★ Non Stop <small style="display:inline;color:#cbd5e1">Chief of Staff</small>`:`${esc(lab(id))}`,"lab"+(id==="s_notes"?" notes":"")+(id==="lee"?" lee pin":"")+(id==="rhiannon"?" rh pin":"")+(isHub?" hub":"")+(isSvc?" svc":""),o);d.dataset.id=id;d.style.setProperty("--c",hex);d.title=sub(id)||"";
+  const o=new THREE.Object3D();m.add(o);const d=css2(id==="rhiannon"?`★ Non Stop <small style="display:inline;color:#cbd5e1">Chief of Staff</small>`:(isHub?`Connection hub<small style="display:block;flex-basis:100%;padding-left:0;text-align:center;font-weight:600;color:#ccfbf1">Composio</small>`:`${esc(lab(id))}`),"lab"+(id==="s_notes"?" notes":"")+(id==="lee"?" lee pin":"")+(id==="rhiannon"?" rh pin":"")+(isHub?" hub":"")+(isSvc?" svc":""),o);d.dataset.id=id;d.style.setProperty("--c",hex);d.title=sub(id)||"";
   d.addEventListener("click",ev=>{ev.stopPropagation();select(id);});
   if(secOf[id]==="skills"){m.material.opacity=.4;hal.material.opacity=.1;d.classList.add("sk");}labs[id]=d;nodes[id]={m,hal,o};});
  const ray=new THREE.Raycaster(),mp=new THREE.Vector2();const meshes=()=>Object.values(nodes).map(n=>n.m);
@@ -303,7 +303,7 @@ async function start3D(){
  let fz=null;const ldr=document.getElementById("ldr");
  const onLayer=k=>ids.filter(id=>nodes[id]&&layerOf[id]===k&&!M.hidden.has(secOf[id]));
  function enterFocus(k){document.body.classList.add("lfz");const r=RR[k]-.25;fz={k,saveP:cam.position.clone(),saveT:ctl.target.clone(),wasAuto:ctl.autoRotate,leaders:[]};ctl.autoRotate=false;
-  onLayer(k).forEach(id=>{const [,x,z]=P[id];const a=Math.atan2(z,x);const n=nodes[id];n.o.position.set(Math.cos(a)*(r+1.0)-x,-.16,Math.sin(a)*(r+1.0)-z);labs[id].classList.add("fz");labs[id].classList.remove("cx");});
+  onLayer(k).forEach(id=>{const [,x,z]=P[id];const a=Math.atan2(z,x);const n=nodes[id];if(id===HUBID)n.o.position.set(0,-.16,.55);else n.o.position.set(Math.cos(a)*(r+1.0)-x,-.16,Math.sin(a)*(r+1.0)-z);labs[id].classList.add("fz");labs[id].classList.remove("cx");});
   const y=LY[k]+.5;const T=new THREE.Vector3(0,y,0);const vf=THREE.MathUtils.degToRad(cam.fov)/2,hf=Math.atan(Math.tan(vf)*W()/H());const half=r+3.1;const d=half/Math.tan(Math.min(vf,hf))*1.02;
   const az=0,pol=.62;const P2=new THREE.Vector3(Math.sin(pol)*Math.sin(az),Math.cos(pol),Math.sin(pol)*Math.cos(az)).multiplyScalar(d).add(T);
   ctl.minDistance=Math.min(ctl.minDistance,d*.5);ctl.maxDistance=Math.max(ctl.maxDistance,d*1.3);
@@ -312,7 +312,7 @@ async function start3D(){
   const f=fz;fz=null;if(RM){cam.position.copy(f.saveP);ctl.target.copy(f.saveT);}else fly={t0:performance.now(),fromT:ctl.target.clone(),toT:f.saveT,fromP:cam.position.clone(),toP:f.saveP};ctl.autoRotate=false;idle=performance.now()-7000;}
  function declutter(){if(!fz)return;const sb=stage.getBoundingClientRect();const ob=sideTags.map(t=>t.getBoundingClientRect()).map(o=>({x:o.left-sb.left,y:o.top-sb.top,w:o.width,h:o.height}));
   const c=new THREE.Vector3(0,slabs[fz.k].g.position.y,0).project(cam);const cx=(c.x+1)/2*W(),cy=(1-c.y)/2*H();
-  const it=onLayer(fz.k).map(id=>{const e=labs[id];e.style.marginLeft=e.style.marginTop="0px";const q=e.getBoundingClientRect();const x=q.left-sb.left,y=q.top-sb.top;const mx=x+q.width/2;const dx=(mx<cx?-1:1)*q.width/2*.9;return {id,e,x:x+dx,y,w:q.width,h:q.height,ox:dx,oy:0,sy:(y+q.height/2<cy?-1:1)};});
+  const it=onLayer(fz.k).map(id=>{const e=labs[id];e.style.marginLeft=e.style.marginTop="0px";const q=e.getBoundingClientRect();const x=q.left-sb.left,y=q.top-sb.top;const mx=x+q.width/2;const dx=id===HUBID?0:(mx<cx?-1:1)*q.width/2*.9;return {id,e,x:x+dx,y,w:q.width,h:q.height,ox:dx,oy:0,sy:(y+q.height/2<cy?-1:1)};});
   const ovl=(a,b,g=4)=>a.x<b.x+b.w+g&&a.x+a.w+g>b.x&&a.y<b.y+b.h+g&&a.y+a.h+g>b.y;const clamp=a=>{const W0=W(),H0=H();if(a.x<4){a.ox+=4-a.x;a.x=4;}if(a.x+a.w>W0-4){a.ox-=a.x+a.w-W0+4;a.x=W0-4-a.w;}if(a.y<4){a.oy+=4-a.y;a.y=4;}if(a.y+a.h>H0-4){a.oy-=a.y+a.h-H0+4;a.y=H0-4-a.h;}};
   it.forEach(clamp);
   for(let pass=0;pass<120;pass++){let moved=false;
@@ -345,6 +345,7 @@ async function start3D(){
   if(!paused)stepFlow(now);ctl.update();R.render(scene,cam);L2.render(scene,cam);placeTags();if(fz)drawLeaders();if(now-lastC>120){lastC=now;collide();}});
  M.three={scene,cam,ctl,eg,nodes,labs,wp,cur:()=>cur};}
 </script>
+<script>(()=>{const f=()=>{const b=document.getElementById("bReset"),st=document.querySelector("canvas");if(!b||!st)return;const r=st.getBoundingClientRect(),p=b.parentElement.getBoundingClientRect();b.style.left=(r.left+r.width/2-p.left)+"px";};addEventListener("resize",f);setInterval(f,1000);setTimeout(f,300);})()</script>
 <style>
 #dlg{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;background:rgba(10,14,26,.6);padding:24px;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
 #dlg.open{display:flex}
