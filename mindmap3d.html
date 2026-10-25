@@ -42,6 +42,16 @@ html{scrollbar-gutter:stable}
 .cnt{display:none}
 .cap{font:600 13px Inter,system-ui,sans-serif;color:#fff;background:#0f172a;border-radius:999px;padding:5px 12px;box-shadow:0 4px 12px rgba(15,23,42,.2);transform:translateY(-30px);pointer-events:none;white-space:nowrap}
 .chips3{position:absolute;left:16px;bottom:16px;display:flex;gap:8px;z-index:7;flex-wrap:wrap}
+.ck-sub{margin:-2px 0 4px;color:#94a3b8;font-size:12px}.ck-grp{transition:opacity .2s}.ck-grp.dim{opacity:.55}
+.ck-layer{margin:12px 0 6px;font:700 11px/1.2 Inter,system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#94a3b8}
+.ck-row{display:flex;align-items:center;gap:10px;width:100%;min-height:36px;padding:6px 10px;margin:3px 0;border-radius:999px;border:1px solid transparent;background:transparent;color:#e2e8f0;font:600 13px/1.3 Inter,system-ui,sans-serif;cursor:pointer;text-align:left}
+.ck-row .dot{width:10px;height:10px;border-radius:999px;flex:none;background:var(--c);box-shadow:0 0 0 2px rgba(255,255,255,.12)}
+.ck-row[data-g="skills"] .dot{background:transparent;border:2px solid #94a3b8}.ck-row.on{background:rgba(255,255,255,.08)}.ck-row.off{opacity:.45}.ck-row:hover{background:rgba(255,255,255,.06)}.ck-row:disabled{cursor:default}
+#ckStage{position:absolute;left:16px;bottom:52px;z-index:7;max-width:min(320px,calc(100% - 200px));padding:10px 14px;border-radius:12px;background:rgba(255,255,255,.94);border:1px solid #e2e8f0;box-shadow:0 8px 24px rgba(15,23,42,.12);font:600 13px/1.35 Inter,system-ui,sans-serif;color:#0f172a;backdrop-filter:blur(8px)}#ckStage[hidden]{display:none}
+#ckStage .h{font:700 10px/1.2 Inter,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#64748b;margin:0 0 6px}#ckStage .rows{display:flex;flex-wrap:wrap;gap:8px 14px}#ckStage .row{display:inline-flex;align-items:center;gap:8px}
+#ckStage .dot{width:10px;height:10px;border-radius:999px;background:var(--c)}#ckStage .row.sk .dot{background:#fff;border:2px solid #64748b}
+.lt.fx .dots{display:inline-flex;gap:4px;margin-left:6px;vertical-align:middle}.lt.fx .dots i{width:7px;height:7px;border-radius:999px;background:var(--c)}.lt.fx .dots i.sk{background:transparent;border:1.5px solid #64748b;box-sizing:border-box}.lt.fx.on .dots i{box-shadow:0 0 0 1px rgba(255,255,255,.5)}
+@media (max-width:767px){#ckStage{left:12px;right:12px;max-width:none;bottom:12px}.ck-row{min-height:44px}}
 .hint{pointer-events:none;position:absolute;right:16px;bottom:16px;z-index:7;font-size:12px;color:var(--mut);background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:8px;padding:6px 10px}
 aside{background:#0f172a;color:#e2e8f0;padding:20px;overflow:auto;font-size:13px}
 aside h2{margin:0 0 10px;font-size:18px;color:#fff}aside h3{margin:18px 0 8px;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#94a3b8}
@@ -79,11 +89,11 @@ body.flat #gl,body.flat #l2,body.flat .chips3,body.flat .hint{display:none}body.
 </style>
 <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js","three/addons/":"./vendor/"}}</script>
 </head><body>
-<nav class="topnav"><a class="brand" href="index.html?v=20261025135523"><span class="mk"></span>GrokBot Team Dashboard</a><div class="links"><a href="connections.html?v=20261025135523" data-p="conn" style="--t:#0f766e">Connections</a><a href="index.html?v=20261025135523" data-p="map" style="--t:#4f46e5">Map</a><a href="mindmap.html?v=20261025135523" data-p="mind" style="--t:#047857">Mind map</a><a href="mindmap3d.html?v=20261025135523" data-p="mind3d" class="act" style="--t:#0e7490">Mind map 3D</a><a href="marketing.html?v=20261025135523" data-p="mkt" style="--t:#b45309">Marketing team</a><a href="bots.html?v=20261025135523" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
+<nav class="topnav"><a class="brand" href="index.html?v=20261025140205"><span class="mk"></span>GrokBot Team Dashboard</a><div class="links"><a href="connections.html?v=20261025140205" data-p="conn" style="--t:#0f766e">Connections</a><a href="index.html?v=20261025140205" data-p="map" style="--t:#4f46e5">Map</a><a href="mindmap.html?v=20261025140205" data-p="mind" style="--t:#047857">Mind map</a><a href="mindmap3d.html?v=20261025140205" data-p="mind3d" class="act" style="--t:#0e7490">Mind map 3D</a><a href="marketing.html?v=20261025140205" data-p="mkt" style="--t:#b45309">Marketing team</a><a href="bots.html?v=20261025140205" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
 <div class="bar3"><b>Mind map · 3D layers</b><span class="sp"></span>
 <button class="btn" id="bPause" type="button" aria-pressed="false">⏸ Pause</button><button class="btn" id="bReset" type="button">Reset view</button></div>
 <div class="wrap"><div id="stage"><div id="gl"></div><svg id="ldr" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4"></svg><div id="l2"></div><div id="v2d"></div>
-<div class="chips3" id="lchips"></div><div class="hint" id="hint">Drag to orbit · Scroll or pinch to zoom · Click a layer to focus it · Esc resets</div></div>
+<div class="chips3" id="lchips"></div><div id="ckStage" hidden aria-live="polite"></div><div class="hint" id="hint">Drag to orbit · Scroll or pinch to zoom · Click a layer to focus it · Esc resets</div></div>
 <aside id="side"><button class="close" data-close="1" aria-label="Close">×</button><div class="info" id="info">
 <h2>How the team is layered</h2>
 <div class="rule"><b>1</b><span><b>Non Stop &amp; hub.</b> Chief of Staff, the Connection hub and its tools, and Notion Notes (only Non Stop writes).</span></div>
@@ -93,7 +103,7 @@ body.flat #gl,body.flat #l2,body.flat .chips3,body.flat .hint{display:none}body.
 <div class="rule"><b>5</b><span><b>Skills.</b> Shared toolkit any bot or Lee can call.</span></div>
 <p style="color:#94a3b8;font-size:12px">Who works with whom lives on the Connections and Map pages.</p>
 <h3>Search</h3><input id="q" type="search" placeholder="Search a bot or skill…" autocomplete="off">
-<h3>Sections</h3><div class="f" id="fchips"></div><h3>Selected</h3></div>
+<h3>Colour key</h3><p class="ck-sub">Colours match the dots on each chip.</p><div id="fchips"></div><h3>Selected</h3></div>
 <div id="sel"><p style="color:#94a3b8;margin:0">Click a bot or skill for its description.</p></div></aside></div>
 <div class="mob" id="mob"></div><div id="scrim"></div>
 <script>
@@ -149,8 +159,16 @@ window.M=(()=>{const D={"drawn": "Mon 19 Oct 2026, 10:14 Dubai", "version": "v4"
   side.addEventListener("touchmove",ev=>{if(y0===null)return;dy=ev.touches[0].clientY-y0;if(dy>0){side.style.transition="none";side.style.transform=`translateY(${dy}px)`;}},{passive:true});
   side.addEventListener("touchend",()=>{if(y0===null)return;side.style.transition="";side.style.transform="";if(dy>70)M.unselect();y0=null;dy=0;});})();
  // filter chips + search (call into the active view)
- const fc=document.getElementById("fchips");M.hidden=new Set();[["lead","Leaders"],["experts","Experts"],["team","Bot Team"],["routine","Routine"],["skills","Skills"],["setup","Setup"],["night","Night"],["personal","Personal"]].forEach(([g,nm])=>{const b=document.createElement("button");b.type="button";b.dataset.g=g;b.style.setProperty("--c",COL[g]);b.textContent=nm;
-  b.onclick=()=>{b.classList.toggle("on");const on=[...fc.querySelectorAll("button.on")].map(x=>x.dataset.g);M.hidden.clear();if(on.length)M.ORDER.forEach(x=>{if(x!=="hub"&&x!=="conn"&&!on.includes(x))M.hidden.add(x);});M.view.filter();};fc.appendChild(b);});
+ const fc=document.getElementById("fchips");M.hidden=new Set();
+ const CK=M.CK=[
+  {n:"Non Stop & hub",r:[[null,"#4F46E5","Non Stop","Non Stop — Chief of Staff"],["conn","#0f766e","Connection hub","Connection hub (Composio) — tools for the whole team"],[null,"#64748b","Notion Notes","Notion Notes — only Non Stop writes"]]},
+  {n:"Leaders & Experts",r:[["lead","#2563EB","Leaders","Leaders — C-suite / senior staff"],["experts","#374151","Experts","Experts — specialists in a seat"]]},
+  {n:"Triggered work",r:[["setup","#b45a7c","Client Setup","Client Setup Team"],["routine","#0e9f77","Routine","Collabor8 Routine — work Lee kicks off"]]},
+  {n:"Bot Team & personal",r:[["team","#8b7bd8","Bot Team","Bot Team — fleet builders"],["personal","#0891b2","Personal","Personal — Lee only"],["night","#CA8A04","Night","Night — overnight automations"]]},
+  {n:"Skills",r:[["skills","#475569","Skills","Skills — shared toolkit any bot can call"]]}];
+ fc.innerHTML=CK.map((L,k)=>`<div class="ck-grp" data-k="${k}"><div class="ck-layer">${k+1} · ${esc(L.n)}</div>${L.r.map(([g,c,,lg])=>g&&g!=="conn"?`<button type="button" class="ck-row on" data-g="${g}" aria-pressed="true" style="--c:${c}"><span class="dot"></span>${esc(lg)}</button>`:`<button type="button" class="ck-row on" disabled style="--c:${c}"><span class="dot"></span>${esc(lg)}</button>`).join("")}</div>`).join("");
+ fc.querySelectorAll(".ck-row[data-g]").forEach(b=>b.onclick=()=>{const on=!b.classList.contains("on");b.classList.toggle("on",on);b.classList.toggle("off",!on);b.setAttribute("aria-pressed",on);on?M.hidden.delete(b.dataset.g):M.hidden.add(b.dataset.g);M.view.filter();});
+ M.ckFocus=k=>{fc.querySelectorAll(".ck-grp").forEach(g=>g.classList.toggle("dim",k!==null&&+g.dataset.k!==k));const st=document.getElementById("ckStage");if(!st)return;if(k===null||!CK[k]){st.hidden=true;st.innerHTML="";return;}const L=CK[k];st.innerHTML=`<div class="h">On this layer</div><div class="rows">${L.r.map(([g,c,sh])=>`<span class="row${g==="skills"?" sk":""}" style="--c:${c}"><span class="dot"></span>${esc(sh)}</span>`).join("")}</div>`;st.setAttribute("aria-label","Colour key: "+L.r.map(x=>x[2]).join(" and "));st.hidden=false;};
  document.getElementById("q").addEventListener("input",ev=>{const s=ev.target.value.trim().toLowerCase();if(!s){M.view.focus(null);return;}const hit=M.ids.filter(id=>lab(id).toLowerCase().includes(s));if(hit.length===1)M.view.select(hit[0]);else M.view.mark(new Set(hit));});
  if(phone()){document.getElementById("mob").appendChild(document.getElementById("info"));sel.innerHTML="";}})();
 // ===== 2D top-down view (phone, or no WebGL): section hubs on a ring, bot dots around each; labels only for focus, full list below =====
@@ -217,7 +235,7 @@ async function start3D(){
   const rim=new THREE.Mesh(new THREE.TorusGeometry(r,.04,8,128),new THREE.MeshBasicMaterial({color:0x94a3b8,transparent:true,opacity:.55}));rim.rotation.x=Math.PI/2;g.add(rim);
   {const hi=new THREE.Mesh(new THREE.TorusGeometry(r-.12,.015,6,128),new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.22}));hi.rotation.x=Math.PI/2;hi.position.y=.085;g.add(hi);}
   const pr=new THREE.PolarGridHelper(r*.92,12,4,96,0xcbd5e1,0xe2e8f0);pr.position.y=.09;pr.material.transparent=true;pr.material.opacity=.35;g.add(pr);
-  const td=document.createElement("div");td.className="btn lt fx";td.setAttribute("role","button");td.tabIndex=0;td.innerHTML=`<span class="n">${k+1}</span>${esc(L.name)}`;td.style.setProperty("--a",["#4F46E5","#2563EB","#0e9f77","#8b7bd8","#64748B"][k]);td.addEventListener("keydown",ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();td.click();}});stage.appendChild(td);sideTags.push(td);td.addEventListener("click",()=>layerHL(lhl===k?null:k));
+  const td=document.createElement("div");td.className="btn lt fx";td.setAttribute("role","button");td.tabIndex=0;td.innerHTML=`<span class="n">${k+1}</span>${esc(L.name)}<span class="dots" aria-hidden="true">${(M.CK&&M.CK[k]?M.CK[k].r:[]).map(([g,c])=>`<i${g==="skills"?' class="sk"':""} style="--c:${c}"></i>`).join("")}</span>`;td.style.setProperty("--a",["#4F46E5","#2563EB","#0e9f77","#8b7bd8","#64748B"][k]);td.addEventListener("keydown",ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();td.click();}});stage.appendChild(td);sideTags.push(td);td.addEventListener("click",()=>layerHL(lhl===k?null:k));
   // sections as arc segments around the rim
   const zs=k===0?[]:L.z.filter(([g])=>g!=="hub");const tot=zs.reduce((a,[,l])=>a+l.length+1.2,0);let a0=Math.PI*.5;  // start at front
   if(k===0){const CHB=M.D.connHub&&M.byId[M.D.connHub.hub]?M.D.connHub:null,CIDS=CHB?[CHB.hub,...CHB.children.filter(i=>M.byId[i])]:[];const hx=2.0,hz=-1.3,ro=.6*r*.5;P.rhiannon=[k,0,.4];P.s_notes=[k,-2.5,.4];if(CHB){P[CHB.hub]=[k,hx,hz];CIDS.slice(1).forEach((id,i)=>{const an=[90,55,20][i%3]*Math.PI/180;P[id]=[k,hx+Math.cos(an)*ro,hz+Math.sin(an)*ro];});}
@@ -278,7 +296,7 @@ async function start3D(){
   ids.forEach(id=>{if(labs[id])labs[id].classList.toggle("lyoff",k!==null&&layerOf[id]!==k);});zts.forEach(z=>z.classList.toggle("lyoff",k!==null&&+z.dataset.k!==k));}
  let lhl=null;const lch=document.getElementById("lchips");lch.style.display="none";
  function layerHL(k){const prev=lhl;lhl=k;slabs.forEach((s,j)=>{s.target=k===null?0:(j===k?.5:0);});
-  if(prev!==null)exitFocus();setDim(!!lit,lit);document.querySelectorAll(".lt").forEach((t,j)=>t.classList.toggle("on",j===k));if(k!==null)enterFocus(k);}
+  if(prev!==null)exitFocus();setDim(!!lit,lit);document.querySelectorAll(".lt").forEach((t,j)=>t.classList.toggle("on",j===k));if(k!==null)enterFocus(k);M.ckFocus&&M.ckFocus(k);}
  // ---- layer focus: stop rotation, top-down camera on the disc, every label radial outside the rim, declutter ----
  let fz=null;const ldr=document.getElementById("ldr");
  const onLayer=k=>ids.filter(id=>nodes[id]&&layerOf[id]===k&&!M.hidden.has(secOf[id]));
