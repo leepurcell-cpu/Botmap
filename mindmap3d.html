@@ -79,7 +79,7 @@ body.flat #gl,body.flat #l2,body.flat .chips3,body.flat .hint{display:none}body.
 </style>
 <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js","three/addons/":"./vendor/"}}</script>
 </head><body>
-<nav class="topnav"><a class="brand" href="index.html?v=20261025123441"><span class="mk"></span>GrokBot Team Dashboard</a><div class="links"><a href="index.html?v=20261025123441" data-p="map" style="--t:#4f46e5">Map</a><a href="connections.html?v=20261025123441" data-p="conn" style="--t:#0f766e">Connections</a><a href="mindmap.html?v=20261025123441" data-p="mind" style="--t:#047857">Mind map</a><a href="mindmap3d.html?v=20261025123441" data-p="mind3d" class="act" style="--t:#0e7490">Mind map 3D</a><a href="marketing.html?v=20261025123441" data-p="mkt" style="--t:#b45309">Marketing team</a><a href="bots.html?v=20261025123441" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
+<nav class="topnav"><a class="brand" href="index.html?v=20261025125157"><span class="mk"></span>GrokBot Team Dashboard</a><div class="links"><a href="index.html?v=20261025125157" data-p="map" style="--t:#4f46e5">Map</a><a href="connections.html?v=20261025125157" data-p="conn" style="--t:#0f766e">Connections</a><a href="mindmap.html?v=20261025125157" data-p="mind" style="--t:#047857">Mind map</a><a href="mindmap3d.html?v=20261025125157" data-p="mind3d" class="act" style="--t:#0e7490">Mind map 3D</a><a href="marketing.html?v=20261025125157" data-p="mkt" style="--t:#b45309">Marketing team</a><a href="bots.html?v=20261025125157" data-p="bots" style="--t:#9a3412">How it's built</a></div></nav>
 <div class="bar3"><b>Mind map · 3D layers</b><span class="sp"></span>
 <button class="btn" id="bPause" type="button" aria-pressed="false">⏸ Pause</button><button class="btn" id="bReset" type="button">Reset view</button><button class="btn pri" id="bFlow" type="button">▶ Show a flow</button></div>
 <div class="wrap"><div id="stage"><div id="gl"></div><svg id="ldr" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4"></svg><div id="l2"></div><div id="v2d"></div>
@@ -109,12 +109,14 @@ window.M=(()=>{const D={"drawn": "Mon 19 Oct 2026, 10:14 Dubai", "version": "v4"
  const ZT={hub:"#475569",team:"#5b4bb8",routine:"#047857",night:"#A16207",setup:"#9b3f63",personal:"#0e7490",conn:"#0f766e"};
  const GN={hub:"Lee & Chief of Staff",lead:"Leaders",experts:"Experts",team:"Bot Team",routine:"Collabor8 Routine",skills:"Skills (any bot can call)",night:"Night",setup:"Client Setup Team",personal:"Personal",conn:"Connection hub (tools for the whole team)"};
  const CHB=D.connHub&&byId[D.connHub.hub]?D.connHub:null;const CIDS=CHB?[CHB.hub,...CHB.children.filter(i=>byId[i])]:[];
- const LAY=[{name:"Lee & Chief of Staff",z:[["hub",["lee","rhiannon","s_notes"]]]},...(CHB?[{name:"Connection hub",z:[["conn",CIDS]]}]:[]),{name:"Leaders",z:[["lead",(SEC.lead||[]).filter(i=>i!=="rhiannon")]]},
-  {name:"Experts & teams",z:[["experts",SEC.experts||[]],["team",SEC.team||[]],["setup",SEC.setup||[]]]},
-  {name:"Routine, skills & night",z:[["routine",SEC.routine||[]],["skills",SK.map(k=>k.id)],["night",SEC.night||[]],["personal",SEC.personal||[]]]}];
+ const LEAD4=["cfo","cto","cmo","risk"];const LDS=(SEC.lead||[]).filter(i=>i!=="rhiannon"&&!CIDS.includes(i));
+ const LAY=[{name:"Lee",z:[["hub",["lee","s_notes"]]]},{name:"Non Stop & Connection hub",z:[["hub",["rhiannon"]],["conn",CIDS]]},{name:"Leaders",z:[["lead",LDS]]},
+  {name:"Experts & Bot Team",z:[["experts",(SEC.experts||[]).filter(i=>!CIDS.includes(i))],["team",SEC.team||[]]]},
+  {name:"Client Setup, Routine, Personal & Night",z:[["setup",SEC.setup||[]],["routine",SEC.routine||[]],["personal",SEC.personal||[]],["night",SEC.night||[]]]},
+  {name:"Skills",z:[["skills",SK.map(k=>k.id)]]}];
  const secOf={},layerOf={},pos={};
  LAY.forEach((L,k)=>L.z.forEach(([g,ids])=>ids.forEach(id=>{secOf[id]=g;layerOf[id]=k;})));
- const lab=id=>id==="lee"?"Lee":id==="s_notes"?"Notion Notes":(byId[id]||{}).label||id;
+ const lab=id=>id==="conn_whatsapp"?"TimelinesAI · WhatsApp (read only)":id==="conn_tasks"?"Google Tasks · reminders":id==="conn_eleven"?"ElevenLabs · voice, pay-per-use":id==="lee"?"Lee":id==="s_notes"?"Notion Notes":(byId[id]||{}).label||id;
  const sub=id=>{const n=byId[id]||{};if(id==="lee")return"starts anywhere";if(id==="s_notes")return"✎ only Non Stop writes";if(id==="rhiannon")return"Chief of Staff";if(n.kind==="skill")return(n.users||[]).length?"":"any bot";if(id==="night")return"overnight";if(id==="pnotes")return"private";if(CHB&&id===CHB.hub)return"available to the whole team";if(secOf[id]==="conn")return n.title||"";return secOf[id]==="lead"?(n.title||""):"";};
  const E=[];
  // every drawn edge is "a asks b" (solid, arrow at b). The receiver answers whoever asked, so each request also gets a dashed reply arrow b to a (unless b already asks a itself).
@@ -198,12 +200,12 @@ async function start3D(){
  const L2=new CSS2DRenderer();L2.setSize(W(),H());l2h.appendChild(L2.domElement);L2.domElement.style.pointerEvents="none";
  const scene=new THREE.Scene();const cam=new THREE.PerspectiveCamera(34,W()/H(),.1,300);
  // globe: radius RS, three slices
- const RS=8.6,LY=LAY.length>4?[6.6,3.3,0,-3.3,-6.6]:[6.0,2.2,-2.0,-5.6];const RR=LY.map(y=>Math.sqrt(RS*RS-y*y));
+ const RS=8.6,LY=[7.2,4.32,1.44,-1.44,-4.32,-7.2];const RR=LY.map(y=>Math.sqrt(RS*RS-y*y));
  const TGT0=new THREE.Vector3(0,.2,0);const DIR=new THREE.Vector3(.12,.48,1).normalize();const CAM0=new THREE.Vector3();
  const fitCam=()=>{const a=W()/H();const vf=THREE.MathUtils.degToRad(cam.fov)/2;const hf=Math.atan(Math.tan(vf)*a);const d=(RS*1.12)/Math.sin(Math.min(vf,hf));CAM0.copy(DIR).multiplyScalar(d).add(TGT0);ctl&&(ctl.maxDistance=d*1.5,ctl.minDistance=d*.5);};
  let ctl=null;fitCam();cam.position.copy(CAM0);
  ctl=new OrbitControls(cam,R.domElement);ctl.target.copy(TGT0);fitCam();ctl.enableDamping=true;ctl.dampingFactor=.08;ctl.minPolarAngle=.5;ctl.maxPolarAngle=1.45;ctl.enablePan=false;
- ctl.autoRotate=!RM;ctl.autoRotateSpeed=.3;let idle=0;ctl.addEventListener("start",()=>{ctl.autoRotate=false;idle=performance.now();});
+ ctl.autoRotate=false;ctl.autoRotateSpeed=.3;let idle=0;ctl.addEventListener("start",()=>{ctl.autoRotate=false;idle=performance.now();});
  scene.add(new THREE.HemisphereLight(0xffffff,0xd5dce8,1.6));const dl=new THREE.DirectionalLight(0xffffff,.9);dl.position.set(6,20,12);scene.add(dl);
  // wire sphere outline (faint)
  const wire=new THREE.Group();scene.add(wire);const wm=new THREE.LineBasicMaterial({color:0x94a3b8,transparent:true,opacity:.22});
@@ -217,8 +219,10 @@ async function start3D(){
   const pr=new THREE.PolarGridHelper(r*.92,12,4,96,0xcbd5e1,0xe2e8f0);pr.position.y=.09;pr.material.transparent=true;pr.material.opacity=.35;g.add(pr);
   const td=document.createElement("div");td.className="btn lt fx";td.setAttribute("role","button");td.tabIndex=0;td.innerHTML=`${k+1} · ${esc(L.name)}`;td.addEventListener("keydown",ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();td.click();}});stage.appendChild(td);sideTags.push(td);td.addEventListener("click",()=>layerHL(lhl===k?null:k));
   // sections as arc segments around the rim
-  const zs=L.z.filter(([g])=>g!=="hub");const tot=zs.reduce((a,[,l])=>a+l.length+1.2,0);let a0=Math.PI*.5;  // start at front
-  if(k===0){[["lee",0,-.6],["rhiannon",-1.7,1.5],["s_notes",2.1,1.2]].forEach(([id,x,z])=>P[id]=[k,x,z]);const hb=new THREE.Mesh(new THREE.RingGeometry(r-.32,r-.05,96),new THREE.MeshBasicMaterial({color:new THREE.Color("#2563EB"),transparent:true,opacity:.35,side:THREE.DoubleSide,depthWrite:false}));hb.rotation.x=-Math.PI/2;hb.position.y=.1;g.add(hb);}
+  const zs=k===1?[]:L.z.filter(([g])=>g!=="hub");const tot=zs.reduce((a,[,l])=>a+l.length+1.2,0);let a0=Math.PI*.5;  // start at front
+  if(k===1){const CHB=M.D.connHub&&M.byId[M.D.connHub.hub]?M.D.connHub:null,CIDS=CHB?[CHB.hub,...CHB.children.filter(i=>M.byId[i])]:[];const hx=1.4,ro=.6*(RR[2]-.25)*.5;P.rhiannon=[k,-2.6,0];if(CHB){P[CHB.hub]=[k,hx,0];CIDS.slice(1).forEach((id,i)=>{const an=[100,35,-30][i%3]*Math.PI/180;P[id]=[k,hx+Math.cos(an)*ro,Math.sin(an)*ro];});}
+   const tb=new THREE.Mesh(new THREE.RingGeometry(r-.32,r-.05,96),new THREE.MeshBasicMaterial({color:new THREE.Color("#0f766e"),transparent:true,opacity:.45,side:THREE.DoubleSide,depthWrite:false}));tb.rotation.x=-Math.PI/2;tb.position.y=.1;g.add(tb);}
+  if(k===0){[["lee",0,0],["s_notes",2.1,1.2]].forEach(([id,x,z])=>P[id]=[k,x,z]);const hb=new THREE.Mesh(new THREE.RingGeometry(r-.32,r-.05,96),new THREE.MeshBasicMaterial({color:new THREE.Color("#2563EB"),transparent:true,opacity:.35,side:THREE.DoubleSide,depthWrite:false}));hb.rotation.x=-Math.PI/2;hb.position.y=.1;g.add(hb);}
   zs.forEach(([gname,list])=>{const span=(list.length+1.2)/tot*2*Math.PI;const c=new THREE.Color(COL[gname]);
    const band=new THREE.Mesh(new THREE.RingGeometry(r-.32,r-.05,64,1,a0+.06,span-.12),new THREE.MeshBasicMaterial({color:c,transparent:true,opacity:.55,side:THREE.DoubleSide,depthWrite:false}));band.rotation.x=-Math.PI/2;band.position.y=.1;band.scale.z=-1;g.add(band);
    const mid=a0+span/2;if(zs.length>1){const zt=new THREE.Object3D();zt.position.set(Math.cos(mid)*(r+.7),.1,Math.sin(mid)*(r+.7));g.add(zt);const d=css2(esc(GN[gname]),"zt",zt);d.style.setProperty("--c",COL[gname]);if(ZT[gname])d.style.setProperty("--zt",ZT[gname]);d.dataset.k=k;zts.push(d);}
@@ -230,7 +234,7 @@ async function start3D(){
   const hal=new THREE.Mesh(new THREE.RingGeometry(.24,.34,32),new THREE.MeshBasicMaterial({color:c,transparent:true,opacity:.25,side:THREE.DoubleSide,depthWrite:false}));hal.rotation.x=-Math.PI/2;hal.position.set(x,.1,z);hal.userData.hal=1;g.add(hal);
   const o=new THREE.Object3D();m.add(o);const d=css2(id==="rhiannon"?`★ Non Stop <small style="display:inline;color:#cbd5e1">Chief of Staff</small>`:`${esc(lab(id))}`,"lab"+(id==="s_notes"?" notes":"")+(id==="lee"?" lee pin":"")+(id==="rhiannon"?" rh pin":""),o);d.dataset.id=id;d.style.setProperty("--c",hex);d.title=sub(id)||"";
   d.addEventListener("mouseenter",()=>{if(!pinned&&!flow)focus(id);});d.addEventListener("mouseleave",()=>{if(!pinned&&!flow&&cur===id)focus(null);});d.addEventListener("click",ev=>{ev.stopPropagation();select(id);});
-  labs[id]=d;nodes[id]={m,hal,o};});
+  if(secOf[id]==="skills"){m.material.opacity=.4;hal.material.opacity=.1;d.style.opacity=.4;}labs[id]=d;nodes[id]={m,hal,o};});
  const ray=new THREE.Raycaster(),mp=new THREE.Vector2();const meshes=()=>Object.values(nodes).map(n=>n.m);
  R.domElement.addEventListener("pointerleave",ev=>{if(pinned||flow||ev.pointerType==="touch")return;const t=ev.relatedTarget;if(t&&t.closest&&t.closest(".lab"))return;if(cur)focus(null);});
  R.domElement.addEventListener("pointermove",ev=>{if(pinned||flow)return;const b=R.domElement.getBoundingClientRect();mp.set((ev.clientX-b.left)/b.width*2-1,-(ev.clientY-b.top)/b.height*2+1);ray.setFromCamera(mp,cam);const h=ray.intersectObjects(meshes())[0];const id=h?h.object.userData.id:null;if(id!==cur)focus(id);R.domElement.style.cursor=id?"pointer":"";});
@@ -257,7 +261,7 @@ async function start3D(){
  let paused=false,pT=0;const bP=document.getElementById("bPause");bP.onclick=()=>{paused=!paused;bP.setAttribute("aria-pressed",paused);bP.textContent=paused?"▶ Play":"⏸ Pause";if(paused){ctl.autoRotate=false;ctl.enableDamping=false;ctl.update();ctl.enableDamping=true;pT=performance.now();}else{if(flow)flow.t0+=performance.now()-pT;idle=0;}};
  let fly=null;function flyTo(id){if(RM)return;const t=wp(id).lerp(TGT0,.6);const off=cam.position.clone().sub(ctl.target).multiplyScalar(.85);fly={t0:performance.now(),fromT:ctl.target.clone(),toT:t,fromP:cam.position.clone(),toP:t.clone().add(off)};ctl.autoRotate=false;}
  function select(id){if(!nodes[id])return;stopFlow();pinned=true;focus(id);flyTo(id);M.show(id);}
- function reset(){pinned=false;stopFlow();layerHL(null);M.hide();focus(null);if(RM){cam.position.copy(CAM0);ctl.target.copy(TGT0);}else fly={t0:performance.now(),fromT:ctl.target.clone(),toT:TGT0.clone(),fromP:cam.position.clone(),toP:CAM0.clone()};ctl.autoRotate=!RM;}
+ function reset(){pinned=false;stopFlow();layerHL(null);M.hide();focus(null);if(RM){cam.position.copy(CAM0);ctl.target.copy(TGT0);}else fly={t0:performance.now(),fromT:ctl.target.clone(),toT:TGT0.clone(),fromP:cam.position.clone(),toP:CAM0.clone()};ctl.autoRotate=false;}
  M.view={focus:id=>{if(!id)pinned=false;focus(id);},select,reset,mark:s=>setDim(true,s),filter:()=>{ids.forEach(id=>{if(!nodes[id])return;const h=M.hidden.has(secOf[id]);nodes[id].m.visible=nodes[id].hal.visible=!h;labs[id].classList.toggle("hide",h);});focus(cur);}};
  document.getElementById("bReset").onclick=reset;
  let moved=false;R.domElement.addEventListener("pointerdown",()=>{moved=false;});ctl.addEventListener("change",()=>{moved=true;});
