@@ -1,1 +1,3 @@
-Lee Purcell's Bot Map: https://leepurcell-cpu.github.io/Botmap/
+# Lee Purcell's GrokBot Team Dashboard
+
+**Live site:** https://leepurcell-cpu.github.io/Botmap/
